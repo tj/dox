@@ -1,0 +1,3 @@
+[submodule "support/koala"]
+	path = support/koala
+	url = git://github.com/visionmedia/koala.js.git
