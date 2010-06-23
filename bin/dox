@@ -1,0 +1,62 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+var sys = require('sys'),
+    fs = require('fs'),
+    args = process.argv.slice(2);
+
+if (args) {
+    args.forEach(function(arg){
+        fs.readFile(arg, 'utf8', function(err, str){
+            if (err) throw err;
+            render(str, sys.print);
+        });
+    });
+} else {
+    throw new Error('files required.');
+}
+
+function render(str, fn){
+    var parts = str.split(/\s*\/\*([^]+?)\*\/\s*/g),
+        blocks = [];
+
+    // Populate blocks
+    for (var i = 0, len = parts.length; i < len; ++i) {
+        var part = parts[i],
+            next = parts[i + 1] || '';
+        // Empty
+        if (/^\s*$/.test(part)) {
+            continue;
+        // Ignored comment
+        } else if (/^!\s*\*/.test(part)) {
+            continue;
+        } else {
+            ++i;
+            var part = part
+                .replace(/^ *\*/gm, '');
+            blocks.push({
+               comment: part,
+               code: next 
+            });
+        }
+    }
+    
+    // Generate html
+    var html = ['<table>'];
+    for (var i = 0, len = blocks.length; i < len; ++i) {
+        var block = blocks[i];
+        html.push('<tr>');
+        html.push('<td class="comment">', block.comment
+            ? '<pre>' + block.comment + '</pre>'
+            : '', '</td>');
+        html.push('<td class="code">', block.code
+            ? '<pre class="code">' + block.code + '</pre>'
+            : '', '</td>');
+        html.push('</tr>');
+    }
+
+    fn(html.concat('</table>').join('\n'));
+}
