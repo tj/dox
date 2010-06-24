@@ -42,6 +42,13 @@ var files = ['foo.js', 'bar.js'];
  *
  * Is escaped, <script>alert("mwahaha")</script> for example :).
  *
+ * More Examples:
+ *
+ *     {
+ *       foo: 'bar',
+ *       baz: 'raz'
+ *     } 
+ * 
  * @param {String} nothing a string that does nothing
  * @return {Object} exports for chaining
  * @api public

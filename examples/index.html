@@ -110,8 +110,8 @@ table#source tr.code ul li {
     margin: 0;
     padding: 2px 0;
 }
-table#source tr.code pre {
-    margin-left: 20px;
+table#source tr.code td:first-child pre {
+    padding: 20px;
 }
 code .string { color: #219161; }
 code .regexp { color: #219161; }
@@ -207,6 +207,14 @@ code .this { color: #19469D; }</style>
 <h2>HTML</h2>
 
 <p>Is escaped, <script>alert(&ldquo;mwahaha&rdquo;)</script> for example :).</p>
+
+<p>More Examples:</p>
+
+<pre><code>{
+  foo: 'bar',
+  baz: 'raz'
+} 
+</code></pre>
 
 <ul>
 <li><strong>param</strong>: <em>String</em>  nothing a string that does nothing</li>

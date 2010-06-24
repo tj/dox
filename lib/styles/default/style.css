@@ -107,8 +107,8 @@ table#source tr.code ul li {
     margin: 0;
     padding: 2px 0;
 }
-table#source tr.code pre {
-    margin-left: 20px;
+table#source tr.code td:first-child pre {
+    padding: 20px;
 }
 code .string { color: #219161; }
 code .regexp { color: #219161; }
