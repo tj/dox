@@ -1,4 +1,4 @@
-<html>
+<a href="http://github.com/visionmedia/dox"><img alt="Fork me on GitHub" id="ribbon" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a><html>
 	<head>
 		<title>Dox</title>
 		<style>body {
@@ -113,6 +113,11 @@ table#source tr.code ul li {
 table#source tr.code td:first-child pre {
     padding: 20px;
 }
+#ribbon {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
 code .string { color: #219161; }
 code .regexp { color: #219161; }
 code .keyword { color: #954121; }
@@ -180,7 +185,7 @@ code .this { color: #19469D; }</style>
 <ul>
 <li><strong>type</strong>: <em>String</em></li>
 </ul>
-	
+
 </td>
 <td class="code">
 <pre><code><span class="keyword">var</span> <span class="variable">desc</span> = <span class="string">''</span>;</code></pre>
@@ -201,6 +206,19 @@ code .this { color: #19469D; }</style>
 </tr>
 <tr class="code">
 <td class="docs">
+<p>Github url for the ribbon.</p>
+
+<ul>
+<li><strong>type</strong>: <em>String</em></li>
+</ul>
+
+</td>
+<td class="code">
+<pre><code><span class="keyword">var</span> <span class="variable">ribbon</span> = <span class="string">''</span>;</code></pre>
+</td>
+</tr>
+<tr class="code">
+<td class="docs">
 <p>Usage documentation.</p>
 </td>
 <td class="code">
@@ -208,12 +226,13 @@ code .this { color: #19469D; }</style>
     + <span class="string">'Usage: dox [options] &lt;file ...&gt;\n'</span>
     + <span class="string">'\n'</span>
     + <span class="string">'Options:\n'</span>
-    + <span class="string">'  -t, --title      Project title\n'</span>
-    + <span class="string">'  -d, --desc       Project description (markdown)\n'</span>
-    + <span class="string">'  -s, --style      Document style, available: [&quot;default&quot;]\n'</span>
-    + <span class="string">'  -J, --no-jsdoc   Disable jsdoc parsing (coverts to markdown)\n'</span>
-    + <span class="string">'  -p, --private    Output private code in documentation\n'</span>
-    + <span class="string">'  -h, --help       Display help information'</span>
+    + <span class="string">'  -t, --title STR   Project title\n'</span>
+    + <span class="string">'  -d, --desc STR    Project description (markdown)\n'</span>
+    + <span class="string">'  -r, --ribbon URL  Github ribbon url\n'</span>
+    + <span class="string">'  -s, --style NAME  Document style, available: [&quot;default&quot;]\n'</span>
+    + <span class="string">'  -J, --no-jsdoc    Disable jsdoc parsing (coverts to markdown)\n'</span>
+    + <span class="string">'  -p, --private     Output private code in documentation\n'</span>
+    + <span class="string">'  -h, --help        Display help information'</span>
     + <span class="string">'\n'</span>;</code></pre>
 </td>
 </tr>
@@ -225,7 +244,7 @@ code .this { color: #19469D; }</style>
 <li><strong>param</strong>: <em>String</em>  msg</li>
 <li><strong>api</strong>: <em>private</em></li>
 </ul>
-	
+
 </td>
 <td class="code">
 <pre><code><span class="keyword">function</span> <span class="variable">log</span>(<span class="variable">msg</span>){
@@ -285,6 +304,10 @@ code .this { color: #19469D; }</style>
             <span class="keyword">case</span> <span class="string">'--private'</span>:
                 <span class="variable">showPrivate</span> = <span class="variable">true</span>;
                 <span class="keyword">break</span>;
+            <span class="keyword">case</span> <span class="string">'-r'</span>:
+            <span class="keyword">case</span> <span class="string">'--ribbon'</span>:
+                <span class="variable">ribbon</span> = <span class="variable">requireArg</span>();
+                <span class="keyword">break</span>;
             <span class="keyword">default</span>:
                 <span class="variable">files</span>.<span class="variable">push</span>(<span class="variable">arg</span>);
         }
@@ -302,6 +325,14 @@ code .this { color: #19469D; }</style>
     
         <span class="comment">// Substitutions</span>
         <span class="variable">head</span> = <span class="variable">head</span>.<span class="variable">replace</span>(<span class="regexp">/\{\{title\}\}/g</span>, <span class="variable">title</span>).<span class="variable">replace</span>(<span class="regexp">/\{\{style\}\}/</span>, <span class="variable">css</span>);
+        
+        <span class="comment">// Ribbon</span>
+        <span class="keyword">if</span> (<span class="variable">ribbon</span>) {
+            <span class="variable">log</span>(<span class="string">'generating ribbon'</span>);
+            <span class="variable">sys</span>.<span class="variable">print</span>(<span class="string">'&lt;a href=&quot;'</span> + <span class="variable">ribbon</span> + <span class="string">'&quot;&gt;'</span>
+                  + <span class="string">'&lt;img alt=&quot;Fork me on GitHub&quot; id=&quot;ribbon&quot; src=&quot;http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png&quot;&gt;'</span>
+                  + <span class="string">'&lt;/a&gt;'</span>);
+        }
         
         <span class="comment">// Navigation</span>
         <span class="variable">log</span>(<span class="string">'generating navigation'</span>);
@@ -449,7 +480,7 @@ code .this { color: #19469D; }</style>
 <li><strong>return</strong>: <em>String</em> undefined</li>
 <li><strong>api</strong>: <em>private</em></li>
 </ul>
-	
+
 </td>
 <td class="code">
 <pre><code><span class="keyword">function</span> <span class="variable">escape</span>(<span class="variable">html</span>){

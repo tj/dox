@@ -110,6 +110,11 @@ table#source tr.code ul li {
 table#source tr.code td:first-child pre {
     padding: 20px;
 }
+#ribbon {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
 code .string { color: #219161; }
 code .regexp { color: #219161; }
 code .keyword { color: #954121; }
