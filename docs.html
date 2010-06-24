@@ -180,10 +180,23 @@ code .this { color: #19469D; }</style>
 <ul>
 <li><strong>type</strong>: <em>String</em></li>
 </ul>
-
+
 </td>
 <td class="code">
 <pre><code><span class="keyword">var</span> <span class="variable">desc</span> = <span class="string">''</span>;</code></pre>
+</td>
+</tr>
+<tr class="code">
+<td class="docs">
+<p>Show private code.</p>
+
+<ul>
+<li><strong>type</strong>: <em>Boolean</em></li>
+</ul>
+
+</td>
+<td class="code">
+<pre><code><span class="keyword">var</span> <span class="variable">showPrivate</span> = <span class="variable">false</span>;</code></pre>
 </td>
 </tr>
 <tr class="code">
@@ -199,6 +212,7 @@ code .this { color: #19469D; }</style>
     + <span class="string">'  -d, --desc       Project description (markdown)\n'</span>
     + <span class="string">'  -s, --style      Document style, available: [&quot;default&quot;]\n'</span>
     + <span class="string">'  -J, --no-jsdoc   Disable jsdoc parsing (coverts to markdown)\n'</span>
+    + <span class="string">'  -p, --private    Output private code in documentation\n'</span>
     + <span class="string">'  -h, --help       Display help information'</span>
     + <span class="string">'\n'</span>;</code></pre>
 </td>
@@ -211,7 +225,7 @@ code .this { color: #19469D; }</style>
 <li><strong>param</strong>: <em>String</em>  msg</li>
 <li><strong>api</strong>: <em>private</em></li>
 </ul>
-
+
 </td>
 <td class="code">
 <pre><code><span class="keyword">function</span> <<span class="variable">a</span> <span class="variable">href</span>=<span class="string">"#lib/index.js-func-log"</span>><span class="variable">log</span></<span class="variable">a</span>>(<span class="variable">msg</span>){
@@ -266,6 +280,10 @@ code .this { color: #19469D; }</style>
             <span class="keyword">case</span> <span class="string">'-J'</span>:
             <span class="keyword">case</span> <span class="string">'--no-jsdoc'</span>:
                 <span class="variable">jsdoc</span> = <span class="variable">false</span>;
+                <span class="keyword">break</span>;
+            <span class="keyword">case</span> <span class="string">'-p'</span>:
+            <span class="keyword">case</span> <span class="string">'--private'</span>:
+                <span class="variable">showPrivate</span> = <span class="variable">true</span>;
                 <span class="keyword">break</span>;
             <span class="keyword">default</span>:
                 <span class="variable">files</span>.<span class="variable">push</span>(<span class="variable">arg</span>);
@@ -350,6 +368,8 @@ code .this { color: #19469D; }</style>
             <span class="keyword">continue</span>;
         } <span class="keyword">else</span> {
             ++<span class="variable">i</span>;
+            <span class="comment">// haha ...</span>
+            <span class="keyword">if</span> (<span class="variable">isPrivate</span>(<span class="variable">part</span>) &<span class="variable">amp</span>;&<span class="variable">amp</span>; !<span class="variable">showPrivate</span>) <span class="keyword">continue</span>;
             <span class="keyword">var</span> <span class="variable">part</span> = <span class="variable">part</span>.<span class="variable">replace</span>(<span class="regexp">/^ *\* ?/gm</span>, <span class="string">''</span>);
             <span class="variable">blocks</span>.<span class="variable">push</span>({
                <span class="variable">comment</span>: <span class="variable">markdown</span>.<span class="variable">parse</span>(<span class="variable">toMarkdown</span>(<span class="variable">escape</span>(<span class="variable">part</span>))),
@@ -372,6 +392,24 @@ code .this { color: #19469D; }</style>
 
     <span class="keyword">return</span> <span class="variable">html</span>.<span class="variable">join</span>(<span class="string">'\n'</span>);
 };</code></pre>
+</td>
+</tr>
+<tr class="code">
+<td class="docs">
+<p>Check if the given string of code appears to be private.</p>
+
+<ul>
+<li><strong>param</strong>: <em>String</em>  str</li>
+<li><strong>return</strong>: <em>Boolean</em> undefined</li>
+<li><strong>api</strong>: <em>private</em></li>
+</ul>
+
+</td>
+<td class="code">
+<pre><code><span class="keyword">function</span> <<span class="variable">a</span> <span class="variable">href</span>=<span class="string">"#lib/index.js-func-isPrivate"</span>><span class="variable">isPrivate</span></<span class="variable">a</span>>(<span class="variable">str</span>) {
+    <span class="keyword">return</span> <span class="variable">str</span>.<span class="variable">indexOf</span>(<span class="string">'@private'</span>) &<span class="variable">gt</span>;= <span class="number integer">0</span>
+        || <span class="variable">str</span>.<span class="variable">indexOf</span>(<span class="string">'@api private'</span>) &<span class="variable">gt</span>;= <span class="number integer">0</span>;
+}</code></pre>
 </td>
 </tr>
 <tr class="code">
@@ -412,7 +450,7 @@ code .this { color: #19469D; }</style>
 <li><strong>return</strong>: <em>String</em> undefined</li>
 <li><strong>api</strong>: <em>private</em></li>
 </ul>
-
+
 </td>
 <td class="code">
 <pre><code><span class="keyword">function</span> <<span class="variable">a</span> <span class="variable">href</span>=<span class="string">"#lib/index.js-func-parseMethod"</span>><span class="variable">parseMethod</span></<span class="variable">a</span>>(<span class="variable">str</span>, <span class="variable">file</span>) {
@@ -436,7 +474,7 @@ code .this { color: #19469D; }</style>
 <li><strong>return</strong>: <em>String</em> undefined</li>
 <li><strong>api</strong>: <em>private</em></li>
 </ul>
-
+
 </td>
 <td class="code">
 <pre><code><span class="keyword">function</span> <<span class="variable">a</span> <span class="variable">href</span>=<span class="string">"#lib/index.js-func-escape"</span>><span class="variable">escape</span></<span class="variable">a</span>>(<span class="variable">html</span>){

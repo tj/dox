@@ -10,7 +10,7 @@ uninstall:
 	rm -fr ~/.node_libraries/dox
 
 docs: uninstall install
-	dox --title "Dox" \
+	dox -p --title "Dox" \
 		--desc "JavaScript documentation parser for [node](http://ndoejs.org).\
 		Check out the [Github Repo](http://github.com/visionmedia/dox) for the \
 		source and installation guide." \
