@@ -21,6 +21,10 @@ var files = ['foo.js', 'bar.js'];
 /**
  * Output contents of 'foo.js' and 'bar.js'
  *
+ * # h1
+ * ## h2
+ * ### h3
+ *
  * ## WTF:
  *
  * This is just a stupid random demo, so... here is a list:
@@ -31,6 +35,8 @@ var files = ['foo.js', 'bar.js'];
  * ## Examples:
  *
  *    require('foo').output();
+ *
+ * Just a [link](http://github.com/visionmedia/dox) to dox's _source_.
  *
  * @param {String} nothing a string that does nothing
  * @return {Object} exports for chaining
