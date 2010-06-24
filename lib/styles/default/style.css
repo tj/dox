@@ -21,6 +21,18 @@ table#source td:last-child {
     border-left: 1px solid #E5E5EE;
     background: #F5F5FF;
 }
+table#source tr.filename {
+    padding-top: 40px;
+    border-top: 1px solid #E5E5EE;
+    border-bottom: 1px solid #E5E5EE;
+}
+table#source tr.filename td:last-child {
+    font-size: 13px;
+}
+table#source tr.filename h2 {
+    margin: 0;
+    padding: 0;
+}
 code .string { color: #219161; }
 code .keyword { color: #954121; }
 code .number { color: #19469D; }
