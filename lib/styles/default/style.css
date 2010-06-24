@@ -2,17 +2,26 @@ body {
     margin: 0;
     padding: 0;
     font: 14px/1.5 "Lucida Grande", "Helvetica Nueue", Arial, sans-serif;
+    color: #252519;
 }
 table#source {
     width: 100%;
     border-collapse: collapse;
 }
 table#source td.docs {
+    width: 500px;
     padding: 30px 0 30px 40px;
     vertical-align: top;
+}
+table#source td.docs pre {
+    width: 500px;
 }
 table#source td.code {
     padding: 30px 0 30px 40px;
     border-left: 1px solid #E5E5EE;
     background: #F5F5FF;
 }
+code .string { color: #219161; }
+code .keyword { color: #954121; }
+code .number { color: #19469D; }
+code .comment { color: #bbb; }
