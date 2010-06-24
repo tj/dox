@@ -36,6 +36,11 @@ ul#menu li:last-child {
 }
 ul#menu li a {
     font-size: 12px;
+    color: rgba(0,0,0,0.5);
+}
+ul#menu li a strong {
+    font-weight: normal;
+    color: #252519;
 }
 table#source {
     width: 100%;
