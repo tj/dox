@@ -35,7 +35,7 @@ ul#menu li:last-child {
     border-bottom: none;
 }
 ul#menu li a {
-    font-size: 13px;
+    font-size: 12px;
 }
 table#source {
     width: 100%;
@@ -60,7 +60,7 @@ table#source tr.filename {
     border-bottom: 1px solid #E5E5EE;
 }
 table#source tr.filename td:last-child {
-    font-size: 13px;
+    font-size: 12px;
 }
 table#source tr.filename h2 {
     margin: 0;
