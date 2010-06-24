@@ -21,7 +21,7 @@ var files = ['foo.js', 'bar.js'];
 /**
  * Output contents of _foo.js_ and _bar.js_.
  *
- * ## Stuff:
+ * ## Stuff
  *
  * This is just a stupid random demo, so... here is a list:
  *
@@ -32,7 +32,7 @@ var files = ['foo.js', 'bar.js'];
  *       - e
  *   - f
  *
- * ## Examples:
+ * ## Examples
  *
  *     require('foo').output();
  *
@@ -48,6 +48,11 @@ var files = ['foo.js', 'bar.js'];
  *       foo: 'bar',
  *       baz: 'raz'
  *     } 
+ * 
+ * Options:
+ * 
+ *   - foo
+ *   - bar
  * 
  * @param {String} nothing a string that does nothing
  * @return {Object} exports for chaining
