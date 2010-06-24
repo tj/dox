@@ -9,9 +9,9 @@ uninstall:
 	rm -f $(PREFIX)/bin/dox
 	rm -fr ~/.node_libraries/dox
 
-examples: uninstall install
+docs: uninstall install
 	dox --title "Dox Example" \
 		--desc "This is an example using _dox_, how **cool!**" \
-		examples/*.js > examples/index.html
+		lib/*.js > docs.html
 
-.PHONY: install uninstall examples
+.PHONY: install uninstall docs

@@ -1,0 +1,378 @@
+<html>
+	<head>
+		<title>Dox Example</title>
+		<style>body {
+    margin: 0;
+    padding: 0;
+    font: 14px/1.5 'Palatino Linotype', 'Book Antiqua', Palatino, FreeSerif, serif;
+    color: #252519;
+}
+a {
+    text-decoration: none;
+    color: #252519;
+}
+a:hover {
+    text-decoration: underline;
+    color: #19469D;
+}
+h1, h2, h3 {
+    margin: 0;
+    padding: 0;
+}
+ul#menu {
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    list-style: none;
+    margin: 0;
+    padding: 10px 2px;
+    text-align: right;
+    background: rgba(255,255,255,0.7);
+    -webkit-box-shadow: -1px 2px 2px rgba(0,0,0,0.3);
+    -webkit-border-bottom-left-radius: 5px;
+    -webkit-transition-properties: opacity;
+    -webkit-transition-duration: 0.6s;
+}
+ul#menu:hover {
+    opacity: 1;
+}
+ul#menu li {
+    padding: 2px 10px;
+    border-bottom: 1px solid #eee;
+}
+ul#menu li:hover {
+    background: rgba(0,0,0,0.03);
+}
+ul#menu li:last-child {
+    border-bottom: none;
+}
+ul#menu li a {
+    font-size: 12px;
+    color: rgba(0,0,0,0.5);
+}
+ul#menu li a strong {
+    font-weight: normal;
+    color: #252519;
+}
+table#source {
+    width: 100%;
+    border-collapse: collapse;
+}
+table#source td:first-child {
+    padding: 30px 0 30px 40px;
+    vertical-align: top;
+}
+table#source td:first-child,
+table#source td:first-child pre {
+    width: 450px;
+}
+table#source td:last-child {
+    padding: 30px 0 30px 40px;
+    border-left: 1px solid #E5E5EE;
+    background: #F5F5FF;
+}
+table#source tr {
+    border-bottom: 1px solid #E5E5EE;
+}
+table#source tr.filename {
+    padding-top: 40px;
+    border-top: 1px solid #E5E5EE;
+}
+table#source tr.filename td:first-child {
+    text-transform: capitalize;
+}
+table#source tr.filename td:last-child {
+    font-size: 12px;
+}
+table#source tr.filename h2 {
+    margin: 0;
+    padding: 0;
+}
+table#source tr.code h1,
+table#source tr.code h2,
+table#source tr.code h3 {
+    margin-top: 30px;
+    font-family: "Lucida Grande", "Helvetica Nueue", Arial, sans-serif;
+    font-size: 18px;
+}
+table#source tr.code h2 {
+    font-size: 16px;
+}
+table#source tr.code h3 {
+    font-size: 14px;
+}
+table#source tr.code ul {
+    margin: 5px 0 5px 35px;
+    padding: 0;
+}
+table#source tr.code ul li {
+    margin: 0;
+    padding: 2px 0;
+}
+table#source tr.code td:first-child pre {
+    padding: 20px;
+}
+code .string { color: #219161; }
+code .regexp { color: #219161; }
+code .keyword { color: #954121; }
+code .number { color: #19469D; }
+code .comment { color: #bbb; }
+code .this { color: #19469D; }</style>
+	</head>
+	<body>
+<ul id="menu"><li><a href="#lib/index.js">lib/<strong>index</strong></a></li></ul><table id="source"><tbody><tr><td><h1>Dox Example</h1><p>This is an example using <em>dox</em>, how <strong>cool!</strong></p>@��</td><td></td></tr><tr class="filename"><td><h2 id="lib/index.js">index</h2></td><td>lib/index.js</td></tr><tr class="code">
+<td class="docs">
+<p>Module dependencies.</p>
+</td>
+<td class="code">
+<pre><code><span class="variable">require</span>.<span class="variable">paths</span>.<span class="variable">unshift</span>(<span class="variable">__dirname</span> + <span class="string">'/koala/lib'</span>);
+<span class="keyword">var</span> <span class="variable">sys</span> = <span class="variable">require</span>(<span class="string">'sys'</span>),
+    <span class="variable">fs</span> = <span class="variable">require</span>(<span class="string">'fs'</span>),
+    <span class="variable">path</span> = <span class="variable">require</span>(<span class="string">'path'</span>),
+    <span class="variable">koala</span> = <span class="variable">require</span>(<span class="string">'koala'</span>),
+    <span class="variable">markdown</span> = <span class="variable">require</span>(<span class="string">'markdown'</span>);</code></pre>
+</td>
+</tr>
+<tr class="code">
+<td class="docs">
+<p>Style name.</p>
+</td>
+<td class="code">
+<pre><code><span class="keyword">var</span> <span class="variable">style</span> = <span class="string">'default'</span>;</code></pre>
+</td>
+</tr>
+<tr class="code">
+<td class="docs">
+<p>Project title.</p>
+</td>
+<td class="code">
+<pre><code><span class="keyword">var</span> <span class="variable">title</span> = <span class="string">'Dont forget to use --title to specify me!'</span>;</code></pre>
+</td>
+</tr>
+<tr class="code">
+<td class="docs">
+<p>Parse JSDoc.</p>
+</td>
+<td class="code">
+<pre><code><span class="keyword">var</span> <span class="variable">jsdoc</span> = <span class="variable">true</span>;</code></pre>
+</td>
+</tr>
+<tr class="code">
+<td class="docs">
+<p>Project description.</p>
+</td>
+<td class="code">
+<pre><code><span class="keyword">var</span> <span class="variable">desc</span> = <span class="string">''</span>;</code></pre>
+</td>
+</tr>
+<tr class="code">
+<td class="docs">
+<p>Usage.</p>
+</td>
+<td class="code">
+<pre><code><span class="keyword">var</span> <span class="variable">usage</span> = <span class="string">''</span>
+    + <span class="string">'Usage: dox [options] <file ...>\n'</span>
+    + <span class="string">'\n'</span>
+    + <span class="string">'Options:\n'</span>
+    + <span class="string">'  -t, --title      Project title\n'</span>
+    + <span class="string">'  -d, --desc       Project description (markdown)\n'</span>
+    + <span class="string">'  -s, --style      Document style, available: ["default"]\n'</span>
+    + <span class="string">'  -J, --no-jsdoc   Disable jsdoc parsing (coverts to markdown)\n'</span>
+    + <span class="string">'  -h, --help       Display help information'</span>
+    + <span class="string">'\n'</span>;</code></pre>
+</td>
+</tr>
+<tr class="code">
+<td class="docs">
+<p>Log the given message.</p>
+
+<ul>
+<li><strong>param</strong>: <em>String</em>  msg</li>
+<li><strong>api</strong>: <em>private</em></li>
+</ul>
+
+</td>
+<td class="code">
+<pre><code><span class="keyword">function</span> <span class="variable">log</span>(<span class="variable">msg</span>){
+    <span class="variable">sys</span>.<span class="variable">error</span>(<span class="string">'... '</span> + <span class="variable">msg</span>);
+}</code></pre>
+</td>
+</tr>
+<tr class="code">
+<td class="docs">
+<p>Parse the given arguments.</p>
+
+<ul>
+<li><strong>param</strong>: <em>Array</em>  args</li>
+<li><strong>api</strong>: <em>public</em></li>
+</ul>
+
+</td>
+<td class="code">
+<pre><code><span class="variable">exports</span>.<span class="variable">parse</span> = <span class="keyword">function</span>(<span class="variable">args</span>){
+    <span class="keyword">var</span> <span class="variable">files</span> = [];
+    
+    <span class="comment">// Require an argument</span>
+    <span class="keyword">function</span> <span class="variable">requireArg</span>(){
+        <span class="keyword">if</span> (<span class="variable">args</span>.<span class="variable">length</span>) {
+            <span class="keyword">return</span> <span class="variable">args</span>.<span class="variable">shift</span>();
+        } <span class="keyword">else</span> {
+            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="class">Error</span>(<span class="variable">arg</span> + <span class="string">' requires an argument.'</span>);
+        }
+    }
+
+    <span class="comment">// Parse arguments</span>
+    <span class="keyword">while</span> (<span class="variable">args</span>.<span class="variable">length</span>) {
+        <span class="keyword">var</span> <span class="variable">arg</span> = <span class="variable">args</span>.<span class="variable">shift</span>();
+        <span class="keyword">switch</span> (<span class="variable">arg</span>) {
+            <span class="keyword">case</span> <span class="string">'-h'</span>:
+            <span class="keyword">case</span> <span class="string">'--help'</span>:
+                <span class="variable">sys</span>.<span class="variable">puts</span>(<span class="variable">usage</span>);
+                <span class="variable">process</span>.<span class="variable">exit</span>(<span class="number integer">1</span>);
+                <span class="keyword">break</span>;
+            <span class="keyword">case</span> <span class="string">'-t'</span>:
+            <span class="keyword">case</span> <span class="string">'--title'</span>:
+                <span class="variable">title</span> = <span class="variable">requireArg</span>();
+                <span class="keyword">break</span>;
+            <span class="keyword">case</span> <span class="string">'-d'</span>:
+            <span class="keyword">case</span> <span class="string">'--desc'</span>:
+                <span class="variable">desc</span> = <span class="variable">requireArg</span>();
+                <span class="keyword">break</span>;
+            <span class="keyword">case</span> <span class="string">'-s'</span>:
+            <span class="keyword">case</span> <span class="string">'--style'</span>:
+                <span class="variable">style</span> = <span class="variable">requireArg</span>();
+                <span class="keyword">break</span>;
+            <span class="keyword">case</span> <span class="string">'-J'</span>:
+            <span class="keyword">case</span> <span class="string">'--no-jsdoc'</span>:
+                <span class="variable">jsdoc</span> = <span class="variable">false</span>;
+                <span class="keyword">break</span>;
+            <span class="keyword">default</span>:
+                <span class="variable">files</span>.<span class="variable">push</span>(<span class="variable">arg</span>);
+        }
+    }
+    
+    <span class="keyword">if</span> (<span class="variable">files</span>.<span class="variable">length</span>) {
+        <span class="variable">log</span>(<span class="string">'parsing '</span> + <span class="variable">files</span>.<span class="variable">length</span> + <span class="string">' file(s)'</span>);
+        <span class="keyword">var</span> <span class="variable">pending</span> = <span class="variable">files</span>.<span class="variable">length</span>;
+        
+        <span class="comment">// Style</span>
+        <span class="variable">log</span>(<span class="string">'loading '</span> + <span class="variable">style</span> + <span class="string">' style'</span>);
+        <span class="keyword">var</span> <span class="variable">head</span> = <span class="variable">fs</span>.<span class="variable">readFileSync</span>(<span class="variable">__dirname</span> + <span class="string">'/styles/'</span> + <span class="variable">style</span> + <span class="string">'/head.html'</span>, <span class="string">'utf8'</span>);
+        <span class="keyword">var</span> <span class="variable">foot</span> = <span class="variable">fs</span>.<span class="variable">readFileSync</span>(<span class="variable">__dirname</span> + <span class="string">'/styles/'</span> + <span class="variable">style</span> + <span class="string">'/foot.html'</span>, <span class="string">'utf8'</span>);
+        <span class="keyword">var</span> <span class="variable">css</span> = <span class="variable">fs</span>.<span class="variable">readFileSync</span>(<span class="variable">__dirname</span> + <span class="string">'/styles/'</span> + <span class="variable">style</span> + <span class="string">'/style.css'</span>, <span class="string">'utf8'</span>);
+    
+        <span class="comment">// Substitutions</span>
+        <span class="variable">head</span> = <span class="variable">head</span>.<span class="variable">replace</span>(<span class="regexp">/\{\{title\}\}/g</span>, <span class="variable">title</span>).<span class="variable">replace</span>(<span class="regexp">/\{\{style\}\}/</span>, <span class="variable">css</span>);
+        
+        <span class="comment">// Navigation</span>
+        <span class="variable">log</span>(<span class="string">'generating navigation'</span>);
+        <span class="keyword">var</span> <span class="variable">menu</span> = <span class="string">'<ul id="menu">'</span> + <span class="variable">files</span>.<span class="variable">map</span>(<span class="keyword">function</span>(<span class="variable">file</span>){
+            <span class="keyword">var</span> <span class="variable">basename</span> = <span class="variable">path</span>.<span class="variable">basename</span>(<span class="variable">file</span>, <span class="string">'.js'</span>),
+                <span class="variable">title</span> = <span class="variable">file</span>.<span class="variable">replace</span>(<span class="variable">basename</span>, <span class="string">'<strong>'</span> + <span class="variable">basename</span> + <span class="string">'</strong>'</span>).<span class="variable">replace</span>(<span class="string">'.js'</span>, <span class="string">''</span>);
+            <span class="keyword">return</span> <span class="string">'<li><a href="#'</span> + <span class="variable">file</span> + <span class="string">'">'</span> + <span class="variable">title</span> + <span class="string">'</a></li>'</span>
+        }).<span class="variable">join</span>(<span class="string">'\n'</span>) + <span class="string">'</ul>'</span>;
+        
+        <span class="variable">sys</span>.<span class="variable">print</span>(<span class="variable">head</span>, <span class="variable">menu</span>);
+        <span class="variable">sys</span>.<span class="variable">print</span>(<span class="string">'<table id="source"><tbody>'</span>);
+        
+        <span class="comment">// Render files</span>
+        <span class="keyword">var</span> <span class="variable">first</span> = <span class="variable">true</span>;
+        <span class="variable">files</span>.<span class="variable">forEach</span>(<span class="keyword">function</span>(<span class="variable">file</span>){
+            <span class="variable">log</span>(<span class="string">'parsing '</span> + <span class="variable">file</span>);
+            <span class="variable">fs</span>.<span class="variable">readFile</span>(<span class="variable">file</span>, <span class="string">'utf8'</span>, <span class="keyword">function</span>(<span class="variable">err</span>, <span class="variable">str</span>){
+                <span class="keyword">if</span> (<span class="variable">err</span>) <span class="keyword">throw</span> <span class="variable">err</span>;
+                <span class="keyword">if</span> (<span class="variable">first</span>) {
+                    <span class="keyword">if</span> (<span class="variable">desc</span>) <span class="variable">desc</span> = <span class="variable">markdown</span>.<span class="variable">parse</span>(<span class="variable">desc</span>);
+                    <span class="variable">sys</span>.<span class="variable">print</span>(<span class="string">'<tr><td><h1>'</span> + <span class="variable">title</span> + <span class="string">'</h1>'</span> + <span class="variable">desc</span> + <span class="string">'</td><td></td></tr>'</span>);
+                    <span class="variable">first</span> = <span class="variable">false</span>;
+                }
+                <span class="variable">sys</span>.<span class="variable">print</span>(<span class="string">'<tr class="filename"><td><h2 id="'</span> + <span class="variable">file</span> + <span class="string">'">'</span> 
+                    + <span class="variable">path</span>.<span class="variable">basename</span>(<span class="variable">file</span>, <span class="string">'.js'</span>) + <span class="string">'</h2></td><td>'</span> 
+                    + <span class="variable">file</span> + <span class="string">'</td></tr>'</span>);
+                <span class="variable">sys</span>.<span class="variable">print</span>(<span class="variable">render</span>(<span class="variable">str</span>));
+                --<span class="variable">pending</span> || <span class="variable">sys</span>.<span class="variable">print</span>(<span class="variable">foot</span>, <span class="string">'</tbody></table>'</span>);
+            });
+        });
+        
+    } <span class="keyword">else</span> {
+        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="class">Error</span>(<span class="string">'files required.'</span>);
+    }
+};</code></pre>
+</td>
+</tr>
+<tr class="code">
+<td class="docs">
+<p>Generate html for the given string of code.</p>
+
+<ul>
+<li><strong>param</strong>: <em>String</em>  str</li>
+<li><strong>return</strong>: <em>String</em> undefined</li>
+<li><strong>api</strong>: <em>public</em></li>
+</ul>
+
+</td>
+<td class="code">
+<pre><code><span class="keyword">var</span> <span class="variable">render</span> = <span class="variable">exports</span>.<span class="variable">render</span> = <span class="keyword">function</span>(<span class="variable">str</span>){
+    <span class="keyword">var</span> <span class="variable">parts</span> = <span class="variable">str</span>.<span class="variable">split</span>(<span class="regexp">/\s*\/</span>\*([^]+?)\*\<span class="regexp">/\s*/g</span>),
+        <span class="variable">blocks</span> = [];
+
+    <span class="comment">// Populate blocks</span>
+    <span class="keyword">for</span> (<span class="keyword">var</span> <span class="variable">i</span> = <span class="number integer">0</span>, <span class="variable">len</span> = <span class="variable">parts</span>.<span class="variable">length</span>; <span class="variable">i</span> < <span class="variable">len</span>; ++<span class="variable">i</span>) {
+        <span class="keyword">var</span> <span class="variable">part</span> = <span class="variable">parts</span>[<span class="variable">i</span>],
+            <span class="variable">next</span> = <span class="variable">parts</span>[<span class="variable">i</span> + <span class="number integer">1</span>] || <span class="string">''</span>;
+        <span class="comment">// Empty</span>
+        <span class="keyword">if</span> (<span class="regexp">/^\s*$/</span>.<span class="variable">test</span>(<span class="variable">part</span>)) {
+            <span class="keyword">continue</span>;
+        <span class="comment">// Ignored comment</span>
+        } <span class="keyword">else</span> <span class="keyword">if</span> (<span class="regexp">/^!\s*\*/</span>.<span class="variable">test</span>(<span class="variable">part</span>)) {
+            <span class="keyword">continue</span>;
+        } <span class="keyword">else</span> {
+            ++<span class="variable">i</span>;
+            <span class="keyword">var</span> <span class="variable">part</span> = <span class="variable">part</span>.<span class="variable">replace</span>(<span class="regexp">/^ *\* ?/gm</span>, <span class="string">''</span>);
+            <span class="variable">blocks</span>.<span class="variable">push</span>({
+               <span class="variable">comment</span>: <span class="variable">markdown</span>.<span class="variable">parse</span>(<span class="variable">jsdocToMarkdown</span>(<span class="variable">part</span>)),
+               <span class="variable">code</span>: <span class="variable">koala</span>.<span class="variable">render</span>(<span class="string">'.js'</span>, <span class="variable">next</span>) 
+            });
+        }
+    }
+
+    <span class="comment">// Generate html</span>
+    <span class="keyword">var</span> <span class="variable">html</span> = [];
+    <span class="keyword">for</span> (<span class="keyword">var</span> <span class="variable">i</span> = <span class="number integer">0</span>, <span class="variable">len</span> = <span class="variable">blocks</span>.<span class="variable">length</span>; <span class="variable">i</span> < <span class="variable">len</span>; ++<span class="variable">i</span>) {
+        <span class="keyword">var</span> <span class="variable">block</span> = <span class="variable">blocks</span>[<span class="variable">i</span>];
+        <span class="variable">html</span>.<span class="variable">push</span>(<span class="string">'<tr class="code">'</span>);
+        <span class="variable">html</span>.<span class="variable">push</span>(<span class="string">'<td class="docs">'</span>, <span class="variable">block</span>.<span class="variable">comment</span> || <span class="string">''</span>, <span class="string">'</td>'</span>);
+        <span class="variable">html</span>.<span class="variable">push</span>(<span class="string">'<td class="code">'</span>, <span class="variable">block</span>.<span class="variable">code</span>
+            ? <span class="string">'<pre><code>'</span> + <span class="variable">block</span>.<span class="variable">code</span> + <span class="string">'</code></pre>'</span>
+            : <span class="string">''</span>, <span class="string">'</td>'</span>);
+        <span class="variable">html</span>.<span class="variable">push</span>(<span class="string">'</tr>'</span>);
+    }
+
+    <span class="keyword">return</span> <span class="variable">html</span>.<span class="variable">join</span>(<span class="string">'\n'</span>);
+};</code></pre>
+</td>
+</tr>
+<tr class="code">
+<td class="docs">
+<p>Convert the given string of jsdoc to markdown.</p>
+
+<ul>
+<li><strong>param</strong>: <em>String</em>  str</li>
+<li><strong>return</strong>: <em>String</em> undefined</li>
+<li><strong>api</strong>: <em>private</em></li>
+</ul>
+
+</td>
+<td class="code">
+<pre><code><span class="keyword">function</span> <span class="variable">jsdocToMarkdown</span>(<span class="variable">str</span>) {
+    <span class="keyword">return</span> <span class="variable">str</span>
+        .<span class="variable">replace</span>(<span class="regexp">/^((?:[A-Z]\w* ?)+):/gm</span>, <span class="string">'## $1'</span>)
+        .<span class="variable">replace</span>(<span class="regexp">/^ *@(\w+) *\{([^}]+)\}( *[^\n]+)?/gm</span>, <span class="keyword">function</span>(<span class="variable">_</span>, <span class="variable">key</span>, <span class="variable">type</span>, <span class="variable">desc</span>){
+            <span class="keyword">return</span> <span class="string">'- **'</span> + <span class="variable">key</span> + <span class="string">'**: _'</span> + <span class="variable">type</span>.<span class="variable">split</span>(<span class="regexp">/ *[|\/</span>] */).<span class="variable">join</span>(<span class="string">' | '</span>) + <span class="string">'_ '</span> + <span class="variable">desc</span>;
+        })
+        .<span class="variable">replace</span>(<span class="regexp">/^ *@(\w+) *(\w+)/gm</span>, <span class="string">'- **$1**: _$2_'</span>);
+}</code></pre>
+</td>
+</tr>	</body>
+</html></tbody></table>
