@@ -4,7 +4,7 @@
 		<style>body {
     margin: 0;
     padding: 0;
-    font: 14px/1.5 "Lucida Grande", "Helvetica Nueue", Arial, sans-serif;
+    font: 14px/1.5 'Palatino Linotype', 'Book Antiqua', Palatino, FreeSerif, serif;
     color: #252519;
 }
 a {
@@ -98,7 +98,7 @@ code .this { color: #19469D; }</style>
 <ul id="menu"><li><a href="#examples/bar.js">examples/<strong>bar</strong></a></li>
 <li><a href="#examples/foo.js">examples/<strong>foo</strong></a></li></ul><table id="source"><tbody><tr><td><h1>Dox Example</h1>This is an example using _dox_, how **cool!**</td><td></td></tr><tr class="filename"><td><h2 id="examples/bar.js">bar</h2></td><td>examples/bar.js</td></tr><tr>
 <td class="docs">
-<pre><p> Module dependencies.</p></pre>
+<pre><p>Module dependencies.</p></pre>
 </td>
 <td class="code">
 <pre><code><span class="keyword">var</span> <span class="variable">sys</span> = <span class="variable">require</span>(<span class="string">'sys'</span>);</code></pre>
@@ -106,7 +106,7 @@ code .this { color: #19469D; }</style>
 </tr>
 <tr>
 <td class="docs">
-<pre><p> Output <em>foo</em> and <em>bar</em>, seperated by <code>+</code>.</p>
+<pre><p>Output <em>foo</em> and <em>bar</em>, seperated by <code>+</code>.</p>
 
 <p><strong>param</strong>: <em>String</em>  foo
 <strong>param</strong>: <em>String</em>  bar
@@ -120,14 +120,14 @@ code .this { color: #19469D; }</style>
 </tr>
 <tr>
 <td class="docs">
-<pre><p> Export bar().</p></pre>
+<pre><p>Export bar().</p></pre>
 </td>
 <td class="code">
 <pre><code><span class="variable">exports</span>.<span class="variable">bar</span> = <span class="variable">bar</span>;</code></pre>
 </td>
 </tr><tr class="filename"><td><h2 id="examples/foo.js">foo</h2></td><td>examples/foo.js</td></tr><tr>
 <td class="docs">
-<pre><p> Module dependencies.</p></pre>
+<pre><p>Module dependencies.</p></pre>
 </td>
 <td class="code">
 <pre><code><span class="keyword">var</span> <span class="variable">sys</span> = <span class="variable">require</span>(<span class="string">'sys'</span>),
@@ -136,7 +136,7 @@ code .this { color: #19469D; }</style>
 </tr>
 <tr>
 <td class="docs">
-<pre><p> Files used by exports.output();</p></pre>
+<pre><p>Files used by exports.output();</p></pre>
 </td>
 <td class="code">
 <pre><code><span class="keyword">var</span> <span class="variable">files</span> = [<span class="string">'foo.js'</span>, <span class="string">'bar.js'</span>];</code></pre>
@@ -144,32 +144,33 @@ code .this { color: #19469D; }</style>
 </tr>
 <tr>
 <td class="docs">
-<pre><p> Output contents of &lsquo;foo.js&rsquo; and &lsquo;bar.js&rsquo;</p>
+<pre><p>Output contents of <em>foo.js</em> and <em>bar.js</em>.</p>
 
-<p> # h1
- ## h2
- ### h3</p>
+<h1>h1</h1>
 
-<p> ## WTF:</p>
+<h2>h2</h2>
 
-<p> This is just a stupid random demo, so&hellip; here is a list:</p>
+<h3>h3</h3>
+
+<h2>WTF:</h2>
+
+<p>This is just a stupid random demo, so&hellip; here is a list:</p>
 
 <ul>
-<li> foo.js</li>
-<li> bar.js</li>
+<li>foo.js</li>
+<li>bar.js</li>
 </ul>
 
 
-<p> ## Examples:</p>
+<h2>Examples:</h2>
 
-<pre><code>require('foo').output();
-</code></pre>
+<p>   require(&lsquo;foo&rsquo;).output();</p>
 
-<p> Just a <a href="http://github.com/visionmedia/dox">link</a> to dox&rsquo;s <em>source</em>.</p>
+<p>Just a <a href="http://github.com/visionmedia/dox">link</a> to dox&rsquo;s <em>source</em>.</p>
 
 <p><strong>param</strong>: <em>String</em>  nothing a string that does nothing
 <strong>return</strong>: <em>Object</em>  exports for chaining
-<strong>api</strong>: <em>public</em></p></pre>
+<strong>api</strong>: <em>public</em></p></pre>
 </td>
 <td class="code">
 <pre><code><span class="keyword">var</span> <span class="variable">output</span> = <span class="variable">exports</span>.<span class="variable">output</span> = <span class="keyword">function</span>(<span class="variable">nothing</span>){

@@ -19,7 +19,7 @@ var sys = require('sys'),
 var files = ['foo.js', 'bar.js'];
 
 /**
- * Output contents of 'foo.js' and 'bar.js'
+ * Output contents of _foo.js_ and _bar.js_.
  *
  * # h1
  * ## h2
