@@ -180,7 +180,7 @@ code .this { color: #19469D; }</style>
 <ul>
 <li><strong>type</strong>: <em>String</em></li>
 </ul>
-
+
 </td>
 <td class="code">
 <pre><code><span class="keyword">var</span> <span class="variable">desc</span> = <span class="string">''</span>;</code></pre>
@@ -225,7 +225,7 @@ code .this { color: #19469D; }</style>
 <li><strong>param</strong>: <em>String</em>  msg</li>
 <li><strong>api</strong>: <em>private</em></li>
 </ul>
-
+
 </td>
 <td class="code">
 <pre><code><span class="keyword">function</span> <<span class="variable">a</span> <span class="variable">href</span>=<span class="string">"#lib/index.js-func-log"</span>><span class="variable">log</span></<span class="variable">a</span>>(<span class="variable">msg</span>){
@@ -369,7 +369,7 @@ code .this { color: #19469D; }</style>
         } <span class="keyword">else</span> {
             ++<span class="variable">i</span>;
             <span class="comment">// haha ...</span>
-            <span class="keyword">if</span> (<span class="variable">isPrivate</span>(<span class="variable">part</span>) &<span class="variable">amp</span>;&<span class="variable">amp</span>; !<span class="variable">showPrivate</span>) <span class="keyword">continue</span>;
+            <span class="keyword">if</span> (<span class="variable">ignore</span>(<span class="variable">part</span>) || (<span class="variable">isPrivate</span>(<span class="variable">part</span>) &<span class="variable">amp</span>;&<span class="variable">amp</span>; !<span class="variable">showPrivate</span>)) <span class="keyword">continue</span>;
             <span class="keyword">var</span> <span class="variable">part</span> = <span class="variable">part</span>.<span class="variable">replace</span>(<span class="regexp">/^ *\* ?/gm</span>, <span class="string">''</span>);
             <span class="variable">blocks</span>.<span class="variable">push</span>({
                <span class="variable">comment</span>: <span class="variable">markdown</span>.<span class="variable">parse</span>(<span class="variable">toMarkdown</span>(<span class="variable">escape</span>(<span class="variable">part</span>))),
@@ -396,7 +396,7 @@ code .this { color: #19469D; }</style>
 </tr>
 <tr class="code">
 <td class="docs">
-<p>Check if the given string of code appears to be private.</p>
+<p>Check if the given string of docs appears to be private.</p>
 
 <ul>
 <li><strong>param</strong>: <em>String</em>  str</li>
@@ -450,7 +450,7 @@ code .this { color: #19469D; }</style>
 <li><strong>return</strong>: <em>String</em> undefined</li>
 <li><strong>api</strong>: <em>private</em></li>
 </ul>
-
+
 </td>
 <td class="code">
 <pre><code><span class="keyword">function</span> <<span class="variable">a</span> <span class="variable">href</span>=<span class="string">"#lib/index.js-func-parseMethod"</span>><span class="variable">parseMethod</span></<span class="variable">a</span>>(<span class="variable">str</span>, <span class="variable">file</span>) {
@@ -474,7 +474,7 @@ code .this { color: #19469D; }</style>
 <li><strong>return</strong>: <em>String</em> undefined</li>
 <li><strong>api</strong>: <em>private</em></li>
 </ul>
-
+
 </td>
 <td class="code">
 <pre><code><span class="keyword">function</span> <<span class="variable">a</span> <span class="variable">href</span>=<span class="string">"#lib/index.js-func-escape"</span>><span class="variable">escape</span></<span class="variable">a</span>>(<span class="variable">html</span>){
