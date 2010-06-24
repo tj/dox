@@ -185,7 +185,7 @@ code .this { color: #19469D; }</style>
 <ul>
 <li><strong>type</strong>: <em>String</em></li>
 </ul>
-
+
 </td>
 <td class="code">
 <pre><code><span class="keyword">var</span> <span class="variable">desc</span> = <span class="string">''</span>;</code></pre>
@@ -234,22 +234,6 @@ code .this { color: #19469D; }</style>
     + <span class="string">'  -p, --private     Output private code in documentation\n'</span>
     + <span class="string">'  -h, --help        Display help information'</span>
     + <span class="string">'\n'</span>;</code></pre>
-</td>
-</tr>
-<tr class="code">
-<td class="docs">
-<p>Log the given message.</p>
-
-<ul>
-<li><strong>param</strong>: <em>String</em>  msg</li>
-<li><strong>api</strong>: <em>private</em></li>
-</ul>
-
-</td>
-<td class="code">
-<pre><code><span class="keyword">function</span> <span class="variable">log</span>(<span class="variable">msg</span>){
-    <span class="variable">sys</span>.<span class="variable">error</span>(<span class="string">'... '</span> + <span class="variable">msg</span>);
-}</code></pre>
 </td>
 </tr>
 <tr class="code">
@@ -425,73 +409,6 @@ code .this { color: #19469D; }</style>
 
     <span class="keyword">return</span> <span class="variable">html</span>.<span class="variable">join</span>(<span class="string">'\n'</span>);
 };</code></pre>
-</td>
-</tr>
-<tr class="code">
-<td class="docs">
-<p>Check if the given string of docs appears to be private.</p>
-
-<ul>
-<li><strong>param</strong>: <em>String</em>  str</li>
-<li><strong>return</strong>: <em>Boolean</em> undefined</li>
-<li><strong>api</strong>: <em>private</em></li>
-</ul>
-
-</td>
-<td class="code">
-<pre><code><span class="keyword">function</span> <span class="variable">isPrivate</span>(<span class="variable">str</span>) {
-    <span class="keyword">return</span> <span class="variable">str</span>.<span class="variable">indexOf</span>(<span class="string">'@private'</span>) &<span class="variable">gt</span>;= <span class="number integer">0</span>
-        || <span class="variable">str</span>.<span class="variable">indexOf</span>(<span class="string">'@api private'</span>) &<span class="variable">gt</span>;= <span class="number integer">0</span>;
-}</code></pre>
-</td>
-</tr>
-<tr class="code">
-<td class="docs">
-<p>Convert the given string of jsdoc to markdown.</p>
-
-<ul>
-<li><strong>param</strong>: <em>String</em>  str</li>
-<li><strong>return</strong>: <em>String</em> undefined</li>
-<li><strong>api</strong>: <em>private</em></li>
-</ul>
-
-</td>
-<td class="code">
-<pre><code><span class="keyword">function</span> <span class="variable">toMarkdown</span>(<span class="variable">str</span>) {
-    <span class="keyword">return</span> <span class="variable">str</span>
-        .<span class="variable">replace</span>(<span class="regexp">/^((?:[A-Z]\w* ?)+):/gm</span>, <span class="string">'## $1'</span>)
-        .<span class="variable">replace</span>(<span class="regexp">/^ *@(\w+) *\{([^}]+)\}( *[^\n]+)?/gm</span>, <span class="keyword">function</span>(<span class="variable">_</span>, <span class="variable">key</span>, <span class="variable">type</span>, <span class="variable">desc</span>){
-            <span class="keyword">return</span> <span class="string">'- **'</span> + <span class="variable">key</span> + <span class="string">'**: _'</span> + <span class="variable">type</span>.<span class="variable">split</span>(<span class="regexp">/ *[|\/</span>] */).<span class="variable">join</span>(<span class="string">' | '</span>) + <span class="string">'_ '</span> + <span class="variable">desc</span>;
-        })
-        .<span class="variable">replace</span>(<span class="regexp">/^ *@(\w+) *(\w+)/gm</span>, <span class="string">'- **$1**: _$2_'</span>);
-}</code></pre>
-</td>
-</tr>
-<tr class="code">
-<td class="docs">
-<p>Escape the given string of html.</p>
-
-<h2>Examples</h2>
-
-<pre><code>escape('&lt;foo&gt;');
-// =&gt; "&amp;lt;foo&amp;gt;"
-</code></pre>
-
-<ul>
-<li><strong>param</strong>: <em>String</em>  html</li>
-<li><strong>return</strong>: <em>String</em> undefined</li>
-<li><strong>api</strong>: <em>private</em></li>
-</ul>
-Q
-</td>
-<td class="code">
-<pre><code><span class="keyword">function</span> <span class="variable">escape</span>(<span class="variable">html</span>){
-    <span class="keyword">return</span> <span class="class">String</span>(<span class="variable">html</span>)
-        .<span class="variable">replace</span>(<span class="regexp">/&amp;(?!amp;)/g</span>, <span class="string">'&amp;'</span>)
-        .<span class="variable">replace</span>(<span class="regexp">/&lt;(?!lt;)/g</span>, <span class="string">'&amp;lt;'</span>)
-        .<span class="variable">replace</span>(<span class="regexp">/&gt;(?!gt;)/g</span>, <span class="string">'&amp;gt;'</span>)
-        .<span class="variable">replace</span>(<span class="regexp">/&quot;(?!quot;)/g</span>, <span class="string">'&amp;quot;'</span>);
-}</code></pre>
 </td>
 </tr>	</body>
 </html></tbody></table>
