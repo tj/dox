@@ -12,6 +12,10 @@ a:hover {
     text-decoration: underline;
     color: #19469D;
 }
+h1 {
+    margin: 0;
+    padding: 0;
+}
 ul#menu {
     opacity: 0;
     position: fixed;
