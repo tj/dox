@@ -34,6 +34,8 @@ table#source tr.filename h2 {
     padding: 0;
 }
 code .string { color: #219161; }
+code .regexp { color: #219161; }
 code .keyword { color: #954121; }
 code .number { color: #19469D; }
 code .comment { color: #bbb; }
+code .this { color: #19469D; }
