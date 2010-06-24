@@ -185,7 +185,7 @@ code .this { color: #19469D; }</style>
 <ul>
 <li><strong>type</strong>: <em>String</em></li>
 </ul>
-
+
 </td>
 <td class="code">
 <pre><code><span class="keyword">var</span> <span class="variable">desc</span> = <span class="string">''</span>;</code></pre>
@@ -244,7 +244,7 @@ code .this { color: #19469D; }</style>
 <li><strong>param</strong>: <em>String</em>  msg</li>
 <li><strong>api</strong>: <em>private</em></li>
 </ul>
-
+
 </td>
 <td class="code">
 <pre><code><span class="keyword">function</span> <span class="variable">log</span>(<span class="variable">msg</span>){
@@ -330,7 +330,8 @@ code .this { color: #19469D; }</style>
         <span class="keyword">if</span> (<span class="variable">ribbon</span>) {
             <span class="variable">log</span>(<span class="string">'generating ribbon'</span>);
             <span class="variable">sys</span>.<span class="variable">print</span>(<span class="string">'&lt;a href=&quot;'</span> + <span class="variable">ribbon</span> + <span class="string">'&quot;&gt;'</span>
-                  + <span class="string">'&lt;img alt=&quot;Fork me on GitHub&quot; id=&quot;ribbon&quot; src=&quot;http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png&quot;&gt;'</span>
+                  + <span class="string">'&lt;img alt=&quot;Fork me on GitHub&quot; id=&quot;ribbon&quot;'</span>
+                  + <span class="string">' src=&quot;http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png&quot;&gt;'</span>
                   + <span class="string">'&lt;/a&gt;'</span>);
         }
         
@@ -399,11 +400,12 @@ code .this { color: #19469D; }</style>
             <span class="keyword">continue</span>;
         } <span class="keyword">else</span> {
             ++<span class="variable">i</span>;
-            <span class="comment">// haha ...</span>
+            
+            <span class="comment">// Support @ignore and --private</span>
             <span class="keyword">if</span> (<span class="variable">ignore</span>(<span class="variable">part</span>) || (<span class="variable">isPrivate</span>(<span class="variable">part</span>) &<span class="variable">amp</span>;&<span class="variable">amp</span>; !<span class="variable">showPrivate</span>)) <span class="keyword">continue</span>;
             <span class="keyword">var</span> <span class="variable">part</span> = <span class="variable">part</span>.<span class="variable">replace</span>(<span class="regexp">/^ *\* ?/gm</span>, <span class="string">''</span>);
             <span class="variable">blocks</span>.<span class="variable">push</span>({
-               <span class="variable">comment</span>: <span class="variable">markdown</span>.<span class="variable">parse</span>(<span class="variable">toMarkdown</span>(<span class="variable">escape</span>(<span class="variable">part</span>))),
+               <span class="variable">comment</span>: <span class="variable">markdown</span>.<span class="variable">parse</span>(<span class="variable">toMarkdown</span>(<span class="variable">part</span>)),
                <span class="variable">code</span>: <span class="variable">koala</span>.<span class="variable">render</span>(<span class="string">'.js'</span>, <span class="variable">escape</span>(<span class="variable">next</span>)) 
             });
         }
@@ -471,8 +473,8 @@ code .this { color: #19469D; }</style>
 
 <h2>Examples</h2>
 
-<pre><code>escape('&amp;lt;foo&amp;gt;');
-// =&amp;gt; &amp;quot;&amp;amp;lt;foo&amp;amp;gt;&amp;quot;
+<pre><code>escape('&lt;foo&gt;');
+// =&gt; "&amp;lt;foo&amp;gt;"
 </code></pre>
 
 <ul>
@@ -480,7 +482,7 @@ code .this { color: #19469D; }</style>
 <li><strong>return</strong>: <em>String</em> undefined</li>
 <li><strong>api</strong>: <em>private</em></li>
 </ul>
-
+Q
 </td>
 <td class="code">
 <pre><code><span class="keyword">function</span> <span class="variable">escape</span>(<span class="variable">html</span>){
