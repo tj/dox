@@ -34,7 +34,7 @@ var files = ['foo.js', 'bar.js'];
  *
  * ## Examples:
  *
- *    require('foo').output();
+ *     require('foo').output();
  *
  * Just a [link](http://github.com/visionmedia/dox) to dox's _source_.
  *

@@ -65,7 +65,7 @@ table#source td:first-child {
 }
 table#source td:first-child,
 table#source td:first-child pre {
-    width: 500px;
+    width: 450px;
 }
 table#source td:last-child {
     padding: 30px 0 30px 40px;
@@ -78,6 +78,8 @@ table#source tr {
 table#source tr.filename {
     padding-top: 40px;
     border-top: 1px solid #E5E5EE;
+}
+table#source tr.filename td:first-child {
     text-transform: capitalize;
 }
 table#source tr.filename td:last-child {
@@ -108,13 +110,15 @@ table#source tr.code ul li {
     margin: 0;
     padding: 2px 0;
 }
+table#source tr.code pre {
+    margin-left: 20px;
+}
 code .string { color: #219161; }
 code .regexp { color: #219161; }
 code .keyword { color: #954121; }
 code .number { color: #19469D; }
 code .comment { color: #bbb; }
 code .this { color: #19469D; }</style>
-		<meta http-equiv="charset" content="UTF-8">
 	</head>
 	<body>
 <ul id="menu"><li><a href="#examples/bar.js">examples/<strong>bar</strong></a></li>
@@ -195,7 +199,8 @@ code .this { color: #19469D; }</style>
 
 <h2>Examples:</h2>
 
-<p>   require(&lsquo;foo&rsquo;).output();</p>
+<pre><code>require('foo').output();
+</code></pre>
 
 <p>Just a <a href="http://github.com/visionmedia/dox">link</a> to dox&rsquo;s <em>source</em>.</p>
 
@@ -208,7 +213,7 @@ code .this { color: #19469D; }</style>
 <li><strong>return</strong>: <em>Object</em>  exports for chaining</li>
 <li><strong>api</strong>: <em>public</em></li>
 </ul>
-
+
 </td>
 <td class="code">
 <pre><code><span class="keyword">var</span> <span class="variable">output</span> = <span class="variable">exports</span>.<span class="variable">output</span> = <span class="keyword">function</span>(<span class="variable">nothing</span>){

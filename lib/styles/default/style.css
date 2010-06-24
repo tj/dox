@@ -62,7 +62,7 @@ table#source td:first-child {
 }
 table#source td:first-child,
 table#source td:first-child pre {
-    width: 500px;
+    width: 450px;
 }
 table#source td:last-child {
     padding: 30px 0 30px 40px;
@@ -75,6 +75,8 @@ table#source tr {
 table#source tr.filename {
     padding-top: 40px;
     border-top: 1px solid #E5E5EE;
+}
+table#source tr.filename td:first-child {
     text-transform: capitalize;
 }
 table#source tr.filename td:last-child {
@@ -104,6 +106,9 @@ table#source tr.code ul {
 table#source tr.code ul li {
     margin: 0;
     padding: 2px 0;
+}
+table#source tr.code pre {
+    margin-left: 20px;
 }
 code .string { color: #219161; }
 code .regexp { color: #219161; }
