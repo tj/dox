@@ -121,7 +121,7 @@ code .comment { color: #bbb; }
 code .this { color: #19469D; }</style>
 	</head>
 	<body>
-<ul id="menu"><li><a href="#lib/index.js">lib/<strong>index</strong></a></li></ul><table id="source"><tbody><tr><td><h1>Dox</h1><p>JavaScript documentation parser for <a href="http://ndoejs.org">node</a>.</p>	</td><td></td></tr><tr class="filename"><td><h2 id="lib/index.js">index</h2></td><td>lib/index.js</td></tr><tr class="code">
+<ul id="menu"><li><a href="#lib/index.js">lib/<strong>index</strong></a></li></ul><table id="source"><tbody><tr><td><h1>Dox</h1><p>JavaScript documentation parser for <a href="http://ndoejs.org">node</a>.</p></td><td></td></tr><tr class="filename"><td><h2 id="lib/index.js">index</h2></td><td>lib/index.js</td></tr><tr class="code">
 <td class="docs">
 <p>Module dependencies.</p>
 </td>
@@ -137,6 +137,11 @@ code .this { color: #19469D; }</style>
 <tr class="code">
 <td class="docs">
 <p>Style name.</p>
+
+<ul>
+<li><strong>type</strong>: <em>String</em></li>
+</ul>
+
 </td>
 <td class="code">
 <pre><code><span class="keyword">var</span> <span class="variable">style</span> = <span class="string">'default'</span>;</code></pre>
@@ -145,6 +150,11 @@ code .this { color: #19469D; }</style>
 <tr class="code">
 <td class="docs">
 <p>Project title.</p>
+
+<ul>
+<li><strong>type</strong>: <em>String</em></li>
+</ul>
+
 </td>
 <td class="code">
 <pre><code><span class="keyword">var</span> <span class="variable">title</span> = <span class="string">'Dont forget to use --title to specify me!'</span>;</code></pre>
@@ -153,6 +163,11 @@ code .this { color: #19469D; }</style>
 <tr class="code">
 <td class="docs">
 <p>Parse JSDoc.</p>
+
+<ul>
+<li><strong>type</strong>: <em>Boolean</em></li>
+</ul>
+
 </td>
 <td class="code">
 <pre><code><span class="keyword">var</span> <span class="variable">jsdoc</span> = <span class="variable">true</span>;</code></pre>
@@ -161,6 +176,11 @@ code .this { color: #19469D; }</style>
 <tr class="code">
 <td class="docs">
 <p>Project description.</p>
+
+<ul>
+<li><strong>type</strong>: <em>String</em></li>
+</ul>
+
 </td>
 <td class="code">
 <pre><code><span class="keyword">var</span> <span class="variable">desc</span> = <span class="string">''</span>;</code></pre>
@@ -168,7 +188,7 @@ code .this { color: #19469D; }</style>
 </tr>
 <tr class="code">
 <td class="docs">
-<p>Usage.</p>
+<p>Usage documentation.</p>
 </td>
 <td class="code">
 <pre><code><span class="keyword">var</span> <span class="variable">usage</span> = <span class="string">''</span>
@@ -191,7 +211,7 @@ code .this { color: #19469D; }</style>
 <li><strong>param</strong>: <em>String</em>  msg</li>
 <li><strong>api</strong>: <em>private</em></li>
 </ul>
-	
+
 </td>
 <td class="code">
 <pre><code><span class="keyword">function</span> <span class="variable">log</span>(<span class="variable">msg</span>){
@@ -310,7 +330,7 @@ code .this { color: #19469D; }</style>
 <li><strong>return</strong>: <em>String</em> undefined</li>
 <li><strong>api</strong>: <em>public</em></li>
 </ul>
-	
+
 </td>
 <td class="code">
 <pre><code><span class="keyword">var</span> <span class="variable">render</span> = <span class="variable">exports</span>.<span class="variable">render</span> = <span class="keyword">function</span>(<span class="variable">str</span>){
@@ -379,7 +399,7 @@ code .this { color: #19469D; }</style>
 <td class="docs">
 <p>Escape the given string of html.</p>
 
-<h2>Example</h2>
+<h2>Examples</h2>
 
 <pre><code>escape('&amp;lt;foo&amp;gt;');
 // =&amp;gt; &amp;quot;&amp;amp;lt;foo&amp;amp;gt;&amp;quot;
@@ -395,10 +415,10 @@ code .this { color: #19469D; }</style>
 <td class="code">
 <pre><code><span class="keyword">function</span> <span class="variable">escape</span>(<span class="variable">html</span>){
     <span class="keyword">return</span> <span class="class">String</span>(<span class="variable">html</span>)
-        .<span class="variable">replace</span>(<span class="regexp">/&amp;/g</span>, <span class="string">'&amp;amp;'</span>)
-        .<span class="variable">replace</span>(<span class="regexp">/&lt;/g</span>, <span class="string">'&amp;lt;'</span>)
-        .<span class="variable">replace</span>(<span class="regexp">/&gt;/g</span>, <span class="string">'&amp;gt;'</span>)
-        .<span class="variable">replace</span>(<span class="regexp">/&quot;/g</span>, <span class="string">'&amp;quot;'</span>);
+        .<span class="variable">replace</span>(<span class="regexp">/&amp;(?!amp;)/g</span>, <span class="string">'&amp;'</span>)
+        .<span class="variable">replace</span>(<span class="regexp">/&lt;(?!lt;)/g</span>, <span class="string">'&amp;lt;'</span>)
+        .<span class="variable">replace</span>(<span class="regexp">/&gt;(?!gt;)/g</span>, <span class="string">'&amp;gt;'</span>)
+        .<span class="variable">replace</span>(<span class="regexp">/&quot;(?!quot;)/g</span>, <span class="string">'&amp;quot;'</span>);
 }</code></pre>
 </td>
 </tr>	</body>
