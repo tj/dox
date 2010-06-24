@@ -10,8 +10,8 @@ uninstall:
 	rm -fr ~/.node_libraries/dox
 
 docs: uninstall install
-	dox --title "Dox Example" \
-		--desc "This is an example using _dox_, how **cool!**" \
+	dox --title "Dox" \
+		--desc "JavaScript documentation parser for [node](http://ndoejs.org)." \
 		lib/*.js > docs.html
 
 .PHONY: install uninstall docs
