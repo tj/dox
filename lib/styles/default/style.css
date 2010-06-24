@@ -4,6 +4,7 @@ body {
     font: 14px/1.5 "Lucida Grande", "Helvetica Nueue", Arial, sans-serif;
 }
 table#source {
+    width: 100%;
     border-collapse: collapse;
 }
 table#source td.docs {
