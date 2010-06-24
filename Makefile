@@ -10,7 +10,8 @@ uninstall:
 	rm -fr ~/.node_libraries/dox
 
 examples: uninstall install
-	dox --title "Dox Example" --desc "This is an example using _dox_, how **cool!**" \
-		examples/*.js > examples/index.html && open examples/index.html
+	dox --title "Dox Example" \
+		--desc "This is an example using _dox_, how **cool!**" \
+		examples/*.js > examples/index.html
 
 .PHONY: install uninstall examples
