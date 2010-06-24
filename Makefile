@@ -11,7 +11,9 @@ uninstall:
 
 docs: uninstall install
 	dox --title "Dox" \
-		--desc "JavaScript documentation parser for [node](http://ndoejs.org)." \
+		--desc "JavaScript documentation parser for [node](http://ndoejs.org).\
+		Check out the [Github Repo](http://github.com/visionmedia/dox) for the \
+		source and installation guide." \
 		lib/*.js > docs.html
 
 .PHONY: install uninstall docs
