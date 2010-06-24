@@ -16,6 +16,7 @@
   * Generated navigation menu
   * Linked function definitions with references
   * Syntax highlighting
+  * Fast (can process 36 large files in 200ms)
 
 ## Usage Examples
 
