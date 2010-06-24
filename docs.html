@@ -14,6 +14,9 @@ a:hover {
     text-decoration: underline;
     color: #19469D;
 }
+p {
+    margin: 5px 0;
+}
 h1, h2, h3 {
     margin: 0;
     padding: 0;
@@ -103,12 +106,16 @@ table#source tr.code h3 {
     font-size: 14px;
 }
 table#source tr.code ul {
-    margin: 5px 0 5px 35px;
+    margin: 15px 0 15px 35px;
     padding: 0;
 }
 table#source tr.code ul li {
     margin: 0;
-    padding: 2px 0;
+    padding: 1px 0;
+}
+table#source tr.code ul li p {
+    margin: 0;
+    padding: 0;
 }
 table#source tr.code td:first-child pre {
     padding: 20px;
@@ -185,7 +192,7 @@ code .this { color: #19469D; }</style>
 <ul>
 <li><strong>type</strong>: <em>String</em></li>
 </ul>
-
+
 </td>
 <td class="code">
 <pre><code><span class="keyword">var</span> <span class="variable">desc</span> = <span class="string">''</span>;</code></pre>
@@ -240,11 +247,13 @@ code .this { color: #19469D; }</style>
 <td class="docs">
 <p>Parse the given arguments.</p>
 
-<ul>
-<li><strong>param</strong>: <em>Array</em>  args</li>
-<li><strong>api</strong>: <em>public</em></li>
-</ul>
+<h2></h2>
 
+<ul>
+<li><p><strong>param</strong>: <em>Array</em>  args</p></li>
+<li><p><strong>api</strong>: <em>public</em></p></li>
+</ul>
+ca
 </td>
 <td class="code">
 <pre><code><span class="variable">exports</span>.<span class="variable">parse</span> = <span class="keyword">function</span>(<span class="variable">args</span>){
@@ -360,10 +369,23 @@ code .this { color: #19469D; }</style>
 <p>Generate html for the given string of code.</p>
 
 <ul>
-<li><strong>param</strong>: <em>String</em>  str</li>
-<li><strong>param</strong>: <em>String</em>  file</li>
-<li><strong>return</strong>: <em>String</em> undefined</li>
-<li><strong>api</strong>: <em>public</em></li>
+<li>foo
+
+<ul>
+<li>bar</li>
+</ul>
+</li>
+<li>baz</li>
+</ul>
+
+
+<h2></h2>
+
+<ul>
+<li><p><strong>param</strong>: <em>String</em>  str</p></li>
+<li><p><strong>param</strong>: <em>String</em>  file</p></li>
+<li><p><strong>return</strong>: <em>String</em> undefined</p></li>
+<li><p><strong>api</strong>: <em>public</em></p></li>
 </ul>
 
 </td>

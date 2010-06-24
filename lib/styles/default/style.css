@@ -11,6 +11,9 @@ a:hover {
     text-decoration: underline;
     color: #19469D;
 }
+p {
+    margin: 5px 0;
+}
 h1, h2, h3 {
     margin: 0;
     padding: 0;
@@ -100,12 +103,16 @@ table#source tr.code h3 {
     font-size: 14px;
 }
 table#source tr.code ul {
-    margin: 5px 0 5px 35px;
+    margin: 15px 0 15px 35px;
     padding: 0;
 }
 table#source tr.code ul li {
     margin: 0;
-    padding: 2px 0;
+    padding: 1px 0;
+}
+table#source tr.code ul li p {
+    margin: 0;
+    padding: 0;
 }
 table#source tr.code td:first-child pre {
     padding: 20px;
