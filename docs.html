@@ -15,7 +15,7 @@ a:hover {
     color: #19469D;
 }
 p {
-    margin: 5px 0;
+    margin: 12px 0;
 }
 h1, h2, h3 {
     margin: 0;
@@ -32,7 +32,9 @@ ul#menu {
     text-align: right;
     background: rgba(255,255,255,0.7);
     -webkit-box-shadow: -1px 2px 2px rgba(0,0,0,0.3);
+    -moz-box-shadow: -1px 2px 2px rgba(0,0,0,0.3);
     -webkit-border-bottom-left-radius: 5px;
+    -moz-border-bottom-left-radius: 5px;
     -webkit-transition-properties: opacity;
     -webkit-transition-duration: 0.6s;
 }
@@ -133,7 +135,8 @@ code .comment { color: #bbb; }
 code .this { color: #19469D; }</style>
 	</head>
 	<body>
-<ul id="menu"><li><a href="#lib/index.js">lib/<strong>index</strong></a></li></ul><table id="source"><tbody><tr><td><h1>Dox</h1><p>JavaScript documentation parser for <a href="http://ndoejs.org">node</a>.  Check out the <a href="http://github.com/visionmedia/dox">Github Repo</a> for the  source and installation guide.</p></td><td></td></tr><tr class="filename"><td><h2 id="lib/index.js">index</h2></td><td>lib/index.js</td></tr><tr class="code">
+<ul id="menu"><li><a href="#lib/index.js">lib/<strong>index</strong></a></li>
+<li><a href="#lib/utils.js">lib/<strong>utils</strong></a></li></ul><table id="source"><tbody><tr><td><h1>Dox</h1><p>JavaScript documentation parser for <a href="http://ndoejs.org">node</a>.  Check out the <a href="http://github.com/visionmedia/dox">Github Repo</a> for the  source and installation guide.</p></td><td></td></tr><tr class="filename"><td><h2 id="lib/index.js">index</h2></td><td>lib/index.js</td></tr><tr class="code">
 <td class="docs">
 <p>Module dependencies.</p>
 </td>
@@ -143,6 +146,7 @@ code .this { color: #19469D; }</style>
     <span class="variable">fs</span> = <span class="variable">require</span>(<span class="string">'fs'</span>),
     <span class="variable">path</span> = <span class="variable">require</span>(<span class="string">'path'</span>),
     <span class="variable">koala</span> = <span class="variable">require</span>(<span class="string">'koala'</span>),
+    <span class="variable">utils</span> = <span class="variable">require</span>(<span class="string">'./utils'</span>),
     <span class="variable">markdown</span> = <span class="variable">require</span>(<span class="string">'markdown'</span>);</code></pre>
 </td>
 </tr>
@@ -192,7 +196,7 @@ code .this { color: #19469D; }</style>
 <ul>
 <li><strong>type</strong>: <em>String</em></li>
 </ul>
-
+
 </td>
 <td class="code">
 <pre><code><span class="keyword">var</span> <span class="variable">desc</span> = <span class="string">''</span>;</code></pre>
@@ -253,7 +257,7 @@ code .this { color: #19469D; }</style>
 <li><p><strong>param</strong>: <em>Array</em>  args</p></li>
 <li><p><strong>api</strong>: <em>public</em></p></li>
 </ul>
-ca
+
 </td>
 <td class="code">
 <pre><code><span class="variable">exports</span>.<span class="variable">parse</span> = <span class="keyword">function</span>(<span class="variable">args</span>){
@@ -384,7 +388,7 @@ ca
 <ul>
 <li><p><strong>param</strong>: <em>String</em>  str</p></li>
 <li><p><strong>param</strong>: <em>String</em>  file</p></li>
-<li><p><strong>return</strong>: <em>String</em> undefined</p></li>
+<li><p><strong>return</strong>: <em>String</em></p></li>
 <li><p><strong>api</strong>: <em>public</em></p></li>
 </ul>
 
@@ -408,11 +412,11 @@ ca
             ++<span class="variable">i</span>;
             
             <span class="comment">// Support @ignore and --private</span>
-            <span class="keyword">if</span> (<span class="variable">ignore</span>(<span class="variable">part</span>) || (<span class="variable">isPrivate</span>(<span class="variable">part</span>) &<span class="variable">amp</span>;&<span class="variable">amp</span>; !<span class="variable">showPrivate</span>)) <span class="keyword">continue</span>;
+            <span class="keyword">if</span> (<span class="variable">utils</span>.<span class="variable">ignore</span>(<span class="variable">part</span>) || (<span class="variable">utils</span>.<span class="variable">isPrivate</span>(<span class="variable">part</span>) &<span class="variable">amp</span>;&<span class="variable">amp</span>; !<span class="variable">showPrivate</span>)) <span class="keyword">continue</span>;
             <span class="keyword">var</span> <span class="variable">part</span> = <span class="variable">part</span>.<span class="variable">replace</span>(<span class="regexp">/^ *\* ?/gm</span>, <span class="string">''</span>);
             <span class="variable">blocks</span>.<span class="variable">push</span>({
-               <span class="variable">comment</span>: <span class="variable">markdown</span>.<span class="variable">parse</span>(<span class="variable">toMarkdown</span>(<span class="variable">part</span>)),
-               <span class="variable">code</span>: <span class="variable">koala</span>.<span class="variable">render</span>(<span class="string">'.js'</span>, <span class="variable">escape</span>(<span class="variable">next</span>)) 
+               <span class="variable">comment</span>: <span class="variable">markdown</span>.<span class="variable">parse</span>(<span class="variable">utils</span>.<span class="variable">toMarkdown</span>(<span class="variable">part</span>)),
+               <span class="variable">code</span>: <span class="variable">koala</span>.<span class="variable">render</span>(<span class="string">'.js'</span>, <span class="variable">utils</span>.<span class="variable">escape</span>(<span class="variable">next</span>)) 
             });
         }
     }
@@ -431,6 +435,84 @@ ca
 
     <span class="keyword">return</span> <span class="variable">html</span>.<span class="variable">join</span>(<span class="string">'\n'</span>);
 };</code></pre>
+</td>
+</tr><tr class="filename"><td><h2 id="lib/utils.js">utils</h2></td><td>lib/utils.js</td></tr><tr class="code">
+<td class="docs">
+<p>Check if the given string of docs appears to be private.</p>
+
+<h2></h2>
+
+<ul>
+<li><p><strong>param</strong>: <em>String</em>  str</p></li>
+<li><p><strong>return</strong>: <em>Boolean</em></p></li>
+<li><p><strong>api</strong>: <em>public</em></p></li>
+</ul>
+
+</td>
+<td class="code">
+<pre><code><span class="variable">exports</span>.<span class="variable">isPrivate</span> = <span class="keyword">function</span>(<span class="variable">str</span>) {
+    <span class="keyword">return</span> <span class="variable">str</span>.<span class="variable">indexOf</span>(<span class="string">'@private'</span>) &<span class="variable">gt</span>;= <span class="number integer">0</span>
+        || <span class="variable">str</span>.<span class="variable">indexOf</span>(<span class="string">'@api private'</span>) &<span class="variable">gt</span>;= <span class="number integer">0</span>;
+}</code></pre>
+</td>
+</tr>
+<tr class="code">
+<td class="docs">
+<p>Convert the given string of jsdoc to markdown.</p>
+
+<h2></h2>
+
+<ul>
+<li><p><strong>param</strong>: <em>String</em>  str</p></li>
+<li><p><strong>return</strong>: <em>String</em></p></li>
+<li><p><strong>api</strong>: <em>public</em></p></li>
+</ul>
+
+</td>
+<td class="code">
+<pre><code><span class="variable">exports</span>.<span class="variable">toMarkdown</span> = <span class="keyword">function</span>(<span class="variable">str</span>) {
+    <span class="keyword">var</span> <span class="variable">first</span> = <span class="variable">true</span>;
+    <span class="keyword">return</span> <span class="variable">str</span>
+        .<span class="variable">replace</span>(<span class="regexp">/^((?:[A-Z]\w* ?)+):/gm</span>, <span class="string">'## $1'</span>)
+        .<span class="variable">replace</span>(<span class="regexp">/^ *@(\w+) *\{([^}]+)\}( *[^\n]+)?/gm</span>, <span class="keyword">function</span>(<span class="variable">_</span>, <span class="variable">key</span>, <span class="variable">type</span>, <span class="variable">desc</span>){
+            <span class="keyword">var</span> <span class="variable">prefix</span> = <span class="string">''</span>;
+            <span class="keyword">if</span> (<span class="variable">first</span>) {
+                <span class="variable">first</span> = <span class="variable">false</span>;
+                <span class="variable">prefix</span> = <span class="string">'## \n'</span>;
+            }
+            <span class="keyword">return</span> <span class="variable">prefix</span> + <span class="string">' - **'</span> + <span class="variable">key</span> + <span class="string">'**: _'</span> + <span class="variable">type</span>.<span class="variable">split</span>(<span class="regexp">/ *[|\/</span>] */).<span class="variable">join</span>(<span class="string">' | '</span>) + <span class="string">'_ '</span> + (<span class="variable">desc</span> || <span class="string">''</span>) + <span class="string">'\n'</span>;
+        })
+        .<span class="variable">replace</span>(<span class="regexp">/^ *@(\w+) *(\w+)/gm</span>, <span class="string">' - **$1**: _$2_\n'</span>);
+}</code></pre>
+</td>
+</tr>
+<tr class="code">
+<td class="docs">
+<p>Escape the given string of html.</p>
+
+<h2>Examples</h2>
+
+<pre><code>escape('&lt;foo&gt;');
+// =&gt; "&amp;lt;foo&amp;gt;"
+</code></pre>
+
+<h2></h2>
+
+<ul>
+<li><p><strong>param</strong>: <em>String</em>  html</p></li>
+<li><p><strong>return</strong>: <em>String</em></p></li>
+<li><p><strong>api</strong>: <em>public</em></p></li>
+</ul>
+
+</td>
+<td class="code">
+<pre><code><span class="variable">exports</span>.<span class="variable">escape</span> = <span class="keyword">function</span>(<span class="variable">html</span>){
+    <span class="keyword">return</span> <span class="class">String</span>(<span class="variable">html</span>)
+        .<span class="variable">replace</span>(<span class="regexp">/&amp;(?!\w+;)/g</span>, <span class="string">'&amp;'</span>)
+        .<span class="variable">replace</span>(<span class="regexp">/&lt;/g</span>, <span class="string">'&lt;'</span>)
+        .<span class="variable">replace</span>(<span class="regexp">/&gt;/g</span>, <span class="string">'&gt;'</span>)
+        .<span class="variable">replace</span>(<span class="regexp">/&quot;/g</span>, <span class="string">'&quot;'</span>);
+}</code></pre>
 </td>
 </tr>	</body>
 </html></tbody></table>

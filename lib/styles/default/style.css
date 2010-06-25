@@ -29,7 +29,9 @@ ul#menu {
     text-align: right;
     background: rgba(255,255,255,0.7);
     -webkit-box-shadow: -1px 2px 2px rgba(0,0,0,0.3);
+    -moz-box-shadow: -1px 2px 2px rgba(0,0,0,0.3);
     -webkit-border-bottom-left-radius: 5px;
+    -moz-border-bottom-left-radius: 5px;
     -webkit-transition-properties: opacity;
     -webkit-transition-duration: 0.6s;
 }
