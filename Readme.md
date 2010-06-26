@@ -18,6 +18,10 @@
   * Syntax highlighting
   * Fast (can process 36 large files in 200ms)
 
+## Installation
+
+    $ make install
+
 ## Usage Examples
 
 Simple example:
