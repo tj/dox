@@ -3,12 +3,12 @@
  Dox is a JavaScript documentation generator written for [node](http://nodejs.org).
 
  Dox is a 2 hour product of my frustration with documentation generators. I wanted
- something that could parse my JavaScript using markdown and JSdoc tags, an easy
- to use CLI, as well as a single deployment file, no external css or js, one file!
+ something that could parse my JavaScript using _markdown_ and _JSDoc_ tags, an easy
+ to use _executable_, as well as a _single deployment file_, no external css or js, one file!
 
 ## Features
 
-  * Supports JSdoc
+  * Supports JSDoc
   * Markdown bodies
   * Custom title / description
   * Simple CLI `dox`
