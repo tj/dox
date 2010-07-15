@@ -19,7 +19,11 @@
 
 ## Installation
 
-Then install dox:
+Install from npm:
+
+    $ npm install dox
+
+Install from git clone or tarball:
 
     $ make install
 
