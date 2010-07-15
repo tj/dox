@@ -108,7 +108,69 @@ code .this { color: #19469D; }</style>
 		</script>
 	</head>
 	<body>
-<table id="source"><tbody><tr><td><h1>Dox</h1><p>JavaScript documentation parser for <a href="http://ndoejs.org">node</a>.	Check out the <a href="http://github.com/visionmedia/dox">Github Repo</a> for the 	source and installation guide.</p></td><td></td></tr><tr class="filename"><td><h2 id="lib/index.js">index</h2></td><td>lib/index.js</td></tr><tr class="code">
+<table id="source"><tbody><tr><td><h1>Dox</h1><p>JavaScript documentation parser for <a href="http://ndoejs.org">node</a>.	Check out the <a href="http://github.com/visionmedia/dox">Github Repo</a> for the 	source and installation guide.</p></td><td></td></tr><tr class="filename"><td><h2 id="lib/utils.js">utils</h2></td><td>lib/utils.js</td></tr><tr class="code">
+<td class="docs">
+<p>Check if the given string of docs appears to be private.</p>
+
+<h2></h2>
+
+<ul><li><p><strong>param</strong>: <em>String</em>  str</p></li><li><p><strong>return</strong>: <em>Boolean</em> </p></li><li><p><strong>api</strong>: <em>public</em></p></li></ul>
+</td>
+<td class="code">
+<pre><code><span class="variable">exports</span>.<span class="variable">isPrivate</span> = <span class="keyword">function</span>(<span class="variable">str</span>) {
+    <span class="keyword">return</span> <span class="variable">str</span>.<span class="variable">indexOf</span>(<span class="string">'@private'</span>) &<span class="variable">gt</span>;= <span class="number integer">0</span>
+        || <span class="variable">str</span>.<span class="variable">indexOf</span>(<span class="string">'@api private'</span>) &<span class="variable">gt</span>;= <span class="number integer">0</span>;
+}</code></pre>
+</td>
+</tr>
+<tr class="code">
+<td class="docs">
+<p>Convert the given string of jsdoc to markdown.</p>
+
+<h2></h2>
+
+<ul><li><p><strong>param</strong>: <em>String</em>  str</p></li><li><p><strong>return</strong>: <em>String</em> </p></li><li><p><strong>api</strong>: <em>public</em></p></li></ul>
+</td>
+<td class="code">
+<pre><code><span class="variable">exports</span>.<span class="variable">toMarkdown</span> = <span class="keyword">function</span>(<span class="variable">str</span>) {
+    <span class="keyword">var</span> <span class="variable">first</span> = <span class="variable">true</span>;
+    <span class="keyword">return</span> <span class="variable">str</span>
+        .<span class="variable">replace</span>(<span class="regexp">/^((?:[A-Z]\w* ?)+):/gm</span>, <span class="string">'## $1'</span>)
+        .<span class="variable">replace</span>(<span class="regexp">/^ *@(\w+) *\{([^}]+)\}( *[^\n]+)?/gm</span>, <span class="keyword">function</span>(<span class="variable">_</span>, <span class="variable">key</span>, <span class="variable">type</span>, <span class="variable">desc</span>){
+            <span class="keyword">var</span> <span class="variable">prefix</span> = <span class="string">''</span>;
+            <span class="keyword">if</span> (<span class="variable">first</span>) {
+                <span class="variable">first</span> = <span class="variable">false</span>;
+                <span class="variable">prefix</span> = <span class="string">'## \n'</span>;
+            }
+            <span class="keyword">return</span> <span class="variable">prefix</span> + <span class="string">'\n - **'</span> + <span class="variable">key</span> + <span class="string">'**: _'</span> + <span class="variable">type</span>.<span class="variable">split</span>(<span class="regexp">/ *[|\/</span>] */).<span class="variable">join</span>(<span class="string">' | '</span>) + <span class="string">'_ '</span> + (<span class="variable">desc</span> || <span class="string">''</span>) + <span class="string">'\n'</span>;
+        })
+        .<span class="variable">replace</span>(<span class="regexp">/^ *@(\w+) *(\w+)/gm</span>, <span class="string">' - **$1**: _$2_\n'</span>);
+}</code></pre>
+</td>
+</tr>
+<tr class="code">
+<td class="docs">
+<p>Escape the given string of html.</p>
+
+<h2>Examples</h2>
+
+<pre><code>escape('&lt;foo&gt;');
+// =&gt; "&amp;lt;foo&amp;gt;"</code></pre>
+
+<h2></h2>
+
+<ul><li><p><strong>param</strong>: <em>String</em>  html</p></li><li><p><strong>return</strong>: <em>String</em> </p></li><li><p><strong>api</strong>: <em>public</em></p></li></ul>
+</td>
+<td class="code">
+<pre><code><span class="variable">exports</span>.<span class="variable">escape</span> = <span class="keyword">function</span>(<span class="variable">html</span>){
+    <span class="keyword">return</span> <span class="class">String</span>(<span class="variable">html</span>)
+        .<span class="variable">replace</span>(<span class="regexp">/&amp;(?!\w+;)/g</span>, <span class="string">'&amp;'</span>)
+        .<span class="variable">replace</span>(<span class="regexp">/&lt;/g</span>, <span class="string">'&lt;'</span>)
+        .<span class="variable">replace</span>(<span class="regexp">/&gt;/g</span>, <span class="string">'&gt;'</span>)
+        .<span class="variable">replace</span>(<span class="regexp">/&quot;/g</span>, <span class="string">'&quot;'</span>);
+}</code></pre>
+</td>
+</tr><tr class="filename"><td><h2 id="lib/index.js">index</h2></td><td>lib/index.js</td></tr><tr class="code">
 <td class="docs">
 <p>Module dependencies.
  </p>
@@ -379,68 +441,6 @@ code .this { color: #19469D; }</style>
 
     <span class="keyword">return</span> <span class="variable">html</span>.<span class="variable">join</span>(<span class="string">'\n'</span>);
 };</code></pre>
-</td>
-</tr><tr class="filename"><td><h2 id="lib/utils.js">utils</h2></td><td>lib/utils.js</td></tr><tr class="code">
-<td class="docs">
-<p>Check if the given string of docs appears to be private.</p>
-
-<h2></h2>
-
-<ul><li><p><strong>param</strong>: <em>String</em>  str</p></li><li><p><strong>return</strong>: <em>Boolean</em> </p></li><li><p><strong>api</strong>: <em>public</em></p></li></ul>
-</td>
-<td class="code">
-<pre><code><span class="variable">exports</span>.<span class="variable">isPrivate</span> = <span class="keyword">function</span>(<span class="variable">str</span>) {
-    <span class="keyword">return</span> <span class="variable">str</span>.<span class="variable">indexOf</span>(<span class="string">'@private'</span>) &<span class="variable">gt</span>;= <span class="number integer">0</span>
-        || <span class="variable">str</span>.<span class="variable">indexOf</span>(<span class="string">'@api private'</span>) &<span class="variable">gt</span>;= <span class="number integer">0</span>;
-}</code></pre>
-</td>
-</tr>
-<tr class="code">
-<td class="docs">
-<p>Convert the given string of jsdoc to markdown.</p>
-
-<h2></h2>
-
-<ul><li><p><strong>param</strong>: <em>String</em>  str</p></li><li><p><strong>return</strong>: <em>String</em> </p></li><li><p><strong>api</strong>: <em>public</em></p></li></ul>
-</td>
-<td class="code">
-<pre><code><span class="variable">exports</span>.<span class="variable">toMarkdown</span> = <span class="keyword">function</span>(<span class="variable">str</span>) {
-    <span class="keyword">var</span> <span class="variable">first</span> = <span class="variable">true</span>;
-    <span class="keyword">return</span> <span class="variable">str</span>
-        .<span class="variable">replace</span>(<span class="regexp">/^((?:[A-Z]\w* ?)+):/gm</span>, <span class="string">'## $1'</span>)
-        .<span class="variable">replace</span>(<span class="regexp">/^ *@(\w+) *\{([^}]+)\}( *[^\n]+)?/gm</span>, <span class="keyword">function</span>(<span class="variable">_</span>, <span class="variable">key</span>, <span class="variable">type</span>, <span class="variable">desc</span>){
-            <span class="keyword">var</span> <span class="variable">prefix</span> = <span class="string">''</span>;
-            <span class="keyword">if</span> (<span class="variable">first</span>) {
-                <span class="variable">first</span> = <span class="variable">false</span>;
-                <span class="variable">prefix</span> = <span class="string">'## \n'</span>;
-            }
-            <span class="keyword">return</span> <span class="variable">prefix</span> + <span class="string">'\n - **'</span> + <span class="variable">key</span> + <span class="string">'**: _'</span> + <span class="variable">type</span>.<span class="variable">split</span>(<span class="regexp">/ *[|\/</span>] */).<span class="variable">join</span>(<span class="string">' | '</span>) + <span class="string">'_ '</span> + (<span class="variable">desc</span> || <span class="string">''</span>) + <span class="string">'\n'</span>;
-        })
-        .<span class="variable">replace</span>(<span class="regexp">/^ *@(\w+) *(\w+)/gm</span>, <span class="string">' - **$1**: _$2_\n'</span>);
-}</code></pre>
-</td>
-</tr>
-<tr class="code">
-<td class="docs">
-<p>Escape the given string of html.</p>
-
-<h2>Examples</h2>
-
-<pre><code>escape('&lt;foo&gt;');
-// =&gt; "&amp;lt;foo&amp;gt;"</code></pre>
-
-<h2></h2>
-
-<ul><li><p><strong>param</strong>: <em>String</em>  html</p></li><li><p><strong>return</strong>: <em>String</em> </p></li><li><p><strong>api</strong>: <em>public</em></p></li></ul>
-</td>
-<td class="code">
-<pre><code><span class="variable">exports</span>.<span class="variable">escape</span> = <span class="keyword">function</span>(<span class="variable">html</span>){
-    <span class="keyword">return</span> <span class="class">String</span>(<span class="variable">html</span>)
-        .<span class="variable">replace</span>(<span class="regexp">/&amp;(?!\w+;)/g</span>, <span class="string">'&amp;'</span>)
-        .<span class="variable">replace</span>(<span class="regexp">/&lt;/g</span>, <span class="string">'&lt;'</span>)
-        .<span class="variable">replace</span>(<span class="regexp">/&gt;/g</span>, <span class="string">'&gt;'</span>)
-        .<span class="variable">replace</span>(<span class="regexp">/&quot;/g</span>, <span class="string">'&quot;'</span>);
-}</code></pre>
 </td>
 </tr>	</body>
 </html></tbody></table>
