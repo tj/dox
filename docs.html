@@ -107,8 +107,7 @@ code .this { color: #19469D; }</style>
 		</script>
 	</head>
 	<body>
-<ul id="menu"><li><a href="#lib/index.js">lib/<strong>index</strong></a></li>
-<li><a href="#lib/utils.js">lib/<strong>utils</strong></a></li></ul><table id="source"><tbody><tr><td><h1>Dox</h1><p>JavaScript documentation parser for <a href="http://ndoejs.org">node</a>.	Check out the <a href="http://github.com/visionmedia/dox">Github Repo</a> for the 	source and installation guide.</p></td><td></td></tr><tr class="filename"><td><h2 id="lib/index.js">index</h2></td><td>lib/index.js</td></tr><tr class="code">
+<table id="source"><tbody><tr><td><h1>Dox</h1><p>JavaScript documentation parser for <a href="http://ndoejs.org">node</a>.	Check out the <a href="http://github.com/visionmedia/dox">Github Repo</a> for the 	source and installation guide.</p></td><td></td></tr><tr class="filename"><td><h2 id="lib/index.js">index</h2></td><td>lib/index.js</td></tr><tr class="code">
 <td class="docs">
 <p>Module dependencies.
  </p>
@@ -299,15 +298,7 @@ code .this { color: #19469D; }</style>
                   + <span class="string">'&lt;/a&gt;'</span>);
         }
         
-        <span class="comment">// Navigation</span>
-        <span class="variable">log</span>(<span class="string">'generating navigation'</span>);
-        <span class="keyword">var</span> <span class="variable">menu</span> = <span class="string">'&lt;ul id=&quot;menu&quot;&gt;'</span> + <span class="variable">files</span>.<span class="variable">map</span>(<span class="keyword">function</span>(<span class="variable">file</span>){
-            <span class="keyword">var</span> <span class="variable">basename</span> = <span class="variable">path</span>.<span class="variable">basename</span>(<span class="variable">file</span>, <span class="string">'.js'</span>),
-                <span class="variable">title</span> = <span class="variable">file</span>.<span class="variable">replace</span>(<span class="variable">basename</span>, <span class="string">'&lt;strong&gt;'</span> + <span class="variable">basename</span> + <span class="string">'&lt;/strong&gt;'</span>).<span class="variable">replace</span>(<span class="string">'.js'</span>, <span class="string">''</span>);
-            <span class="keyword">return</span> <span class="string">'&lt;li&gt;&lt;a href=&quot;#'</span> + <span class="variable">file</span> + <span class="string">'&quot;&gt;'</span> + <span class="variable">title</span> + <span class="string">'&lt;/a&gt;&lt;/li&gt;'</span>
-        }).<span class="variable">join</span>(<span class="string">'\n'</span>) + <span class="string">'&lt;/ul&gt;'</span>;
-        
-        <span class="variable">sys</span>.<span class="variable">print</span>(<span class="variable">head</span>, <span class="variable">menu</span>);
+        <span class="variable">sys</span>.<span class="variable">print</span>(<span class="variable">head</span>);
         <span class="variable">sys</span>.<span class="variable">print</span>(<span class="string">'&lt;table id=&quot;source&quot;&gt;&lt;tbody&gt;'</span>);
         
         <span class="comment">// Render files</span>
