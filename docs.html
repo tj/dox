@@ -245,9 +245,9 @@ code .this { color: #19469D; }</style>
 <td class="docs">
 <p>Parse the given arguments.</p>
 
-<h2>- **param**: _Array_  args</h2>
+<h2></h2>
 
-<ul><li><p><strong>api</strong>: <em>public</em></p></li></ul>
+<ul><li><p><strong>param</strong>: <em>Array</em>  args</p></li><li><p><strong>api</strong>: <em>public</em></p></li></ul>
 </td>
 <td class="code">
 <pre><code><span class="variable">exports</span>.<span class="variable">parse</span> = <span class="keyword">function</span>(<span class="variable">args</span>){
@@ -369,9 +369,9 @@ code .this { color: #19469D; }</style>
 
 <ul><li>foo<ul><li>bar</li></ul></li><li>baz</li></ul>
 
-<h2>- **param**: _String_  str</h2>
+<h2></h2>
 
-<ul><li><p><strong>param</strong>: <em>String</em>  file</p></li><li><p><strong>return</strong>: <em>String</em> </p></li><li><p><strong>api</strong>: <em>public</em></p></li></ul>
+<ul><li><p><strong>param</strong>: <em>String</em>  str</p></li><li><p><strong>param</strong>: <em>String</em>  file</p></li><li><p><strong>return</strong>: <em>String</em> </p></li><li><p><strong>api</strong>: <em>public</em></p></li></ul>
 </td>
 <td class="code">
 <pre><code><span class="keyword">var</span> <span class="variable">render</span> = <span class="variable">exports</span>.<span class="variable">render</span> = <span class="keyword">function</span>(<span class="variable">str</span>, <span class="variable">file</span>){
@@ -420,9 +420,9 @@ code .this { color: #19469D; }</style>
 <td class="docs">
 <p>Check if the given string of docs appears to be private.</p>
 
-<h2>- **param**: _String_  str</h2>
+<h2></h2>
 
-<ul><li><p><strong>return</strong>: <em>Boolean</em> </p></li><li><p><strong>api</strong>: <em>public</em></p></li></ul>
+<ul><li><p><strong>param</strong>: <em>String</em>  str</p></li><li><p><strong>return</strong>: <em>Boolean</em> </p></li><li><p><strong>api</strong>: <em>public</em></p></li></ul>
 </td>
 <td class="code">
 <pre><code><span class="variable">exports</span>.<span class="variable">isPrivate</span> = <span class="keyword">function</span>(<span class="variable">str</span>) {
@@ -435,9 +435,9 @@ code .this { color: #19469D; }</style>
 <td class="docs">
 <p>Convert the given string of jsdoc to markdown.</p>
 
-<h2>- **param**: _String_  str</h2>
+<h2></h2>
 
-<ul><li><p><strong>return</strong>: <em>String</em> </p></li><li><p><strong>api</strong>: <em>public</em></p></li></ul>
+<ul><li><p><strong>param</strong>: <em>String</em>  str</p></li><li><p><strong>return</strong>: <em>String</em> </p></li><li><p><strong>api</strong>: <em>public</em></p></li></ul>
 </td>
 <td class="code">
 <pre><code><span class="variable">exports</span>.<span class="variable">toMarkdown</span> = <span class="keyword">function</span>(<span class="variable">str</span>) {
@@ -450,7 +450,7 @@ code .this { color: #19469D; }</style>
                 <span class="variable">first</span> = <span class="variable">false</span>;
                 <span class="variable">prefix</span> = <span class="string">'## \n'</span>;
             }
-            <span class="keyword">return</span> <span class="variable">prefix</span> + <span class="string">' - **'</span> + <span class="variable">key</span> + <span class="string">'**: _'</span> + <span class="variable">type</span>.<span class="variable">split</span>(<span class="regexp">/ *[|\/</span>] */).<span class="variable">join</span>(<span class="string">' | '</span>) + <span class="string">'_ '</span> + (<span class="variable">desc</span> || <span class="string">''</span>) + <span class="string">'\n'</span>;
+            <span class="keyword">return</span> <span class="variable">prefix</span> + <span class="string">'\n - **'</span> + <span class="variable">key</span> + <span class="string">'**: _'</span> + <span class="variable">type</span>.<span class="variable">split</span>(<span class="regexp">/ *[|\/</span>] */).<span class="variable">join</span>(<span class="string">' | '</span>) + <span class="string">'_ '</span> + (<span class="variable">desc</span> || <span class="string">''</span>) + <span class="string">'\n'</span>;
         })
         .<span class="variable">replace</span>(<span class="regexp">/^ *@(\w+) *(\w+)/gm</span>, <span class="string">' - **$1**: _$2_\n'</span>);
 }</code></pre>
@@ -465,9 +465,9 @@ code .this { color: #19469D; }</style>
 <pre><code>escape('&lt;foo&gt;');
 // =&gt; "&amp;lt;foo&amp;gt;"</code></pre>
 
-<h2>- **param**: _String_  html</h2>
+<h2></h2>
 
-<ul><li><p><strong>return</strong>: <em>String</em> </p></li><li><p><strong>api</strong>: <em>public</em></p></li></ul>
+<ul><li><p><strong>param</strong>: <em>String</em>  html</p></li><li><p><strong>return</strong>: <em>String</em> </p></li><li><p><strong>api</strong>: <em>public</em></p></li></ul>
 </td>
 <td class="code">
 <pre><code><span class="variable">exports</span>.<span class="variable">escape</span> = <span class="keyword">function</span>(<span class="variable">html</span>){
