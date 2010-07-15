@@ -120,7 +120,7 @@ table#source tr.code td:first-child pre {
     padding: 20px;
 }
 #ribbon {
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
 }
