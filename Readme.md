@@ -21,7 +21,7 @@
 
 Install from npm:
 
-    $ npm install dox@latest
+    $ npm install dox
 
 Install from git clone or tarball:
 
