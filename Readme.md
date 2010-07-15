@@ -16,18 +16,8 @@
   * Generated navigation menu
   * Linked function definitions with references
   * Syntax highlighting
-  * Fast (can process 36 large files in 200ms)
 
 ## Installation
-
-First you will need the _discount_ markdown library installed:
-
-    $ brew install markdown
-
-As well as the [node-discount](http://github.com/visionmedia/node-discount) bindings,
-which can be installed via the github repo, or npm like below:
-
-    $ npm install markdown
 
 Then install dox:
 
