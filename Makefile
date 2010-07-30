@@ -2,8 +2,9 @@
 PREFIX = /usr/local
 
 install:
+	mkdir -p ~/.node_libraries
 	cp -f bin/dox $(PREFIX)/bin/dox
-	cp -fr lib ~/.node_libraries/dox
+	cp -fr lib/dox ~/.node_libraries/dox
 
 uninstall:
 	rm -f $(PREFIX)/bin/dox
