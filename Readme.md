@@ -44,10 +44,12 @@ Output from `--help`:
     Usage: dox [options] <file ...>
 
 	Options:
-	  -t, --title      Project title
-	  -d, --desc       Project description (markdown)
-	  -s, --style      Document style, available: ["default"]
-	  -J, --no-jsdoc   Disable jsdoc parsing (coverts to markdown)
-	  -p, --private    Output private code in documentation
-	  -h, --help       Display help information
-
+      -t, --title STR   Project title
+      -d, --desc STR    Project description (markdown)
+      -r, --ribbon URL  Github ribbon url
+      -s, --style NAME  Document style, available: ["default"]
+      -J, --no-jsdoc    Disable jsdoc parsing (coverts to markdown)
+      -p, --private     Output private code in documentation
+      -N, --nocode      Ignore /**#nocode*/ blocks
+      -v, --version     Output dox library version
+      -h, --help        Display help information
