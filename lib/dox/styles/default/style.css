@@ -22,6 +22,9 @@ table#source {
     width: 100%;
     border-collapse: collapse;
 }
+ul {
+    list-style: none;
+}
 table#source td:first-child {
     padding: 30px 40px 30px 40px;
     vertical-align: top;
