@@ -46,6 +46,7 @@ Output from `--help`:
 	Options:
 	  -t, --title      Project title
 	  -d, --desc       Project description (markdown)
+    -i, --intro      File that contains introduction text (markdown)
 	  -s, --style      Document style, available: ["default"]
 	  -J, --no-jsdoc   Disable jsdoc parsing (coverts to markdown)
 	  -p, --private    Output private code in documentation
