@@ -1,4 +1,9 @@
 
+0.0.5 / 2011-03-02 
+==================
+
+  * Adding "main" to package descriptor since "directories" are no longer supported.
+
 0.0.4 / 2011-01-20 
 ==================
 
