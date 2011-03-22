@@ -17,17 +17,23 @@ module.exports = function(env){
 };
 
 function outputPages(env, fn) {
-  var pending = env.paths.length;
-  env.paths.forEach(function(path){
-    var comments = env.files[path]
-      , html = comments.html
-      , dest = env.dest + '/' + path.replace(/\//g, '-');
-    fs.writeFile(dest, html, function(err){
-      if (err) return fn(err);
-      env.log('compile', path + ' -> ' + dest);
-      --pending || fn();
+  var pending = env.paths.length
+    , dir = env.dest + '/pages';
+
+  fs.mkdir(dir, 0755, done);
+
+  function done(){
+    env.paths.forEach(function(path){
+      var comments = env.files[path]
+        , html = comments.html
+        , dest = dir + '/' + path.replace(/\//g, '-') + '.html';
+      fs.writeFile(dest, html, function(err){
+        if (err) return fn(err);
+        env.log('compile', path + ' -> ' + dest);
+        --pending || fn();
+      });
     });
-  });
+  }
 }
 
 function renderPages(env, fn) {
