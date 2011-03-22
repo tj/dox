@@ -41,7 +41,7 @@ module.exports = {
   'test .parseComments() tags': function(){
     fixture('b.js', function(err, str){
       var comments = dox.parseComments(str);
-      comments.should.have.length(1);
+      comments.should.have.length(2);
 
       var version = comments.shift();
       version.content.should.equal('<p>Library version.</p>');
@@ -51,6 +51,18 @@ module.exports = {
       version.tags[0].types.should.eql(['String']);
       version.tags[1].type.should.equal('api');
       version.tags[1].visibility.should.equal('public');
+
+      var parse = comments.shift();
+      parse.description.should.equal('<p>Parse the given <code>str</code>.</p>');
+      parse.body.should.equal('<h2>Examples</h2>\n\n<p>   parse(str)\n   // =&gt; "wahoo"</p>');
+      parse.content.should.equal('<p>Parse the given <code>str</code>.</p>\n\n<h2>Examples</h2>\n\n<p>   parse(str)\n   // =&gt; "wahoo"</p>');
+      parse.tags[0].type.should.equal('param');
+      parse.tags[0].name.should.equal('str');
+      parse.tags[0].description.should.equal('to parse');
+      parse.tags[0].types.should.eql(['String', 'Buffer']);
+      parse.tags[1].type.should.equal('return');
+      parse.tags[1].types.should.eql(['String']);
+      parse.tags[2].visibility.should.equal('public');
     });
   }
 };
