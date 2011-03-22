@@ -73,6 +73,13 @@ module.exports = {
       parse.code.should.equal('exports.parse = function(str) {\n  return "wahoo";\n}');
     });
   },
+  
+  'test .parseCodeContext()': function(){
+    dox.parseCodeContext('function foo(){\n}').should.equal('foo');
+    dox.parseCodeContext('var foo = function(){\n}').should.equal('foo');
+    dox.parseCodeContext('var User = module.exports = function User()').should.equal('User');
+    dox.parseCodeContext('User.prototype.save = ').should.equal('save');
+  },
 
   'test .parseTag() @constructor': function(){
     var tag = dox.parseTag('@constructor');
