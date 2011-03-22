@@ -5,7 +5,6 @@
  */
 
 var dox = require('../')
-  , jade = require('jade')
   , util = require('util')
   , fs = require('fs');
 
@@ -16,34 +15,46 @@ var dox = require('../')
 var args = process.argv.slice(2);
 
 /**
+ * Environment.
+ */
+
+var env = {};
+
+/**
  * Debug.
  */
 
-var debug = false;
+env.debug = false;
 
 /**
  * Verbose.
  */
 
-var verbose = false;
+env.verbose = false;
 
 /**
  * File map
  */
 
-var files = {};
+env.files = {};
 
 /**
  * File paths to parse.
  */
 
-var paths = [];
+env.paths = [];
 
 /**
  * Doc template.
  */
 
-var template = 'default';
+env.template = 'default';
+
+/**
+ * Output destination.
+ */
+
+env.dest = process.cwd();
 
 /**
  * Usage information.
@@ -55,6 +66,7 @@ var usage = [
   , ''
   , '  Options:'
   , ''
+  , '    -o, --out <dir>        set doc output <dir>'
   , '    -t, --template <name>  use the given template <name>'
   , '    -D, --debug            output parsed comments for debugging'
   , '    -v, --verbose          enable verbose output'
@@ -85,20 +97,24 @@ while (args.length) {
       console.log(usage);
       process.exit(0);
       break;
+    case '-o':
+    case '--out':
+      env.dest = required(arg);
+      break;
     case '-D':
     case '--debug':
-      debug = true;
+      env.debug = true;
       break;
     case '-v':
     case '--verbose':
-      verbose = true;
+      env.verbose = true;
       break;
     case '-t':
     case '--template':
-      template = required(arg);
+      env.template = required(arg);
       break;
     default:
-      paths.push(arg);
+      env.paths.push(arg);
   }
 }
 
@@ -107,31 +123,31 @@ while (args.length) {
  */
 
 function log(key, msg) {
-  if (!verbose) return;
+  if (!env.verbose) return;
   console.log('  \033[90m%s :\033[0m \033[36m%s\033[0m', key, msg);
 }
 
 // ensure files
 
-if (!paths.length) {
+if (!env.paths.length) {
   console.error('<paths> required');
   process.exit(1);
 }
 
 // parse input
 
-var pending = paths.length;
-paths.forEach(function(path){
+var pending = env.paths.length;
+env.paths.forEach(function(path){
   fs.readFile(path, 'utf8', function(err, str){
     if (err) throw err;
 
     // parse
     log('parse', path);
-    files[path] = dox.parseComments(str);
+    env.files[path] = dox.parseComments(str);
 
     // debugging
-    if (debug) {
-      console.log(util.inspect(files[path], false, 15, true));
+    if (env.debug) {
+      console.log(util.inspect(env.files[path], false, 15, true));
       console.log();
     }
 
@@ -145,6 +161,7 @@ paths.forEach(function(path){
  */
 
 function compile() {
-  var keys = Object.keys(files);
+  var keys = Object.keys(env.files);
   log('compile', keys.length + ' files');
+  require('../templates/' + env.template)(env);
 }
