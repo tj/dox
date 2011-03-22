@@ -113,6 +113,18 @@ module.exports = {
     tag.type.should.equal('constructor');
   },
   
+  'test .parseTag() @see': function(){
+    var tag = dox.parseTag('@see http://google.com');
+    tag.type.should.equal('see');
+    tag.title.should.equal('');
+    tag.url.should.equal('http://google.com');
+    
+    var tag = dox.parseTag('@see Google http://google.com');
+    tag.type.should.equal('see');
+    tag.title.should.equal('Google');
+    tag.url.should.equal('http://google.com');
+  },
+  
   'test .parseTag() @api': function(){
     var tag = dox.parseTag('@api private');
     tag.type.should.equal('api');
