@@ -20,6 +20,12 @@ var args = process.argv.slice(2);
 var debug = false;
 
 /**
+ * Verbose.
+ */
+
+var verbose = false;
+
+/**
  * File map
  */
 
@@ -41,8 +47,9 @@ var usage = [
   , ''
   , '  Options:'
   , ''
-  , '    -D, --debug  output parsed comments for debugging'
-  , '    -h, --help   display help information'
+  , '    -D, --debug    output parsed comments for debugging'
+  , '    -v, --verbose  enable verbose output'
+  , '    -h, --help     display help information'
   , ''
 ].join('\n');
 
@@ -60,9 +67,22 @@ while (args.length) {
     case '--debug':
       debug = true;
       break;
+    case '-v':
+    case '--verbose':
+      verbose = true;
+      break;
     default:
       paths.push(arg);
   }
+}
+
+/**
+ * Log `msg` when verbose.
+ */
+
+function log(key, msg) {
+  if (!verbose) return;
+  console.log('  \033[90m%s :\033[0m \033[36m%s\033[0m', key, msg);
 }
 
 // ensure files
@@ -78,6 +98,7 @@ var pending = paths.length;
 paths.forEach(function(path){
   fs.readFile(path, 'utf8', function(err, str){
     if (err) throw err;
+    log('parse', path);
     files[path] = str;
   });
 });
