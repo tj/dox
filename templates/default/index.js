@@ -20,7 +20,7 @@ module.exports = function(env){
 };
 
 function outputIndex(env, fn) {
-  index({ comments: env.commands }, function(err, html){
+  index({ comments: env.commands, options: env.options }, function(err, html){
     if (err) return fn(err);
     var dest = env.dest + '/index.html';
     fs.writeFile(dest, html, function(err){
@@ -56,7 +56,7 @@ function renderPages(env, fn) {
   var pending = env.paths.length;
   env.paths.forEach(function(path){
     var comments = env.files[path];
-    page({ comments: comments, filename: path }, function(err, html){
+    page({ comments: comments, filename: path, options: env.options }, function(err, html){
       if (err) return fn(err);
       comments.html = html;
       env.log('render', path);
