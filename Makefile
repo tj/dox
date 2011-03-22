@@ -1,5 +1,6 @@
 
 test:
-	@./support/expresso/bin -I support
+	@./support/expresso/bin/expresso \
+	  -I support
 
 .PHONY: test
