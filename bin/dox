@@ -5,6 +5,7 @@
  */
 
 var dox = require('../')
+  , jade = require('jade')
   , util = require('util')
   , fs = require('fs');
 
@@ -123,11 +124,27 @@ var pending = paths.length;
 paths.forEach(function(path){
   fs.readFile(path, 'utf8', function(err, str){
     if (err) throw err;
+
+    // parse
     log('parse', path);
     files[path] = dox.parseComments(str);
+
+    // debugging
     if (debug) {
       console.log(util.inspect(files[path], false, 15, true));
       console.log();
     }
+
+    // complete
+    --pending || compile();
   });
 });
+
+/**
+ * Compile docs.
+ */
+
+function compile() {
+  var keys = Object.keys(files);
+  log('compile', keys.length + ' files');
+}
