@@ -1,2 +1,7 @@
 #!/usr/bin/env node
 
+/**
+ * Arguments.
+ */
+
+var args = process.argv.slice(2);
