@@ -78,5 +78,12 @@ module.exports = {
     tag.types.should.eql(['String', 'Buffer']);
     tag.name.should.equal('');
     tag.description.should.equal('');
+  },
+  
+  'test .parseTag() @return': function(){
+    var tag = dox.parseTag('@return {String} a normal string');
+    tag.type.should.equal('return');
+    tag.types.should.eql(['String']);
+    tag.description.should.equal('a normal string');
   }
 };
