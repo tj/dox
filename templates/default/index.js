@@ -20,7 +20,15 @@ module.exports = function(env){
 };
 
 function outputIndex(env, fn) {
-  index({ comments: env.commands }, fn);
+  index({ comments: env.commands }, function(err, html){
+    if (err) return fn(err);
+    var dest = env.dest + '/index.html';
+    fs.writeFile(dest, html, function(err){
+      if (err) return fn(err);
+      env.log('compile', dest);
+      fn();
+    });
+  });
 }
 
 function outputPages(env, fn) {
@@ -37,7 +45,7 @@ function outputPages(env, fn) {
       comments.dest = dest;
       fs.writeFile(dest, html, function(err){
         if (err) return fn(err);
-        env.log('compile', path + ' -> ' + dest);
+        env.log('compile', dest);
         --pending || fn();
       });
     });
