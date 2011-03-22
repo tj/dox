@@ -11,7 +11,7 @@ module.exports = function(env){
     if (err) throw err;
     outputPages(env, function(err){
       if (err) throw err;
-      
+      env.log('compile', 'complete');
     });
   });
 };
@@ -20,8 +20,13 @@ function outputPages(env, fn) {
   var pending = env.paths.length;
   env.paths.forEach(function(path){
     var comments = env.files[path]
+      , html = comments.html
       , dest = env.dest + '/' + path.replace(/\//g, '-');
-    
+    fs.writeFile(dest, html, function(err){
+      if (err) return fn(err);
+      env.log('compile', path);
+      --pending || fn();
+    });
   });
 }
 
