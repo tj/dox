@@ -72,6 +72,12 @@ module.exports = {
     tag.visibility.should.equal('private');
   },
   
+  'test .parseTag() @type': function(){
+    var tag = dox.parseTag('@type {String}');
+    tag.type.should.equal('type');
+    tag.types.should.eql(['String']);
+  },
+  
   'test .parseTag() @param': function(){
     var tag = dox.parseTag('@param {String|Buffer}');
     tag.type.should.equal('param');
