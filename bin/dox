@@ -5,6 +5,7 @@
  */
 
 var dox = require('../')
+  , util = require('util')
   , fs = require('fs');
 
 /**
@@ -99,6 +100,10 @@ paths.forEach(function(path){
   fs.readFile(path, 'utf8', function(err, str){
     if (err) throw err;
     log('parse', path);
-    files[path] = str;
+    files[path] = dox.parseComments(str);
+    if (debug) {
+      console.log(util.inspect(files[path], false, 15, true));
+      console.log();
+    }
   });
 });
