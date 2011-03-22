@@ -162,6 +162,6 @@ env.paths.forEach(function(path){
 
 function compile() {
   var keys = Object.keys(env.files);
-  log('compile', keys.length + ' files');
+  log('compile', env.dest);
   require('../templates/' + env.template)(env);
 }
