@@ -65,6 +65,11 @@ module.exports = {
       parse.tags[2].visibility.should.equal('public');
     });
   },
+
+  'test .parseTag() @constructor': function(){
+    var tag = dox.parseTag('@constructor');
+    tag.type.should.equal('constructor');
+  },
   
   'test .parseTag() @api': function(){
     var tag = dox.parseTag('@api private');
