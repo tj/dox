@@ -57,6 +57,12 @@ env.template = 'default';
 env.dest = process.cwd();
 
 /**
+ * Template options.
+ */
+
+env.options = {};
+
+/**
  * Usage information.
  */
 
@@ -71,6 +77,7 @@ var usage = [
   , '    -D, --debug            output parsed comments for debugging'
   , '    -v, --verbose          enable verbose output'
   , '    -h, --help             display help information'
+  , '        --<name> <val>     ad hoc template option'
   , ''
 ].join('\n');
 
@@ -114,7 +121,11 @@ while (args.length) {
       env.template = required(arg);
       break;
     default:
-      env.paths.push(arg);
+      if ('-' == arg[0]) {
+        env.options[arg.replace('--', '')] = required(arg);
+      } else {
+        env.paths.push(arg);
+      }
   }
 }
 
