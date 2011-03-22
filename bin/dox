@@ -39,6 +39,12 @@ var files = {};
 var paths = [];
 
 /**
+ * Doc template.
+ */
+
+var template = 'default';
+
+/**
  * Usage information.
  */
 
@@ -48,11 +54,25 @@ var usage = [
   , ''
   , '  Options:'
   , ''
-  , '    -D, --debug    output parsed comments for debugging'
-  , '    -v, --verbose  enable verbose output'
-  , '    -h, --help     display help information'
+  , '    -t, --template <name>  use the given template <name>'
+  , '    -D, --debug            output parsed comments for debugging'
+  , '    -v, --verbose          enable verbose output'
+  , '    -h, --help             display help information'
   , ''
 ].join('\n');
+
+/**
+ * Required argument.
+ */
+
+function required(arg) {
+  if (args.length) {
+    return args.shift();
+  } else {
+    console.error(arg + ' requires an argument');
+    process.exit(1);
+  }
+}
 
 // parse arguments
 
@@ -71,6 +91,10 @@ while (args.length) {
     case '-v':
     case '--verbose':
       verbose = true;
+      break;
+    case '-t':
+    case '--template':
+      template = required(arg);
       break;
     default:
       paths.push(arg);
