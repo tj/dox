@@ -64,5 +64,19 @@ module.exports = {
       parse.tags[1].types.should.eql(['String']);
       parse.tags[2].visibility.should.equal('public');
     });
+  },
+  
+  'test .parseTag() @api': function(){
+    var tag = dox.parseTag('@api private');
+    tag.type.should.equal('api');
+    tag.visibility.should.equal('private');
+  },
+  
+  'test .parseTag() @param': function(){
+    var tag = dox.parseTag('@param {String|Buffer}');
+    tag.type.should.equal('param');
+    tag.types.should.eql(['String', 'Buffer']);
+    tag.name.should.equal('');
+    tag.description.should.equal('');
   }
 };
