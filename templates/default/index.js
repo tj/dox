@@ -11,10 +11,17 @@ module.exports = function(env){
     if (err) throw err;
     outputPages(env, function(err){
       if (err) throw err;
-      env.log('compile', 'complete');
+      outputIndex(env, function(err){
+        if (err) throw err;
+        env.log('compile', 'complete');
+      });
     });
   });
 };
+
+function outputIndex(env, fn) {
+  index({ comments: env.commands }, fn);
+}
 
 function outputPages(env, fn) {
   var pending = env.paths.length
@@ -44,11 +51,8 @@ function renderPages(env, fn) {
     page({ comments: comments, filename: path }, function(err, html){
       if (err) return fn(err);
       comments.html = html;
-      layout({ body: html }, function(err, html){
-        if (err) return fn(err);
-        env.log('render', path);
-        --pending || fn();
-      });
+      env.log('render', path);
+      --pending || fn();
     });
   });
 }
@@ -58,7 +62,7 @@ function page(locals, fn) {
   jade.renderFile(__dirname + '/page.jade', options, fn);
 }
 
-function layout(locals, fn) {
+function index(locals, fn) {
   var options = { cache: true, locals: locals };
-  jade.renderFile(__dirname + '/layout.jade', options, fn);
+  jade.renderFile(__dirname + '/index.jade', options, fn);
 }
