@@ -73,12 +73,39 @@ module.exports = {
       parse.code.should.equal('exports.parse = function(str) {\n  return "wahoo";\n}');
     });
   },
+
+  'test .parseCodeContext() function statement': function(){
+    var ctx = dox.parseCodeContext('function foo(){\n\n}');
+    ctx.type.should.equal('function');
+    ctx.name.should.equal('foo');
+  },
   
-  'test .parseCodeContext()': function(){
-    dox.parseCodeContext('function foo(){\n}').should.equal('foo');
-    dox.parseCodeContext('var foo = function(){\n}').should.equal('foo');
-    dox.parseCodeContext('var User = module.exports = function User()').should.equal('User');
-    dox.parseCodeContext('User.prototype.save = ').should.equal('save');
+  'test .parseCodeContext() function expression': function(){
+    var ctx = dox.parseCodeContext('var foo = function(){\n\n}');
+    ctx.type.should.equal('function');
+    ctx.name.should.equal('foo');
+  },
+  
+  'test .parseCodeContext() prototype method': function(){
+    var ctx = dox.parseCodeContext('User.prototype.save = function(){}');
+    ctx.type.should.equal('method');
+    ctx.constructor.should.equal('User');
+    ctx.name.should.equal('save');
+  },
+  
+  'test .parseCodeContext() method': function(){
+    var ctx = dox.parseCodeContext('user.save = function(){}');
+    ctx.type.should.equal('method');
+    ctx.receiver.should.equal('user');
+    ctx.name.should.equal('save');
+  },
+  
+  'test .parseCodeContext() property': function(){
+    var ctx = dox.parseCodeContext('user.name = "tj";\nasdf');
+    ctx.type.should.equal('property');
+    ctx.receiver.should.equal('user');
+    ctx.name.should.equal('name');
+    ctx.value.should.equal('"tj"');
   },
 
   'test .parseTag() @constructor': function(){
