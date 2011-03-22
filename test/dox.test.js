@@ -48,6 +48,10 @@ module.exports = {
       version.tags[0].types.should.eql(['String']);
       version.tags[1].type.should.equal('api');
       version.tags[1].visibility.should.equal('public');
+      version.ctx.type.should.equal('property');
+      version.ctx.receiver.should.equal('exports');
+      version.ctx.name.should.equal('version');
+      version.ctx.value.should.equal("'0.0.1'");
 
       var parse = comments.shift();
       parse.description.should.equal('<p>Parse the given <code>str</code>.</p>');
