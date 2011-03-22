@@ -135,7 +135,11 @@ module.exports = {
     tag.type.should.equal('see');
     tag.title.should.equal('Google');
     tag.url.should.equal('http://google.com');
-  },
+    
+    var tag = dox.parseTag('@see exports.parseComment');
+    tag.type.should.equal('see');
+    tag.local.should.equal('exports.parseComment');
+   },
   
   'test .parseTag() @api': function(){
     var tag = dox.parseTag('@api private');
