@@ -16,7 +16,7 @@ module.exports = {
     dox.version.should.match(/^\d+\.\d+\.\d+$/);
   },
   
-  'test .parseComments()': function(){
+  'test .parseComments() blocks': function(){
     fixture('a.js', function(err, str){
       var comments = dox.parseComments(str);
       comments.should.have.length(2);
@@ -35,6 +35,22 @@ module.exports = {
         version.description.should.equal('<p>Library version.</p>');
         version.body.should.equal('');
         version.tags.should.be.empty;
+    });
+  },
+  
+  'test .parseComments() tags': function(){
+    fixture('b.js', function(err, str){
+      var comments = dox.parseComments(str);
+      comments.should.have.length(1);
+
+      var version = comments.shift();
+      version.content.should.equal('<p>Library version.</p>');
+      version.description.should.equal('<p>Library version.</p>');
+      version.tags.should.have.length(2);
+      version.tags[0].type.should.equal('type');
+      version.tags[0].types.should.eql(['String']);
+      version.tags[1].type.should.equal('api');
+      version.tags[1].visibility.should.equal('public');
     });
   }
 };
