@@ -24,7 +24,7 @@ function outputPages(env, fn) {
       , dest = env.dest + '/' + path.replace(/\//g, '-');
     fs.writeFile(dest, html, function(err){
       if (err) return fn(err);
-      env.log('compile', path);
+      env.log('compile', path + ' -> ' + dest);
       --pending || fn();
     });
   });
