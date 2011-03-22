@@ -5,3 +5,30 @@
  */
 
 var args = process.argv.slice(2);
+
+/**
+ * Usage information.
+ */
+
+var usage = [
+    ''
+  , '  Usage: dox [options]'
+  , ''
+  , '  Options:'
+  , ''
+  , '    -h, --help   display help information'
+  , ''
+].join('\n');
+
+// parse arguments
+
+var arg;
+while (args.length) {
+  switch (arg = args.shift()) {
+    case '-h':
+    case '--help':
+      console.log(usage);
+      process.exit(0);
+      break;
+  }
+}
