@@ -70,6 +70,7 @@ module.exports = {
         , parse = comments.shift();
 
       version.code.should.equal("exports.version = '0.0.1';");
+      parse.code.should.equal('exports.parse = function(str) {\n  return "wahoo";\n}');
     });
   },
 
