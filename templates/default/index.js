@@ -33,7 +33,7 @@ module.exports = function(env){
 };
 
 function outputIndex(env, fn) {
-  index({ comments: env.commands, options: env.options }, function(err, html){
+  index({ files: env.files, options: env.options }, function(err, html){
     if (err) return fn(err);
     var dest = env.dest + '/index.html';
     fs.writeFile(dest, html, function(err){

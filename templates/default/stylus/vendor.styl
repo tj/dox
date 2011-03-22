@@ -1,0 +1,11 @@
+
+vendor(prop, args)
+  -webkit-{prop} args if support-for-webkit
+  -moz-{prop} args if support-for-moz
+  {prop} args
+
+border-radius()
+  vendor('border-radius', arguments)
+
+box-shadow()
+  vendor('box-shadow', arguments)

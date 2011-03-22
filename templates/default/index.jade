@@ -5,3 +5,5 @@ html
     link(rel='stylesheet', href='main.css') 
   body
     h1= options.title
+    - if (options.github)
+      a.button(href='https://github.com/' + options.github) View Source
