@@ -3,11 +3,34 @@
 @import 'stylus/mixins'
 @import 'stylus/buttons'
 
+// globals
+
+light-gray = #e6e6e6
+gray = darken-by(light-gray, 90%)
+
+// basics
+
 body
-  font-family 'helvetica neue', helvetica, arial, sans-serif
-  padding 50px
+  font 13px/1.4 'helvetica neue', helvetica, arial, sans-serif
+  padding 50px 120px
+
+a
+  color gray
+  text-decoration none
+
+h1
+  font-size 45px
+
+// buttons
 
 button
 a.button
 input[type=button]
   minimal-button()
+
+// navigation
+
+#files
+  background light-gray
+  fixed top 0 left 0
+  padding 10px

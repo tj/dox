@@ -7,3 +7,8 @@ html
     h1= options.title
     - if (options.github)
       a.button(href='https://github.com/' + options.github) View Source
+    
+    ul#files
+      - each file in files
+        li
+          a(href=file.dest)= file.path  
