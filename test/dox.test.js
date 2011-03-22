@@ -18,10 +18,8 @@ module.exports = {
   
   'test .parseComments() blocks': function(){
     fixture('a.js', function(err, str){
-      var comments = dox.parseComments(str);
-      comments.should.have.length(2);
-
-      var file = comments.shift()
+      var comments = dox.parseComments(str)
+        , file = comments.shift()
         , version = comments.shift();
 
         file.should.have.property('ignore', true);
@@ -41,7 +39,6 @@ module.exports = {
   'test .parseComments() tags': function(){
     fixture('b.js', function(err, str){
       var comments = dox.parseComments(str);
-      comments.should.have.length(2);
 
       var version = comments.shift();
       version.content.should.equal('<p>Library version.</p>');
@@ -63,6 +60,16 @@ module.exports = {
       parse.tags[1].type.should.equal('return');
       parse.tags[1].types.should.eql(['String']);
       parse.tags[2].visibility.should.equal('public');
+    });
+  },
+  
+  'test .parseComments() code': function(){
+    fixture('b.js', function(err, str){
+      var comments = dox.parseComments(str)
+        , version = comments.shift()
+        , parse = comments.shift();
+
+      version.code.should.equal("exports.version = '0.0.1';");
     });
   },
 
