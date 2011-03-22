@@ -27,6 +27,7 @@ function outputPages(env, fn) {
       var comments = env.files[path]
         , html = comments.html
         , dest = dir + '/' + path.replace(/\//g, '-') + '.html';
+      comments.dest = dest;
       fs.writeFile(dest, html, function(err){
         if (err) return fn(err);
         env.log('compile', path + ' -> ' + dest);

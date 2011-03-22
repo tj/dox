@@ -144,6 +144,7 @@ env.paths.forEach(function(path){
     // parse
     log('parse', path);
     env.files[path] = dox.parseComments(str);
+    env.files[path].path = path;
 
     // debugging
     if (env.debug) {
