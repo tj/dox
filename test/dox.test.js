@@ -93,6 +93,14 @@ module.exports = {
     ctx.name.should.equal('save');
   },
   
+  'test .parseCodeContext() prototype property': function(){
+    var ctx = dox.parseCodeContext('Database.prototype.enabled = true;\nasdf');
+    ctx.type.should.equal('property');
+    ctx.constructor.should.equal('Database');
+    ctx.name.should.equal('enabled');
+    ctx.value.should.equal('true');
+  },
+  
   'test .parseCodeContext() method': function(){
     var ctx = dox.parseCodeContext('user.save = function(){}');
     ctx.type.should.equal('method');
