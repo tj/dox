@@ -7,7 +7,7 @@ docs:
 	@./bin/dox \
 	  --verbose \
 	  lib/* \
-	  --out /tmp/docs \
+	  --out docs \
 	  --title Dox \
 	  --github visionmedia/dox \
 	  --description "Dox is a documentation generator for [nodejs](http://nodejs.org)."
