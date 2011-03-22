@@ -1,10 +1,35 @@
 #!/usr/bin/env node
 
 /**
+ * Module dependencies.
+ */
+
+var dox = require('../')
+  , fs = require('fs');
+
+/**
  * Arguments.
  */
 
 var args = process.argv.slice(2);
+
+/**
+ * Debug.
+ */
+
+var debug = false;
+
+/**
+ * File map
+ */
+
+var files = {};
+
+/**
+ * File paths to parse.
+ */
+
+var paths = [];
 
 /**
  * Usage information.
@@ -12,10 +37,11 @@ var args = process.argv.slice(2);
 
 var usage = [
     ''
-  , '  Usage: dox [options]'
+  , '  Usage: dox [options] <paths>'
   , ''
   , '  Options:'
   , ''
+  , '    -D, --debug  output parsed comments for debugging'
   , '    -h, --help   display help information'
   , ''
 ].join('\n');
@@ -30,5 +56,28 @@ while (args.length) {
       console.log(usage);
       process.exit(0);
       break;
+    case '-D':
+    case '--debug':
+      debug = true;
+      break;
+    default:
+      paths.push(arg);
   }
 }
+
+// ensure files
+
+if (!paths.length) {
+  console.error('<paths> required');
+  process.exit(1);
+}
+
+// parse input
+
+var pending = paths.length;
+paths.forEach(function(path){
+  fs.readFile(path, 'utf8', function(err, str){
+    if (err) throw err;
+    files[path] = str;
+  });
+});
