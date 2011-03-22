@@ -4,18 +4,31 @@
  */
 
 var jade = require('jade')
+  , stylus = require('stylus')
   , fs = require('fs');
 
 module.exports = function(env){
+  // assets
+  style(__dirname + '/main.styl'
+    , env.dest + '/main.css'
+    , function(err){
+      if (err) throw err;
+      env.log('compile', env.dest + '/main.css');
+    })
+
+  // pages
   renderPages(env, function(err){
     if (err) throw err;
     outputPages(env, function(err){
       if (err) throw err;
       outputIndex(env, function(err){
         if (err) throw err;
-        env.log('compile', 'complete');
       });
     });
+  });
+
+  process.on('exit', function(){
+    env.log('compile', 'complete');
   });
 };
 
@@ -62,6 +75,18 @@ function renderPages(env, fn) {
       env.log('render', path);
       --pending || fn();
     });
+  });
+}
+
+function style(from, to, fn) {
+  fs.readFile(from, 'utf8', function(err, str){
+    if (err) return fn(err);
+    stylus(str)
+      .set('filename', from)
+      .render(function(err, css){
+        if (err) return fn(err);
+        fs.writeFile(to, css, fn);  
+      });
   });
 }
 
