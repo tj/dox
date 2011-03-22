@@ -9,13 +9,24 @@ var jade = require('jade')
 module.exports = function(env){
   renderPages(env, function(err){
     if (err) throw err;
+    outputPages(env, function(err){
+      if (err) throw err;
+      
+    });
   });
 };
 
+function outputPages(env, fn) {
+  var pending = env.paths.length;
+  env.paths.forEach(function(path){
+    var comments = env.files[path]
+      , dest = env.dest + '/' + path.replace(/\//g, '-');
+    
+  });
+}
+
 function renderPages(env, fn) {
   var pending = env.paths.length;
-
-  // render pages
   env.paths.forEach(function(path){
     var comments = env.files[path];
     page({ comments: comments, filename: path }, function(err, html){
