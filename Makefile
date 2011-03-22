@@ -10,6 +10,6 @@ docs:
 	  --out docs \
 	  --title Dox \
 	  --github visionmedia/dox \
-	  --description "Dox is a documentation generator for [nodejs](http://nodejs.org)."
+	  --index index.md
 
 .PHONY: test docs

@@ -9,6 +9,14 @@ var markdown = require('markdown')
   , fs = require('fs');
 
 module.exports = function(env){
+  // index
+  if (env.options.index) {
+    fs.readFile(env.options.index, 'utf8', function(err, str){
+      if (err) throw err;
+      env.options.description = str;
+    });
+  }
+
   // assets
   fs.mkdir(env.dest + '/public', 0755, function(err){
     if (err && 'EEXIST' != err.code) throw err;
