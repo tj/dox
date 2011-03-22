@@ -119,6 +119,13 @@ module.exports = {
     ctx.name.should.equal('name');
     ctx.value.should.equal('"tj"');
   },
+  
+  'test .parseCodeContext() declaration': function(){
+    var ctx = dox.parseCodeContext('var name = "tj";\nasdf');
+    ctx.type.should.equal('declaration');
+    ctx.name.should.equal('name');
+    ctx.value.should.equal('"tj"');
+  },
 
   'test .parseTag() @constructor': function(){
     var tag = dox.parseTag('@constructor');
