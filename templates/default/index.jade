@@ -2,7 +2,9 @@
 html
   head
     title #{options.title} documentation
-    link(rel='stylesheet', href='main.css') 
+    link(rel='stylesheet', href='public/main.css') 
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js')
+    script(src='public/main.js')
   body
     h1= options.title
 

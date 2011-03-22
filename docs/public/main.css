@@ -1,0 +1,70 @@
+body {
+  font: 13px / 1.4 "helvetica neue", helvetica, arial, sans-serif;
+  padding: 50px 120px;
+}
+a {
+  color: #171717;
+  text-decoration: none;
+}
+h1 {
+  margin: 15px 0;
+  font-size: 45px;
+}
+button,
+a.button,
+input[type=button] {
+  display: block;
+  text-decoration: none;
+  background: #e3e3e3;
+  border: 1px solid #bdbdbd;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: inset 0 0 1px 1px rgba(255,255,255,0.8);
+  -moz-box-shadow: inset 0 0 1px 1px rgba(255,255,255,0.8);
+  box-shadow: inset 0 0 1px 1px rgba(255,255,255,0.8);
+  color: #333;
+  font-family: "helvetica neue", helvetica, arial, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1;
+  padding: 8px 0 9px;
+  text-align: center;
+  text-shadow: 0 1px 0 #fff;
+  width: 150px;
+}
+button:hover,
+a.button:hover,
+input[type=button]:hover,
+button.hover,
+a.button.hover,
+input[type=button].hover {
+  background: #dbdbdb;
+  -webkit-box-shadow: inset 0 0 1px 1px rgba(255,255,255,0.5);
+  -moz-box-shadow: inset 0 0 1px 1px rgba(255,255,255,0.5);
+  box-shadow: inset 0 0 1px 1px rgba(255,255,255,0.5);
+  color: #222;
+  cursor: pointer;
+}
+button:active,
+a.button:active,
+input[type=button]:active,
+button.active,
+a.button.active,
+input[type=button].active {
+  background: #d6d6d6;
+  -webkit-box-shadow: inset 0 0 1px 1px rgba(255,255,255,0.2);
+  -moz-box-shadow: inset 0 0 1px 1px rgba(255,255,255,0.2);
+  box-shadow: inset 0 0 1px 1px rgba(255,255,255,0.2);
+  color: #000;
+}
+#files {
+  background: #e6e6e6;
+  position: fixed;
+  top: 0;
+  left: -5px;
+  padding: 10px 15px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}

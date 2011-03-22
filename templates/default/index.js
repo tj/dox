@@ -10,12 +10,25 @@ var markdown = require('markdown')
 
 module.exports = function(env){
   // assets
-  style(__dirname + '/main.styl'
-    , env.dest + '/main.css'
-    , function(err){
-      if (err) throw err;
-      env.log('compile', env.dest + '/main.css');
-    })
+  fs.mkdir(env.dest + '/public', 0755, function(err){
+    if (err && 'EEXIST' != err.code) throw err;
+
+    // style
+    style(__dirname + '/public/main.styl'
+      , env.dest + '/public/main.css'
+      , function(err){
+        if (err) throw err;
+        env.log('compile', env.dest + '/main.css');
+      });
+
+    // javascript
+    copy(__dirname + '/public/main.js'
+      , env.dest + '/public/main.js'
+      , function(err){
+        if (err) throw err;
+        env.log('copy', env.dest + '/public/main.js')
+      });
+  });
 
   // pages
   renderPages(env, function(err){
@@ -32,6 +45,13 @@ module.exports = function(env){
     env.log('compile', 'complete');
   });
 };
+
+function copy(from, to, fn) {
+  fs.readFile(from, function(err, buf){
+    if (err) return fn(err);
+    fs.writeFile(to, buf, fn);
+  });
+}
 
 function outputIndex(env, fn) {
   var locals = {
