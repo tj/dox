@@ -3,7 +3,8 @@
  * Module dependencies.
  */
 
-var jade = require('jade')
+var markdown = require('markdown')
+  , jade = require('jade')
   , stylus = require('stylus')
   , fs = require('fs');
 
@@ -33,7 +34,13 @@ module.exports = function(env){
 };
 
 function outputIndex(env, fn) {
-  index({ files: env.files, options: env.options }, function(err, html){
+  var locals = {
+      files: env.files
+    , options: env.options
+    , markdown: markdown.parse
+  };
+
+  index(locals, function(err, html){
     if (err) return fn(err);
     var dest = env.dest + '/index.html';
     fs.writeFile(dest, html, function(err){

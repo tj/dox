@@ -135,6 +135,9 @@ while (args.length) {
 
 var log = env.log = function(key, msg) {
   if (!env.verbose) return;
+  var cols = 10
+    , len = key.length;
+  if (len < cols) key = Array(cols - len).join(' ') + key;
   console.log('  \033[90m%s :\033[0m \033[36m%s\033[0m', key, msg);
 };
 
