@@ -13,6 +13,10 @@ h1 {
 .description {
   margin-bottom: 30px;
 }
+pre {
+  margin: 5px 15px;
+  padding: 10px;
+}
 button,
 a.button,
 input[type=button] {
