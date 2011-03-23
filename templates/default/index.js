@@ -80,17 +80,17 @@ function outputIndex(env, fn) {
 }
 
 function outputPages(env, fn) {
-  var pending = env.paths.length
-    , dir = env.dest + '/pages';
+  var pending = env.paths.length;
 
-  fs.mkdir(dir, 0755, done);
+  fs.mkdir(env.dest + '/pages', 0755, done);
 
   function done(){
     env.paths.forEach(function(path){
       var comments = env.files[path]
         , html = comments.html
-        , dest = dir + '/' + path.replace(/\//g, '-') + '.html';
-      comments.dest = dest;
+        , href = 'pages/' + path.replace(/\//g, '-') + '.html'
+        , dest = env.dest + '/' + href;
+      comments.dest = href;
       fs.writeFile(dest, html, function(err){
         if (err) return fn(err);
         env.log('compile', dest);
