@@ -74,4 +74,10 @@ input[type=button].active {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
+  -webkit-transition: opacity 2s, left 1s;
+  opacity: 1;
+}
+#files.hide {
+  opacity: 0.2;
+  left: -100px;
 }

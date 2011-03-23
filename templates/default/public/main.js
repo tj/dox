@@ -1,4 +1,4 @@
 
 $(function(){
-  console.log('test');
-})
+  $('#files').removeClass('hide');
+});
