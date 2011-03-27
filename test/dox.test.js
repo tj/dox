@@ -23,15 +23,15 @@ module.exports = {
         , version = comments.shift();
 
         file.should.have.property('ignore', true);
-        file.content.should.equal('<p>A\nCopyright (c) 2010 Author Name &lt;Author Email&gt;\nMIT Licensed</p>');
-        file.description.should.equal('<p>A\nCopyright (c) 2010 Author Name &lt;Author Email&gt;\nMIT Licensed</p>');
-        file.body.should.equal('');
+        file.description.full.should.equal('<p>A\nCopyright (c) 2010 Author Name &lt;Author Email&gt;\nMIT Licensed</p>');
+        file.description.summary.should.equal('<p>A\nCopyright (c) 2010 Author Name &lt;Author Email&gt;\nMIT Licensed</p>');
+        file.description.body.should.equal('');
         file.tags.should.be.empty;
 
         version.should.have.property('ignore', false);
-        version.content.should.equal('<p>Library version.</p>');
-        version.description.should.equal('<p>Library version.</p>');
-        version.body.should.equal('');
+        version.description.full.should.equal('<p>Library version.</p>');
+        version.description.summary.should.equal('<p>Library version.</p>');
+        version.description.body.should.equal('');
         version.tags.should.be.empty;
     });
   },
@@ -41,8 +41,8 @@ module.exports = {
       var comments = dox.parseComments(str);
 
       var version = comments.shift();
-      version.content.should.equal('<p>Library version.</p>');
-      version.description.should.equal('<p>Library version.</p>');
+      version.description.summary.should.equal('<p>Library version.</p>');
+      version.description.full.should.equal('<p>Library version.</p>');
       version.tags.should.have.length(2);
       version.tags[0].type.should.equal('type');
       version.tags[0].types.should.eql(['String']);
@@ -54,9 +54,9 @@ module.exports = {
       version.ctx.value.should.equal("'0.0.1'");
 
       var parse = comments.shift();
-      parse.description.should.equal('<p>Parse the given <code>str</code>.</p>');
-      parse.body.should.equal('<h2>Examples</h2>\n\n<p>   parse(str)\n   // =&gt; "wahoo"</p>');
-      parse.content.should.equal('<p>Parse the given <code>str</code>.</p>\n\n<h2>Examples</h2>\n\n<p>   parse(str)\n   // =&gt; "wahoo"</p>');
+      parse.description.summary.should.equal('<p>Parse the given <code>str</code>.</p>');
+      parse.description.body.should.equal('<h2>Examples</h2>\n\n<p>   parse(str)\n   // =&gt; "wahoo"</p>');
+      parse.description.full.should.equal('<p>Parse the given <code>str</code>.</p>\n\n<h2>Examples</h2>\n\n<p>   parse(str)\n   // =&gt; "wahoo"</p>');
       parse.tags[0].type.should.equal('param');
       parse.tags[0].name.should.equal('str');
       parse.tags[0].description.should.equal('to parse');
