@@ -3,7 +3,7 @@ body {
   padding: 50px 120px;
 }
 a {
-  color: #171717;
+  color: darken-by(#e6e6e6, 90%);
   text-decoration: none;
 }
 h1 {
@@ -23,7 +23,7 @@ input[type=button] {
   display: block;
   text-decoration: none;
   background: #e3e3e3;
-  border: 1px solid #bdbdbd;
+  border: 1px solid #c1c1c1;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
@@ -46,7 +46,7 @@ input[type=button]:hover,
 button.hover,
 a.button.hover,
 input[type=button].hover {
-  background: #dbdbdb;
+  background: #dcdcdc;
   -webkit-box-shadow: inset 0 0 1px 1px rgba(255,255,255,0.5);
   -moz-box-shadow: inset 0 0 1px 1px rgba(255,255,255,0.5);
   box-shadow: inset 0 0 1px 1px rgba(255,255,255,0.5);
@@ -59,7 +59,7 @@ input[type=button]:active,
 button.active,
 a.button.active,
 input[type=button].active {
-  background: #d6d6d6;
+  background: #d8d8d8;
   -webkit-box-shadow: inset 0 0 1px 1px rgba(255,255,255,0.2);
   -moz-box-shadow: inset 0 0 1px 1px rgba(255,255,255,0.2);
   box-shadow: inset 0 0 1px 1px rgba(255,255,255,0.2);
@@ -74,7 +74,7 @@ input[type=button].active {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  -webkit-transition: opacity 2s, left 1s;
+  -webkit-transition: opacity 2s left 1s;
   opacity: 1;
 }
 #files.hide {
