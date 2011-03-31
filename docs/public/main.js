@@ -9,6 +9,6 @@ $(function(){
 function display(path, name) {
   $.get(path, function(res){
     $('#content').html(res);
-    window.location.hash = name;
+    if (name != 'home') window.location.hash = name;
   });
 }

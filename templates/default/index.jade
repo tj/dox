@@ -6,16 +6,16 @@ html
     script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js')
     script(src='public/main.js')
   body
-    h1= options.title
-
     #content
-      - if (options.description)
+      h1= options.title
+
+            - if (options.description)
         .description!= markdown(options.description)
 
       - if (options.github)
         a.button(href='https://github.com/' + options.github) View Source
 
     ul#files
+      li: a(href='/') home
       - each file in files
-        li
-          a(href=file.dest)= file.path  
+        li: a(href=file.dest)= file.path  
