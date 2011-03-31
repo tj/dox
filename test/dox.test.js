@@ -22,17 +22,17 @@ module.exports = {
         , file = comments.shift()
         , version = comments.shift();
 
-        file.should.have.property('ignore', true);
-        file.description.full.should.equal('<p>A\nCopyright (c) 2010 Author Name &lt;Author Email&gt;\nMIT Licensed</p>');
-        file.description.summary.should.equal('<p>A\nCopyright (c) 2010 Author Name &lt;Author Email&gt;\nMIT Licensed</p>');
-        file.description.body.should.equal('');
-        file.tags.should.be.empty;
+      file.should.have.property('ignore', true);
+      file.description.full.should.equal('<p>A\nCopyright (c) 2010 Author Name &lt;Author Email&gt;\nMIT Licensed</p>');
+      file.description.summary.should.equal('<p>A\nCopyright (c) 2010 Author Name &lt;Author Email&gt;\nMIT Licensed</p>');
+      file.description.body.should.equal('');
+      file.tags.should.be.empty;
 
-        version.should.have.property('ignore', false);
-        version.description.full.should.equal('<p>Library version.</p>');
-        version.description.summary.should.equal('<p>Library version.</p>');
-        version.description.body.should.equal('');
-        version.tags.should.be.empty;
+      version.should.have.property('ignore', false);
+      version.description.full.should.equal('<p>Library version.</p>');
+      version.description.summary.should.equal('<p>Library version.</p>');
+      version.description.body.should.equal('');
+      version.tags.should.be.empty;
     });
   },
   
