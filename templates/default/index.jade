@@ -8,11 +8,12 @@ html
   body
     h1= options.title
 
-    - if (options.description)
-      .description!= markdown(options.description)
+    #content
+      - if (options.description)
+        .description!= markdown(options.description)
 
-    - if (options.github)
-      a.button(href='https://github.com/' + options.github) View Source
+      - if (options.github)
+        a.button(href='https://github.com/' + options.github) View Source
 
     ul#files
       - each file in files
