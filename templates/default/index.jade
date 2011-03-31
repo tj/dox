@@ -14,7 +14,7 @@ html
     - if (options.github)
       a.button(href='https://github.com/' + options.github) View Source
 
-    ul#files.hide
+    ul#files
       - each file in files
         li
           a(href=file.dest)= file.path  
