@@ -112,6 +112,19 @@ module.exports = {
       escape.ctx.type.should.equal('function');
       escape.ctx.name.should.equal('escape');
     });
+
+    fixture('d.js', function(err, str){
+      var comments = dox.parseComments(str);
+      var first = comments.shift();
+      first.tags.should.have.length(3);
+      first.description.full.should.equal('<p>Parse tag type string "{Array|Object}" etc.</p>');
+      first.description.summary.should.equal('<p>Parse tag type string "{Array|Object}" etc.</p>');
+      first.description.body.should.equal('');
+      first.ctx.type.should.equal('method');
+      first.ctx.receiver.should.equal('exports');
+      first.ctx.name.should.equal('parseTagTypes');
+      first.code.should.equal('exports.parseTagTypes = function(str) {\n  return str\n    .replace(/[{}]/g, \'\')\n    .split(/ *[|,\\/] */);\n};');
+    });
   },
   
   'test .parseComments() code': function(){

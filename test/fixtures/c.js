@@ -130,7 +130,8 @@ exports.parseTag = function(str) {
     , parts = str.split(/ +/)
     , type = tag.type = parts.shift().replace('@', '');
 
-  switch (type) {
+  /* shouldn't fail */
+  switch (type) { // asfasdfasdf /** /////
     case 'param':
       tag.types = exports.parseTagTypes(parts.shift());
       tag.name = parts.shift() || '';
