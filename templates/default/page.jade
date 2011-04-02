@@ -5,7 +5,6 @@ h1= filename.split('/').slice(-1)[0]
   - each comment in comments
     - if (comment.ignore) continue
     .comment
-      -console.log(comment.ctx)
       h2= comment.ctx.string
       .summary!= comment.description.summary
       code
