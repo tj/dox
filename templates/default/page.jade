@@ -4,7 +4,7 @@ h1= filename.split('/').slice(-1)[0]
 #comments
   - each comment in comments
     - if (comment.isPrivate || comment.ignore) continue
-    - console.log(comment)
     .comment
       .summary!= comment.description.summary
-      
+      code
+        pre!= comment.code

@@ -91,3 +91,10 @@ input[type=button].active {
 .filename {
   font-size: 12px;
 }
+pre {
+  padding: 15px;
+  border: 1px solid #e6e6e6;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
