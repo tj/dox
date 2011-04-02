@@ -109,6 +109,8 @@ module.exports = {
       var escape = comments.pop();
       escape.tags.should.have.length(3);
       escape.description.full.should.equal('<p>Escape the given <code>html</code>.</p>');
+      escape.ctx.type.should.equal('function');
+      escape.ctx.name.should.equal('escape');
     });
   },
   
