@@ -1,1 +1,10 @@
-h1 Page
+h1= filename.split('/').slice(-1)[0]
+.filename= filename
+
+#comments
+  - each comment in comments
+    - if (comment.isPrivate) continue
+    - console.log(comment)
+    .comment
+      .summary!= comment.description.summary
+      

@@ -134,3 +134,4 @@ function index(locals, fn) {
   var options = { cache: true, locals: locals };
   jade.renderFile(__dirname + '/index.jade', options, fn);
 }
+

@@ -88,3 +88,6 @@ input[type=button].active {
   list-style: none;
   padding: 2px 0;
 }
+.filename {
+  font-size: 12px;
+}
