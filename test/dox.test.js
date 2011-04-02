@@ -23,8 +23,8 @@ module.exports = {
         , version = comments.shift();
 
       file.should.have.property('ignore', true);
-      file.description.full.should.equal('<p>A\nCopyright (c) 2010 Author Name &lt;Author Email&gt;\nMIT Licensed</p>');
-      file.description.summary.should.equal('<p>A\nCopyright (c) 2010 Author Name &lt;Author Email&gt;\nMIT Licensed</p>');
+      file.description.full.should.equal('<p>A<br />Copyright (c) 2010 Author Name &lt;Author Email&gt;<br />MIT Licensed</p>');
+      file.description.summary.should.equal('<p>A<br />Copyright (c) 2010 Author Name &lt;Author Email&gt;<br />MIT Licensed</p>');
       file.description.body.should.equal('');
       file.tags.should.be.empty;
 
@@ -55,8 +55,8 @@ module.exports = {
 
       var parse = comments.shift();
       parse.description.summary.should.equal('<p>Parse the given <code>str</code>.</p>');
-      parse.description.body.should.equal('<h2>Examples</h2>\n\n<p>   parse(str)\n   // =&gt; "wahoo"</p>');
-      parse.description.full.should.equal('<p>Parse the given <code>str</code>.</p>\n\n<h2>Examples</h2>\n\n<p>   parse(str)\n   // =&gt; "wahoo"</p>');
+      parse.description.body.should.equal('<h2>Examples</h2>\n\n<pre><code>parse(str)\n// =&amp;gt; "wahoo"\n</code></pre>');
+      parse.description.full.should.equal('<p>Parse the given <code>str</code>.</p>\n\n<h2>Examples</h2>\n\n<pre><code>parse(str)\n// =&amp;gt; "wahoo"\n</code></pre>');
       parse.tags[0].type.should.equal('param');
       parse.tags[0].name.should.equal('str');
       parse.tags[0].description.should.equal('to parse');

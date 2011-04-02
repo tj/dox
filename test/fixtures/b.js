@@ -13,8 +13,8 @@ exports.version = '0.0.1';
  *
  * Examples:
  *
- *    parse(str)
- *    // => "wahoo"
+ *     parse(str)
+ *     // => "wahoo"
  *
  * @param {String|Buffer} str to parse
  * @return {String}
