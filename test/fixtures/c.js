@@ -95,14 +95,14 @@ exports.parseComment = function(str) {
     , description = {};
 
   // parse comment body
-  description.full = str.split('\n@')[0].replace(/^([\w ]+):/gm, '## $1');
+  description.full = str.split('@')[0].replace(/^([\w ]+):/gm, '## $1');
   description.summary = description.full.split('\n\n')[0];
   description.body = description.full.split('\n\n').slice(1).join('\n\n');
   comment.description = description;
 
   // parse tags
-  if (~str.indexOf('\n@')) {
-    var tags = '@' + str.split('\n@').slice(1).join('\n@');
+  if (~str.indexOf('@')) {
+    var tags = '@' + str.split('@').slice(1).join('@');
     comment.tags = tags.split('\n').map(exports.parseTag);
     comment.isPrivate = comment.tags.some(function(tag){
       return 'api' == tag.type && 'private' == tag.visibility;

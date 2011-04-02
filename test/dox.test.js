@@ -66,6 +66,28 @@ module.exports = {
       parse.tags[2].visibility.should.equal('public');
     });
   },
+
+  'test .parseComments() complex': function(){
+    fixture('c.js', function(err, str){
+      var comments = dox.parseComments(str);
+
+      var file = comments.shift();
+      file.tags.should.be.empty;
+      file.description.full.should.equal('<p>Dox<br />Copyright (c) 2010 TJ Holowaychuk &lt;<a href=\'mailto:tj@vision-media.ca\'>tj@vision-media.ca</a>&gt;<br />MIT Licensed</p>');
+      file.ignore.should.be.true;
+
+      var mods = comments.shift();
+      mods.tags.should.be.empty;
+      mods.description.full.should.equal('<p>Module dependencies.</p>');
+      mods.description.summary.should.equal('<p>Module dependencies.</p>');
+      mods.description.body.should.equal('');
+      mods.ignore.should.be.false;
+      mods.code.should.equal('var markdown = require(\'github-flavored-markdown\').parse;');
+      mods.ctx.type.should.equal('declaration');
+      mods.ctx.name.should.equal('markdown');
+      mods.ctx.value.should.equal('require(\'github-flavored-markdown\').parse');
+    });
+  },
   
   'test .parseComments() code': function(){
     fixture('b.js', function(err, str){
