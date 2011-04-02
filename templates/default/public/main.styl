@@ -5,29 +5,31 @@
 
 // globals
 
-light-gray = #e6e6e6
-gray = darken-by(light-gray, 90%)
+light = #e6e6e6
+dark = #252525
 
 // basics
 
 body
-  font 13px/1.4 'helvetica neue', helvetica, arial, sans-serif
-  padding 50px 120px
+  margin: 0
+  font: 13px/1.4 'helvetica neue', helvetica, arial, sans-serif
+  padding: 50px 120px
+  smooth()
 
 a
-  color gray
-  text-decoration none
+  color: dark
+  text-decoration: none
 
 h1
-  margin 15px 0
-  font-size 45px
+  margin: 15px 0
+  font-size: 45px
 
 .description
-  margin-bottom 30px
+  margin-bottom: 30px
 
 pre
-  margin 5px 15px
-  padding 10px
+  margin: 5px 15px
+  padding: 10px
 
 // buttons
 
@@ -36,10 +38,22 @@ a.button
 input[type=button]
   minimal-button()
 
+// content
+
+#content
+  margin: 0 50px
+
 // navigation
 
 #files
-  background light-gray
-  fixed top 0 left -5px
-  padding 10px 15px
-  border-radius 5px
+  margin: 0
+  height: 100%
+  background: dark
+  fixed: top 0 left -5px
+  padding: 10px 30px
+  background: -webkit-gradient(linear, left center, right center, from(light + 20%), to(light))
+  border-right: 1px solid white - 5%
+  box-shadow: 0 0 3px 1px light - 20%
+  li
+    list-style: none
+    padding: 2px 0
