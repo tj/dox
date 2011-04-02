@@ -86,6 +86,19 @@ module.exports = {
       mods.ctx.type.should.equal('declaration');
       mods.ctx.name.should.equal('markdown');
       mods.ctx.value.should.equal('require(\'github-flavored-markdown\').parse');
+
+      var version = comments.shift();
+      version.tags.should.be.empty;
+      version.description.full.should.equal('<p>Library version.</p>');
+
+      var parseComments = comments.shift();
+      parseComments.tags.should.have.length(4);
+      parseComments.ctx.type.should.equal('method');
+      parseComments.ctx.receiver.should.equal('exports');
+      parseComments.ctx.name.should.equal('parseComments');
+      parseComments.description.full.should.equal('<p>Parse comments in the given string of <code>js</code>.</p>');
+      parseComments.description.summary.should.equal('<p>Parse comments in the given string of <code>js</code>.</p>');
+      parseComments.description.body.should.equal('');
     });
   },
   
