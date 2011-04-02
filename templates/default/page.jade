@@ -3,7 +3,7 @@ h1= filename.split('/').slice(-1)[0]
 
 #comments
   - each comment in comments
-    - if (comment.isPrivate || comment.ignore) continue
+    - if (comment.ignore) continue
     .comment
       .summary!= comment.description.summary
       code
