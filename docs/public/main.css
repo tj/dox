@@ -98,3 +98,7 @@ pre {
   -moz-border-radius: 3px;
   border-radius: 3px;
 }
+p code {
+  padding: 3px 5px;
+  background: #e6e6e6;
+}
