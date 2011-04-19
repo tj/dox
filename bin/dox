@@ -63,10 +63,10 @@ env.dest = process.cwd();
 env.options = {};
 
 /**
- * Server flag.
+ * Server options.
  */
 
-var server;
+var server = {};
 
 /**
  * Usage information.
@@ -79,6 +79,7 @@ var usage = [
   , '  Options:'
   , ''
   , '    -s, --server <root>    launch dox server with <root> defaulting to CWD'
+  , '    -p, --port <port>      set the dox server port, defaulting to 3000'
   , '    -o, --out <dir>        set doc output <dir>'
   , '    -t, --template <name>  use the given template <name>'
   , '    -D, --debug            output parsed comments for debugging'
@@ -129,8 +130,11 @@ while (args.length) {
       break;
     case '-s':
     case '--server':
-      startServer(required(arg));
-      server = true;
+      server.root = required(arg);
+      break;
+    case '-p':
+    case '--port':
+      server.port = required(arg);
       break;
     default:
       if ('-' == arg[0]) {
@@ -153,7 +157,9 @@ var log = env.log = function(key, msg) {
   console.log('  \033[90m%s :\033[0m \033[36m%s\033[0m', key, msg);
 };
 
-if (!server) {
+if (server.root) {
+  startServer(server);
+} else {
   // ensure files
 
   if (!env.paths.length) {
@@ -195,13 +201,15 @@ function compile() {
 }
 
 /**
- * Start server at the given root.
+ * Start server at the given root / port.
  */
 
-function startServer(root) {
-  var connect = require('connect');
+function startServer(options) {
+  var connect = require('connect')
+    , port = options.port || 3000;
+
   connect(
-    connect.static(root)
-  ).listen(80);
-  console.log('dox server started on port 80');
+    connect.static(options.root)
+  ).listen(port);
+  console.log('dox server started on port %s', port);
 }
