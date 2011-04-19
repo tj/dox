@@ -6,6 +6,7 @@
 var markdown = require('github-flavored-markdown')
   , jade = require('jade')
   , stylus = require('stylus')
+  , nib = require('nib')
   , fs = require('fs');
 
 module.exports = function(env){

@@ -8,5 +8,6 @@
       "github-flavored-markdown": ">= 0.0.1"
     , "stylus": "0.11.x"
     , "jade": "0.10.x"
+    , "nib": ">= 0.0.1"
   }
 }
