@@ -1,21 +1,19 @@
 
-PREFIX = /usr/local
+test:
+	@./support/expresso/bin/expresso \
+	  -I support
 
-install:
-	mkdir -p ~/.node_libraries
-	cp -f bin/dox $(PREFIX)/bin/dox
-	cp -fr lib/dox ~/.node_libraries/dox
+docs:
+	@./bin/dox \
+	  --verbose \
+	  lib/* \
+	  --out docs \
+	  --title Dox \
+	  --github visionmedia/dox \
+	  --index index.md
 
-uninstall:
-	rm -f $(PREFIX)/bin/dox
-	rm -fr ~/.node_libraries/dox
+doc-server:
+	@./bin/dox \
+		--server docs
 
-docs: uninstall install
-	dox --ribbon "http://github.com/visionmedia/dox" \
-		--title "Dox" \
-		--desc "JavaScript documentation parser for [node](http://ndoejs.org).\
-		Check out the [Github Repo](http://github.com/visionmedia/dox) for the \
-		source and installation guide." \
-		lib/dox/*.js > index.html
-
-.PHONY: install uninstall docs
+.PHONY: test docs doc-server

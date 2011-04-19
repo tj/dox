@@ -1,9 +1,207 @@
 #!/usr/bin/env node
 
-/*!
- * Dox
- * Copyright(c) 2010 TJ Holowaychuk <tj@vision-media.ca>
- * MIT Licensed
+/**
+ * Module dependencies.
  */
 
-require('dox').parse(process.argv.slice(2));
+var dox = require('../')
+  , util = require('util')
+  , fs = require('fs');
+
+/**
+ * Arguments.
+ */
+
+var args = process.argv.slice(2);
+
+/**
+ * Environment.
+ */
+
+var env = {};
+
+/**
+ * Debug.
+ */
+
+env.debug = false;
+
+/**
+ * Verbose.
+ */
+
+env.verbose = false;
+
+/**
+ * File map
+ */
+
+env.files = {};
+
+/**
+ * File paths to parse.
+ */
+
+env.paths = [];
+
+/**
+ * Doc template.
+ */
+
+env.template = 'default';
+
+/**
+ * Output destination.
+ */
+
+env.dest = process.cwd();
+
+/**
+ * Template options.
+ */
+
+env.options = {};
+
+/**
+ * Server flag.
+ */
+
+var server;
+
+/**
+ * Usage information.
+ */
+
+var usage = [
+    ''
+  , '  Usage: dox [options] <paths>'
+  , ''
+  , '  Options:'
+  , ''
+  , '    -s, --server <root>    launch dox server with <root> defaulting to CWD'
+  , '    -o, --out <dir>        set doc output <dir>'
+  , '    -t, --template <name>  use the given template <name>'
+  , '    -D, --debug            output parsed comments for debugging'
+  , '    -v, --verbose          enable verbose output'
+  , '    -h, --help             display help information'
+  , '        --<name> <val>     ad hoc template option'
+  , ''
+].join('\n');
+
+/**
+ * Required argument.
+ */
+
+function required(arg) {
+  if (args.length) {
+    return args.shift();
+  } else {
+    console.error(arg + ' requires an argument');
+    process.exit(1);
+  }
+}
+
+// parse arguments
+
+var arg;
+while (args.length) {
+  switch (arg = args.shift()) {
+    case '-h':
+    case '--help':
+      console.log(usage);
+      process.exit(0);
+      break;
+    case '-o':
+    case '--out':
+      env.dest = required(arg);
+      break;
+    case '-D':
+    case '--debug':
+      env.debug = true;
+      break;
+    case '-v':
+    case '--verbose':
+      env.verbose = true;
+      break;
+    case '-t':
+    case '--template':
+      env.template = required(arg);
+      break;
+    case '-s':
+    case '--server':
+      startServer(required(arg));
+      server = true;
+      break;
+    default:
+      if ('-' == arg[0]) {
+        env.options[arg.replace('--', '')] = required(arg);
+      } else {
+        env.paths.push(arg);
+      }
+  }
+}
+
+/**
+ * Log `msg` when verbose.
+ */
+
+var log = env.log = function(key, msg) {
+  if (!env.verbose) return;
+  var cols = 10
+    , len = key.length;
+  if (len < cols) key = Array(cols - len).join(' ') + key;
+  console.log('  \033[90m%s :\033[0m \033[36m%s\033[0m', key, msg);
+};
+
+if (!server) {
+  // ensure files
+
+  if (!env.paths.length) {
+    console.error('<paths> required');
+    process.exit(1);
+  }
+
+  // parse input
+
+  var pending = env.paths.length;
+  env.paths.forEach(function(path){
+    fs.readFile(path, 'utf8', function(err, str){
+      if (err) throw err;
+
+      // parse
+      log('parse', path);
+      env.files[path] = dox.parseComments(str);
+      env.files[path].path = path;
+
+      // debugging
+      if (env.debug) {
+        console.log(util.inspect(env.files[path], false, 15, true));
+        console.log();
+      }
+
+      // complete
+      --pending || compile();
+    });
+  });  
+}
+
+
+/**
+ * Compile docs.
+ */
+
+function compile() {
+  require('../templates/' + env.template)(env);
+}
+
+/**
+ * Start server at the given root.
+ */
+
+function startServer(root) {
+  var connect = require('connect');
+  connect(
+    connect.static(root)
+  ).listen(80);
+  console.log('dox server started on port 80');
+}
