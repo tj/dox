@@ -119,7 +119,7 @@ function style(from, to, fn) {
     if (err) return fn(err);
     stylus(str)
       .set('filename', from)
-      .use(nib)
+      .use(nib())
       .render(function(err, css){
         if (err) return fn(err);
         fs.writeFile(to, css, fn);  
