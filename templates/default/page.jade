@@ -8,6 +8,6 @@ h1= filename
       .summary!= comment.description.summary
       - if (comment.description.body.length)
         .body!= comment.description.body
-      a.button.view-source(href='#') View Source
+      a.button.view-source(href='#') +
       pre.source
         code!= comment.code
