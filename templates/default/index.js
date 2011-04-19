@@ -3,7 +3,7 @@
  * Module dependencies.
  */
 
-var markdown = require('markdown')
+var markdown = require('github-flavored-markdown')
   , jade = require('jade')
   , stylus = require('stylus')
   , fs = require('fs');
