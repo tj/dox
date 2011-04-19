@@ -12,4 +12,8 @@ docs:
 	  --github visionmedia/dox \
 	  --index index.md
 
-.PHONY: test docs
+doc-server:
+	@./bin/dox \
+		--server docs
+
+.PHONY: test docs doc-server

@@ -7,5 +7,7 @@ h1= filename.split('/').slice(-1)[0]
     .comment
       h2= comment.ctx.string
       .summary!= comment.description.summary
+      - if (comment.description.body.length)
+        .body!= comment.description.body
       code
         pre!= comment.code
