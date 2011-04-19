@@ -9,5 +9,5 @@ h1= filename.split('/').slice(-1)[0]
       .summary!= comment.description.summary
       - if (comment.description.body.length)
         .body!= comment.description.body
-      code
-        pre!= comment.code
+      pre
+        code!= comment.code
