@@ -203,7 +203,7 @@ if (server.root) {
 
 function compile() {
   if (env.json) {
-    console.log(env.files);
+    process.stdout.write(JSON.stringify(env.files));
   } else {
     require('../templates/' + env.template)(env);
   }
