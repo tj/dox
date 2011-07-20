@@ -78,6 +78,7 @@ var usage = [
   , ''
   , '  Options:'
   , ''
+  , '    -j, --json             output documentation as jon'
   , '    -s, --server <root>    launch dox server with <root> defaulting to CWD'
   , '    -p, --port <port>      set the dox server port, defaulting to 3000'
   , '    -o, --out <dir>        set doc output <dir>'
@@ -135,6 +136,10 @@ while (args.length) {
     case '-p':
     case '--port':
       server.port = required(arg);
+      break;
+    case '-j':
+    case '--json':
+      env.json = true;
       break;
     default:
       if ('-' == arg[0]) {
@@ -197,7 +202,11 @@ if (server.root) {
  */
 
 function compile() {
-  require('../templates/' + env.template)(env);
+  if (env.json) {
+    console.log(env.files);
+  } else {
+    require('../templates/' + env.template)(env);
+  }
 }
 
 /**
