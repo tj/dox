@@ -9,6 +9,7 @@ var program = require('commander')
 
 program
   .version(dox.version)
+  .usage('[options] [file|dir...]')
   .option('-D, --debug', 'output parsed comments for debugging')
   .option('-V, --verbose', 'output verbose logging')
   .parse(process.argv);
