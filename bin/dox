@@ -9,9 +9,20 @@ var program = require('commander')
 
 program
   .version(dox.version)
-  .usage('[options] [file|dir...]')
-  .option('-D, --debug', 'output parsed comments for debugging')
-  .parse(process.argv);
+  .option('-D, --debug', 'output parsed comments for debugging');
+
+program.on('--help', function(){
+  console.log('  Examples:');
+  console.log('');
+  console.log('    # stdin');
+  console.log('    $ dox > myfile.json');
+  console.log('');
+  console.log('    # operates over stdio');
+  console.log('    $ dox < myfile.js > myfile.json');
+  console.log('');
+});
+
+program.parse(process.argv);
 
 var stdin = program.args
 
