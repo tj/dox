@@ -8,6 +8,7 @@ test:
 	  -I support
 
 docs: $(HTML) docs.css
+	cp -f lib/dox.html index.html
 
 docs.css: docs.styl
 	stylus < $< > $@
