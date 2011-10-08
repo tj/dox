@@ -1,1 +1,11 @@
-p test
+html
+  body
+    h1 Dox - JavaScript documentation generator
+    - each comment in comments
+      - if (comment.ignore || 'version' == comment.ctx.name)
+        - continue
+      .comment
+        h2= comment.ctx.value
+        .description!= comment.description.full
+        pre
+          code!= comment.code
