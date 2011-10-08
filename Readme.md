@@ -1,54 +1,99 @@
 # Dox
 
- Dox is a JavaScript documentation generator written for [node](http://nodejs.org).
-
- Dox is a 2 hour product of my frustration with documentation generators. I wanted
- something that could parse my JavaScript using _markdown_ and _JSDoc_ tags, an easy
- to use _executable_, as well as a _single deployment file_, no external css or js, one file!
-
-## Features
-
-  * Supports JSDoc
-  * Markdown bodies
-  * Custom title / description
-  * Simple CLI `dox`
-  * Single file generated
-  * Generated navigation menu
-  * Linked function definitions with references
-  * Syntax highlighting
+ Dox is a JavaScript documentation generator written with [node](http://nodejs.org). Dox no longer generates an opinionated structure or style for your docs, it simply gives you a JSON representation, allowing you to use _markdown_ and _JSDoc_-style tags.
 
 ## Installation
 
 Install from npm:
 
-    $ npm install dox
-
-Install from git clone or tarball:
-
-    $ make install
+    $ npm install -g dox
 
 ## Usage Examples
 
-Simple example:
+`dox(1)` operates over stdio:
 
-    $ dox --title Connect lib/connect/index.js
+    $ dox < utils.js
 
-Lots of files:
+utils.js:
 
-    $ dox --title Connect --desc "markdown _here_" $(file lib/* -type f) > docs.html
+```js
+/**
+ * Escape the given `html`.
+ *
+ * @param {String} html string to be escaped
+ * @return {String} escaped html
+ * @api public
+ */
+
+exports.escape = function(html){
+  return String(html)
+    .replace(/&(?!\w+;)/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+};
+```
+
+output JSON:
+
+```json
+[
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": ["String"],
+        "name": "html",
+        "description": "string to be escaped"
+      },
+      {
+        "type": "return",
+        "types": ["String"],
+        "description": "escaped html"
+      },
+      {
+        "type": "api",
+        "visibility": "public"
+      }
+    ],
+    "description": {
+      "full": "<p>Escape the given <code>html</code>.</p>",
+      "summary": "<p>Escape the given <code>html</code>.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "exports.escape = function(html){\n  return String(html)\n    .replace(/&(?!\\w+;)/g, '&amp;')\n    .replace(/</g, '&lt;')\n    .replace(/>/g, '&gt;');\n};",
+    "ctx": {
+      "type": "method",
+      "receiver": "exports",
+      "name": "escape",
+      "string": "exports.escape()"
+    }
+  }
+]
+```
+
+This output can then be passed to a template for rendering.
 
 ## Usage
 
-Output from `--help`:
+```
 
-    Usage: dox [options] <file ...>
+Usage: dox [options]
 
-	Options:
-	  -t, --title      Project title
-	  -d, --desc       Project description (markdown)
-    -i, --intro      File that contains introduction text (markdown)
-	  -s, --style      Document style, available: ["default"]
-	  -J, --no-jsdoc   Disable jsdoc parsing (coverts to markdown)
-	  -p, --private    Output private code in documentation
-	  -h, --help       Display help information
+Options:
+
+  -h, --help     output usage information
+  -v, --version  output the version number
+  -D, --debug    output parsed comments for debugging
+
+Examples:
+
+  # stdin
+  $ dox > myfile.json
+
+  # operates over stdio
+  $ dox < myfile.js > myfile.json
+
+```
 
