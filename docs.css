@@ -3,6 +3,13 @@ body {
   font: 14/1.6 "Helvetica Neue", Helvetica, sans-serif, arial;
   color: #303030;
 }
+p code,
+li code {
+  border: 1px solid #eee;
+  padding: 1px 5px;
+  font: 12px monaco, monospace;
+  color: #0bb1e4;
+}
 pre {
   padding: 20px;
   border: 1px solid #eee;
