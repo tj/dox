@@ -11,7 +11,8 @@ function highlight(js) {
   return js
     .replace(/\b(undefined|null|return|function|exports|case|default|switch|if|else)\b/g, '<span class="keyword">$1</span>')
     .replace(/('[^']*')/g, "<span class='string'>$1</span>")
-    .replace(/(\d+(\.\d+)?)/g, "<span class='number'>$1</span>");
+    .replace(/(\d+(\.\d+)?)/g, "<span class='number'>$1</span>")
+    .replace(/^( *)\/\/ *([^\n]+)/gm, '<span class="comment">$1// $2</span>')
 }
 
 var buf = '';

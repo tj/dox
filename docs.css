@@ -26,4 +26,7 @@ pre code .number {
 pre code .keyword {
   font-weight: bold;
 }
+pre code .comment {
+  color: #b3b3b3;
+}
 
