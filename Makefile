@@ -7,7 +7,10 @@ test:
 	@./node_modules/.bin/expresso \
 	  -I support
 
-docs: $(HTML)
+docs: $(HTML) docs.css
+
+docs.css: docs.styl
+	stylus < $< > $@
 
 %.json: %.js
 	./bin/dox < $< > $@

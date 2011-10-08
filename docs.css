@@ -1,0 +1,13 @@
+body {
+  padding: 50px;
+  font: 14/1.6 "Helvetica Neue", Helvetica, sans-serif, arial;
+  color: #303030;
+}
+pre {
+  padding: 20px;
+  border: 1px solid #eee;
+}
+pre code {
+  font: 12px monaco, monospace;
+}
+
