@@ -11,4 +11,4 @@ html
         h2= comment.ctx.value
         .description!= comment.description.full
         pre
-          code!= comment.code
+          code!= highlight(comment.code)

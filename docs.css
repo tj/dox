@@ -17,4 +17,7 @@ pre {
 pre code {
   font: 12px monaco, monospace;
 }
+pre code .string {
+  color: #db2020;
+}
 

@@ -1,33 +1,33 @@
 <html><head><title>Dox - JavaScript documentation generator</title><link rel="stylesheet" href="../docs.css"/></head><body><h1>Dox - JavaScript documentation generator</h1><div class="comment"><h2></h2><div class="description"><p>Parse comments in the given string of <code>js</code>.</p></div><pre><code>exports.parseComments = function(js){
   var comments = []
     , comment
-    , buf = ''
+    , buf = <span class='string'>''</span>
     , ignore
     , within
     , code;
 
   for (var i = 0, len = js.length; i < len; ++i) {
     // start comment
-    if (!within && '/' == js[i] && '*' == js[i+1]) {
+    if (!within && <span class='string'>'/'</span> == js[i] && <span class='string'>'*'</span> == js[i+1]) {
       // code following previous comment
       if (buf.trim().length) {
         comment = comments[comments.length - 1];
         comment.code = code = buf.trim();
         comment.ctx = exports.parseCodeContext(code);
-        buf = '';
+        buf = <span class='string'>''</span>;
       }
       i += 2;
       within = true;
-      ignore = '!' == js[i];
+      ignore = <span class='string'>'!'</span> == js[i];
     // end comment
-    } else if (within && '*' == js[i] && '/' == js[i+1]) {
+    } else if (within && <span class='string'>'*'</span> == js[i] && <span class='string'>'/'</span> == js[i+1]) {
       i += 2;
-      buf = buf.replace(/^ *\* ?/gm, '');
+      buf = buf.replace(/^ *\* ?/gm, <span class='string'>''</span>);
       var comment = exports.parseComment(buf);
       comment.ignore = ignore;
       comments.push(comment);
       within = ignore = false;
-      buf = '';
+      buf = <span class='string'>''</span>;
     // buffer comment or code
     } else {
       buf += js[i];
@@ -59,17 +59,17 @@
     , description = {};
 
   // parse comment body
-  description.full = str.split('\n@')[0].replace(/^([\w ]+):/gm, '## $1');
-  description.summary = description.full.split('\n\n')[0];
-  description.body = description.full.split('\n\n').slice(1).join('\n\n');
+  description.full = str.split(<span class='string'>'\n@'</span>)[0].replace(/^([\w ]+):/gm, <span class='string'>'## $1'</span>);
+  description.summary = description.full.split(<span class='string'>'\n\n'</span>)[0];
+  description.body = description.full.split(<span class='string'>'\n\n'</span>).slice(1).join(<span class='string'>'\n\n'</span>);
   comment.description = description;
 
   // parse tags
-  if (~str.indexOf('\n@')) {
-    var tags = '@' + str.split('\n@').slice(1).join('\n@');
-    comment.tags = tags.split('\n').map(exports.parseTag);
+  if (~str.indexOf(<span class='string'>'\n@'</span>)) {
+    var tags = <span class='string'>'@'</span> + str.split(<span class='string'>'\n@'</span>).slice(1).join(<span class='string'>'\n@'</span>);
+    comment.tags = tags.split(<span class='string'>'\n'</span>).map(exports.parseTag);
     comment.isPrivate = comment.tags.some(function(tag){
-      return 'api' == tag.type && 'private' == tag.visibility;
+      return <span class='string'>'api'</span> == tag.type && <span class='string'>'private'</span> == tag.visibility;
     })
   }
 
@@ -82,31 +82,31 @@
 }</code></pre></div><div class="comment"><h2></h2><div class="description"><p>Parse tag string "@param {Array} name description" etc.</p></div><pre><code>exports.parseTag = function(str) {
   var tag = {} 
     , parts = str.split(/ +/)
-    , type = tag.type = parts.shift().replace('@', '');
+    , type = tag.type = parts.shift().replace(<span class='string'>'@'</span>, <span class='string'>''</span>);
 
   switch (type) {
-    case 'param':
+    case <span class='string'>'param'</span>:
       tag.types = exports.parseTagTypes(parts.shift());
-      tag.name = parts.shift() || '';
-      tag.description = parts.join(' ');
+      tag.name = parts.shift() || <span class='string'>''</span>;
+      tag.description = parts.join(<span class='string'>' '</span>);
       break;
-    case 'return':
+    case <span class='string'>'return'</span>:
       tag.types = exports.parseTagTypes(parts.shift());
-      tag.description = parts.join(' ');
+      tag.description = parts.join(<span class='string'>' '</span>);
       break;
-    case 'see':
-      if (~str.indexOf('http')) {
+    case <span class='string'>'see'</span>:
+      if (~str.indexOf(<span class='string'>'http'</span>)) {
         tag.title = parts.length > 1
           ? parts.shift()
-          : '';
-        tag.url = parts.join(' ');
+          : <span class='string'>''</span>;
+        tag.url = parts.join(<span class='string'>' '</span>);
       } else {
-        tag.local = parts.join(' ');
+        tag.local = parts.join(<span class='string'>' '</span>);
       }
-    case 'api':
+    case <span class='string'>'api'</span>:
       tag.visibility = parts.shift();
       break;
-    case 'type':
+    case <span class='string'>'type'</span>:
       tag.types = exports.parseTagTypes(parts.shift());
       break;
   }
@@ -114,7 +114,7 @@
   return tag;
 }</code></pre></div><div class="comment"><h2></h2><div class="description"><p>Parse tag type string "{Array|Object}" etc.</p></div><pre><code>exports.parseTagTypes = function(str) {
   return str
-    .replace(/[{}]/g, '')
+    .replace(/[{}]/g, <span class='string'>''</span>)
     .split(/ *[|,\/] */);
 };</code></pre></div><div class="comment"><h2></h2><div class="description"><p>Parse the context from the given <code>str</code> of js.</p>
 
@@ -131,60 +131,60 @@
 <li>properties</li>
 <li>declarations</li>
 </ul></div><pre><code>exports.parseCodeContext = function(str){
-  var str = str.split('\n')[0];
+  var str = str.split(<span class='string'>'\n'</span>)[0];
 
   // function statement
   if (/^function (\w+)\(/.exec(str)) {
     return {
-        type: 'function'
+        type: <span class='string'>'function'</span>
       , name: RegExp.$1
-      , string: RegExp.$1 + '()'
+      , string: RegExp.$1 + <span class='string'>'()'</span>
     };
   // function expression
   } else if (/^var *(\w+) *= *function/.exec(str)) {
     return {
-        type: 'function'
+        type: <span class='string'>'function'</span>
       , name: RegExp.$1
-      , string: RegExp.$1 + '()'
+      , string: RegExp.$1 + <span class='string'>'()'</span>
     };
   // prototype method
   } else if (/^(\w+)\.prototype\.(\w+) *= *function/.exec(str)) {
     return {
-        type: 'method'
+        type: <span class='string'>'method'</span>
       , constructor: RegExp.$1
       , name: RegExp.$2
-      , string: RegExp.$1 + '.prototype.' + RegExp.$2 + '()'
+      , string: RegExp.$1 + <span class='string'>'.prototype.'</span> + RegExp.$2 + <span class='string'>'()'</span>
     };
   // prototype property
   } else if (/^(\w+)\.prototype\.(\w+) *= *([^\n;]+)/.exec(str)) {
     return {
-        type: 'property'
+        type: <span class='string'>'property'</span>
       , constructor: RegExp.$1
       , name: RegExp.$2
       , value: RegExp.$3
-      , string: RegExp.$1 + '.prototype' + RegExp.$2
+      , string: RegExp.$1 + <span class='string'>'.prototype'</span> + RegExp.$2
     };
   // method
   } else if (/^(\w+)\.(\w+) *= *function/.exec(str)) {
     return {
-        type: 'method'
+        type: <span class='string'>'method'</span>
       , receiver: RegExp.$1
       , name: RegExp.$2
-      , string: RegExp.$1 + '.' + RegExp.$2 + '()'
+      , string: RegExp.$1 + <span class='string'>'.'</span> + RegExp.$2 + <span class='string'>'()'</span>
     };
   // property
   } else if (/^(\w+)\.(\w+) *= *([^\n;]+)/.exec(str)) {
     return {
-        type: 'property'
+        type: <span class='string'>'property'</span>
       , receiver: RegExp.$1
       , name: RegExp.$2
       , value: RegExp.$3
-      , string: RegExp.$1 + '.' + RegExp.$2
+      , string: RegExp.$1 + <span class='string'>'.'</span> + RegExp.$2
     };
   // declaration
   } else if (/^var +(\w+) *= *([^\n;]+)/.exec(str)) {
     return {
-        type: 'declaration'
+        type: <span class='string'>'declaration'</span>
       , name: RegExp.$1
       , value: RegExp.$2
       , string: RegExp.$1
