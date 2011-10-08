@@ -1,19 +1,21 @@
 
+DOCS = lib/dox.js
+JSON = $(DOCS:.js=.json)
+HTML = $(DOCS:.js=.html)
+
 test:
 	@./node_modules/.bin/expresso \
 	  -I support
 
-docs:
-	@./bin/dox \
-	  --verbose \
-	  lib/* \
-	  --out docs \
-	  --title Dox \
-	  --github visionmedia/dox \
-	  --index index.md
+docs: $(HTML)
 
-doc-server:
-	@./bin/dox \
-		--server docs
+%.json: %.js
+	./bin/dox < $< > $@
 
-.PHONY: test docs
+%.html: %.json
+	./compile.js < $< > $@
+
+clean:
+	rm -f $(HTML) $(JSON)
+
+.PHONY: test clean
