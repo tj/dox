@@ -8,9 +8,13 @@ var program = require('commander')
   , util = require('util')
   , dox = require('../');
 
+// options
+
 program
   .version(dox.version)
   .option('-D, --debug', 'output parsed comments for debugging');
+
+// examples
 
 program.on('--help', function(){
   console.log('  Examples:');
@@ -23,7 +27,11 @@ program.on('--help', function(){
   console.log('');
 });
 
+// parse argv
+
 program.parse(process.argv);
+
+// process stdin
 
 var buf = '';
 process.stdin.setEncoding('utf8');
