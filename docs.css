@@ -23,4 +23,7 @@ pre code .string {
 pre code .number {
   color: #0bb1e4;
 }
+pre code .keyword {
+  font-weight: bold;
+}
 

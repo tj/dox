@@ -1,4 +1,4 @@
-<html><head><title>Dox - JavaScript documentation generator</title><link rel="stylesheet" href="../docs.css"/></head><body><h1>Dox - JavaScript documentation generator</h1><div class="comment"><h2></h2><div class="description"><p>Parse comments in the given string of <code>js</code>.</p></div><pre><code>exports.parseComments = function(js){
+<html><head><title>Dox - JavaScript documentation generator</title><link rel="stylesheet" href="../docs.css"/></head><body><h1>Dox - JavaScript documentation generator</h1><div class="comment"><h2></h2><div class="description"><p>Parse comments in the given string of <code>js</code>.</p></div><pre><code><span class="keyword">exports</span>.parseComments = <span class="keyword">function</span>(js){
   var comments = []
     , comment
     , buf = <span class='string'>''</span>
@@ -8,41 +8,41 @@
 
   for (var i = <span class='number'>0</span>, len = js.length; i < len; ++i) {
     // start comment
-    if (!within && <span class='string'>'/'</span> == js[i] && <span class='string'>'*'</span> == js[i+<span class='number'>1</span>]) {
+    <span class="keyword">if</span> (!within && <span class='string'>'/'</span> == js[i] && <span class='string'>'*'</span> == js[i+<span class='number'>1</span>]) {
       // code following previous comment
-      if (buf.trim().length) {
+      <span class="keyword">if</span> (buf.trim().length) {
         comment = comments[comments.length - <span class='number'>1</span>];
         comment.code = code = buf.trim();
-        comment.ctx = exports.parseCodeContext(code);
+        comment.ctx = <span class="keyword">exports</span>.parseCodeContext(code);
         buf = <span class='string'>''</span>;
       }
       i += <span class='number'>2</span>;
       within = true;
       ignore = <span class='string'>'!'</span> == js[i];
     // end comment
-    } else if (within && <span class='string'>'*'</span> == js[i] && <span class='string'>'/'</span> == js[i+<span class='number'>1</span>]) {
+    } <span class="keyword">else</span> <span class="keyword">if</span> (within && <span class='string'>'*'</span> == js[i] && <span class='string'>'/'</span> == js[i+<span class='number'>1</span>]) {
       i += <span class='number'>2</span>;
       buf = buf.replace(/^ *\* ?/gm, <span class='string'>''</span>);
-      var comment = exports.parseComment(buf);
+      var comment = <span class="keyword">exports</span>.parseComment(buf);
       comment.ignore = ignore;
       comments.push(comment);
       within = ignore = false;
       buf = <span class='string'>''</span>;
     // buffer comment or code
-    } else {
+    } <span class="keyword">else</span> {
       buf += js[i];
     }
   }
 
   // trailing code
-  if (buf.trim().length) {
+  <span class="keyword">if</span> (buf.trim().length) {
     comment = comments[comments.length - <span class='number'>1</span>];
     code = buf.trim();
     comment.code = code;
-    comment.ctx = exports.parseCodeContext(code);
+    comment.ctx = <span class="keyword">exports</span>.parseCodeContext(code);
   }
 
-  return comments;
+  <span class="keyword">return</span> comments;
 };</code></pre></div><div class="comment"><h2></h2><div class="description"><p>Parse the given comment <code>str</code>.</p>
 
 <p>The comment object returned contains the following</p>
@@ -53,7 +53,7 @@
 <li><code>body</code> lines following the description</li>
 <li><code>content</code> both the description and the body</li>
 <li><code>isPrivate</code> true when "@api private" is used</li>
-</ul></div><pre><code>exports.parseComment = function(str) {
+</ul></div><pre><code><span class="keyword">exports</span>.parseComment = <span class="keyword">function</span>(str) {
   str = str.trim();
   var comment = { tags: [] }
     , description = {};
@@ -65,11 +65,11 @@
   comment.description = description;
 
   // parse tags
-  if (~str.indexOf(<span class='string'>'\n@'</span>)) {
+  <span class="keyword">if</span> (~str.indexOf(<span class='string'>'\n@'</span>)) {
     var tags = <span class='string'>'@'</span> + str.split(<span class='string'>'\n@'</span>).slice(<span class='number'>1</span>).join(<span class='string'>'\n@'</span>);
-    comment.tags = tags.split(<span class='string'>'\n'</span>).map(exports.parseTag);
-    comment.isPrivate = comment.tags.some(function(tag){
-      return <span class='string'>'api'</span> == tag.type && <span class='string'>'private'</span> == tag.visibility;
+    comment.tags = tags.split(<span class='string'>'\n'</span>).map(<span class="keyword">exports</span>.parseTag);
+    comment.isPrivate = comment.tags.some(<span class="keyword">function</span>(tag){
+      <span class="keyword">return</span> <span class='string'>'api'</span> == tag.type && <span class='string'>'private'</span> == tag.visibility;
     })
   }
 
@@ -78,42 +78,42 @@
   description.summary = markdown(escape(description.summary));
   description.body = markdown(escape(description.body));
 
-  return comment;
-}</code></pre></div><div class="comment"><h2></h2><div class="description"><p>Parse tag string "@param {Array} name description" etc.</p></div><pre><code>exports.parseTag = function(str) {
+  <span class="keyword">return</span> comment;
+}</code></pre></div><div class="comment"><h2></h2><div class="description"><p>Parse tag string "@param {Array} name description" etc.</p></div><pre><code><span class="keyword">exports</span>.parseTag = <span class="keyword">function</span>(str) {
   var tag = {} 
     , parts = str.split(/ +/)
     , type = tag.type = parts.shift().replace(<span class='string'>'@'</span>, <span class='string'>''</span>);
 
-  switch (type) {
-    case <span class='string'>'param'</span>:
-      tag.types = exports.parseTagTypes(parts.shift());
+  <span class="keyword">switch</span> (type) {
+    <span class="keyword">case</span> <span class='string'>'param'</span>:
+      tag.types = <span class="keyword">exports</span>.parseTagTypes(parts.shift());
       tag.name = parts.shift() || <span class='string'>''</span>;
       tag.description = parts.join(<span class='string'>' '</span>);
       break;
-    case <span class='string'>'return'</span>:
-      tag.types = exports.parseTagTypes(parts.shift());
+    <span class="keyword">case</span> <span class='string'>'<span class="keyword">return</span>'</span>:
+      tag.types = <span class="keyword">exports</span>.parseTagTypes(parts.shift());
       tag.description = parts.join(<span class='string'>' '</span>);
       break;
-    case <span class='string'>'see'</span>:
-      if (~str.indexOf(<span class='string'>'http'</span>)) {
+    <span class="keyword">case</span> <span class='string'>'see'</span>:
+      <span class="keyword">if</span> (~str.indexOf(<span class='string'>'http'</span>)) {
         tag.title = parts.length > <span class='number'>1</span>
           ? parts.shift()
           : <span class='string'>''</span>;
         tag.url = parts.join(<span class='string'>' '</span>);
-      } else {
+      } <span class="keyword">else</span> {
         tag.local = parts.join(<span class='string'>' '</span>);
       }
-    case <span class='string'>'api'</span>:
+    <span class="keyword">case</span> <span class='string'>'api'</span>:
       tag.visibility = parts.shift();
       break;
-    case <span class='string'>'type'</span>:
-      tag.types = exports.parseTagTypes(parts.shift());
+    <span class="keyword">case</span> <span class='string'>'type'</span>:
+      tag.types = <span class="keyword">exports</span>.parseTagTypes(parts.shift());
       break;
   }
 
-  return tag;
-}</code></pre></div><div class="comment"><h2></h2><div class="description"><p>Parse tag type string "{Array|Object}" etc.</p></div><pre><code>exports.parseTagTypes = function(str) {
-  return str
+  <span class="keyword">return</span> tag;
+}</code></pre></div><div class="comment"><h2></h2><div class="description"><p>Parse tag type string "{Array|Object}" etc.</p></div><pre><code><span class="keyword">exports</span>.parseTagTypes = <span class="keyword">function</span>(str) {
+  <span class="keyword">return</span> str
     .replace(/[{}]/g, <span class='string'>''</span>)
     .split(/ *[|,\/] */);
 };</code></pre></div><div class="comment"><h2></h2><div class="description"><p>Parse the context from the given <code>str</code> of js.</p>
@@ -130,34 +130,34 @@
 <li>methods</li>
 <li>properties</li>
 <li>declarations</li>
-</ul></div><pre><code>exports.parseCodeContext = function(str){
+</ul></div><pre><code><span class="keyword">exports</span>.parseCodeContext = <span class="keyword">function</span>(str){
   var str = str.split(<span class='string'>'\n'</span>)[<span class='number'>0</span>];
 
-  // function statement
-  if (/^function (\w+)\(/.exec(str)) {
-    return {
-        type: <span class='string'>'function'</span>
+  // <span class="keyword">function</span> statement
+  <span class="keyword">if</span> (/^<span class="keyword">function</span> (\w+)\(/.exec(str)) {
+    <span class="keyword">return</span> {
+        type: <span class='string'>'<span class="keyword">function</span>'</span>
       , name: RegExp.$<span class='number'>1</span>
       , string: RegExp.$<span class='number'>1</span> + <span class='string'>'()'</span>
     };
-  // function expression
-  } else if (/^var *(\w+) *= *function/.exec(str)) {
-    return {
-        type: <span class='string'>'function'</span>
+  // <span class="keyword">function</span> expression
+  } <span class="keyword">else</span> <span class="keyword">if</span> (/^var *(\w+) *= *<span class="keyword">function</span>/.exec(str)) {
+    <span class="keyword">return</span> {
+        type: <span class='string'>'<span class="keyword">function</span>'</span>
       , name: RegExp.$<span class='number'>1</span>
       , string: RegExp.$<span class='number'>1</span> + <span class='string'>'()'</span>
     };
   // prototype method
-  } else if (/^(\w+)\.prototype\.(\w+) *= *function/.exec(str)) {
-    return {
+  } <span class="keyword">else</span> <span class="keyword">if</span> (/^(\w+)\.prototype\.(\w+) *= *<span class="keyword">function</span>/.exec(str)) {
+    <span class="keyword">return</span> {
         type: <span class='string'>'method'</span>
       , constructor: RegExp.$<span class='number'>1</span>
       , name: RegExp.$<span class='number'>2</span>
       , string: RegExp.$<span class='number'>1</span> + <span class='string'>'.prototype.'</span> + RegExp.$<span class='number'>2</span> + <span class='string'>'()'</span>
     };
   // prototype property
-  } else if (/^(\w+)\.prototype\.(\w+) *= *([^\n;]+)/.exec(str)) {
-    return {
+  } <span class="keyword">else</span> <span class="keyword">if</span> (/^(\w+)\.prototype\.(\w+) *= *([^\n;]+)/.exec(str)) {
+    <span class="keyword">return</span> {
         type: <span class='string'>'property'</span>
       , constructor: RegExp.$<span class='number'>1</span>
       , name: RegExp.$<span class='number'>2</span>
@@ -165,16 +165,16 @@
       , string: RegExp.$<span class='number'>1</span> + <span class='string'>'.prototype'</span> + RegExp.$<span class='number'>2</span>
     };
   // method
-  } else if (/^(\w+)\.(\w+) *= *function/.exec(str)) {
-    return {
+  } <span class="keyword">else</span> <span class="keyword">if</span> (/^(\w+)\.(\w+) *= *<span class="keyword">function</span>/.exec(str)) {
+    <span class="keyword">return</span> {
         type: <span class='string'>'method'</span>
       , receiver: RegExp.$<span class='number'>1</span>
       , name: RegExp.$<span class='number'>2</span>
       , string: RegExp.$<span class='number'>1</span> + <span class='string'>'.'</span> + RegExp.$<span class='number'>2</span> + <span class='string'>'()'</span>
     };
   // property
-  } else if (/^(\w+)\.(\w+) *= *([^\n;]+)/.exec(str)) {
-    return {
+  } <span class="keyword">else</span> <span class="keyword">if</span> (/^(\w+)\.(\w+) *= *([^\n;]+)/.exec(str)) {
+    <span class="keyword">return</span> {
         type: <span class='string'>'property'</span>
       , receiver: RegExp.$<span class='number'>1</span>
       , name: RegExp.$<span class='number'>2</span>
@@ -182,8 +182,8 @@
       , string: RegExp.$<span class='number'>1</span> + <span class='string'>'.'</span> + RegExp.$<span class='number'>2</span>
     };
   // declaration
-  } else if (/^var +(\w+) *= *([^\n;]+)/.exec(str)) {
-    return {
+  } <span class="keyword">else</span> <span class="keyword">if</span> (/^var +(\w+) *= *([^\n;]+)/.exec(str)) {
+    <span class="keyword">return</span> {
         type: <span class='string'>'declaration'</span>
       , name: RegExp.$<span class='number'>1</span>
       , value: RegExp.$<span class='number'>2</span>
