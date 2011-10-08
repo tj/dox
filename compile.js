@@ -9,7 +9,8 @@ var jade = require('jade')
 
 function highlight(js) {
   return js
-    .replace(/('[^']*')/g, "<span class='string'>$1</span>");
+    .replace(/('[^']*')/g, "<span class='string'>$1</span>")
+    .replace(/(\d+(\.\d+)?)/g, "<span class='number'>$1</span>");
 }
 
 var buf = '';
