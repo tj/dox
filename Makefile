@@ -1,6 +1,6 @@
 
 test:
-	@./support/expresso/bin/expresso \
+	@./node_modules/.bin/expresso \
 	  -I support
 
 docs:
@@ -16,4 +16,4 @@ doc-server:
 	@./bin/dox \
 		--server docs
 
-.PHONY: test docs doc-server
+.PHONY: test docs
