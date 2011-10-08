@@ -14,9 +14,6 @@ process.stdin.on('end', function(){
   var obj = JSON.parse(buf);
   fs.readFile('page.jade', 'utf8', function(err, str){
     if (err) throw err;
-    jade.render(str, obj, function(err, html){
-      if (err) throw err;
-      process.stdout.write(html);
-    });
+    process.stdout.write(jade.render(str, obj));
   });
 }).resume();
