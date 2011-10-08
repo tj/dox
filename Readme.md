@@ -73,7 +73,7 @@ output JSON:
 ]
 ```
 
-This output can then be passed to a template for rendering.
+This output can then be passed to a template for rendering. Look below at the "Properties" section for details.
 
 ## Usage
 
@@ -96,4 +96,15 @@ Examples:
   $ dox < myfile.js > myfile.json
 
 ```
+
+## Properties
+
+  A "comment" is comprised of the following detailed properties:
+  
+    - tags
+    - description
+    - isPrivate
+    - ignore
+    - code
+    - ctx
 
