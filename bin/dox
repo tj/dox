@@ -24,53 +24,9 @@ program.on('--help', function(){
 
 program.parse(process.argv);
 
-var stdin = program.args
-
-//   var pending = env.paths.length;
-//   env.paths.forEach(function(path){
-//     fs.readFile(path, 'utf8', function(err, str){
-//       if (err) throw err;
-// 
-//       // parse
-//       log('parse', path);
-//       env.files[path] = dox.parseComments(str);
-//       env.files[path].path = path;
-// 
-//       // debugging
-//       if (env.debug) {
-//         console.log(util.inspect(env.files[path], false, 15, true));
-//         console.log();
-//       }
-// 
-//       // complete
-//       --pending || compile();
-//     });
-//   });  
-// }
-// 
-// 
-// /**
-//  * Compile docs.
-//  */
-// 
-// function compile() {
-//   if (env.json) {
-//     process.stdout.write(JSON.stringify(env.files));
-//   } else {
-//     require('../templates/' + env.template)(env);
-//   }
-// }
-// 
-// /**
-//  * Start server at the given root / port.
-//  */
-// 
-// function startServer(options) {
-//   var connect = require('connect')
-//     , port = options.port || 3000;
-// 
-//   connect(
-//     connect.static(options.root)
-//   ).listen(port);
-//   console.log('dox server started on port %s', port);
-// }
+var buf = '';
+process.stdin.setEncoding('utf8');
+process.stdin.on('data', function(chunk){ buf += chunk; });
+process.stdin.on('end', function(){
+  console.log(buf);
+}).resume();
