@@ -293,6 +293,13 @@ vs
  */
 ```
 
+### Running tests
+
+ Install dev dependencies and execute `make test`:
+ 
+     $ npm install -d
+     $ make test
+
 ## License 
 
 (The MIT License)
