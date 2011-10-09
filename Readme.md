@@ -45,7 +45,7 @@ exports.escape = function(html){
 
 output:
 
-```js
+```json
 [
   {
     "tags": [
