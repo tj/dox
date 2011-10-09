@@ -108,3 +108,27 @@ Examples:
     - code
     - ctx
 
+### Description
+
+  A dox description is comprised of three parts, the "full" description,
+  the "summary", and the "body". The following example has only a "summary",
+  as it consists of a single paragraph only, therefore the "full" property has
+  only this value as well.
+
+```js
+/**
+ * Output the given `str` to _stdout_.
+ */
+
+exports.write = function(str) {
+  console.log(str);
+};
+````
+yields:
+
+```js
+description: 
+     { full: '<p>Output the given <code>str</code> to <em>stdout</em>.</p>',
+       summary: '<p>Output the given <code>str</code> to <em>stdout</em>.</p>',
+       body: '' },
+```
