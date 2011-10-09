@@ -238,6 +238,35 @@ ctx:
    string: 'exports.write()' } }
 ```
 
+```js
+var foo = 'bar';
+```
+
+yields:
+
+```js
+ctx: 
+ { type: 'declaration',
+   name: 'foo',
+   value: '\'bar\'',
+   string: 'foo' }
+```
+
+```js
+function User() {
+  
+}
+```
+
+yields:
+
+```js
+ctx: 
+ { type: 'function',
+   name: 'User',
+   string: 'User()' } }
+```
+
 ### Ignore
 
 Comments and their associated bodies of code may be flagged with "!" to be considered worth ignoring, these are typically things like file comments containing copyright etc, however you of course can output them in your templates if you want.
