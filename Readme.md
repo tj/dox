@@ -165,3 +165,44 @@ description:
        summary: '<p>Output the given <code>str</code> to <em>stdout</em><br />or the stream specified by <code>options</code>.</p>',
        body: '<h2>Options</h2>\n\n<ul>\n<li><code>stream</code> defaulting to <em>stdout</em></li>\n</ul>\n\n<h2>Examples</h2>\n\n<pre><code>mymodule.write(\'foo\')\nmymodule.write(\'foo\', { stream: process.stderr })\n</code></pre>' }
 ```
+
+### Tags
+
+  Dox also supports JSdoc-style tags. Currently only __@api__ is special-cased, providing the `comment.isPrivate` boolean so you may omit "private" utilities etc.
+
+```js
+
+/**
+ * Output the given `str` to _stdout_
+ * or the stream specified by `options`.
+ * 
+ * @param {String} str
+ * @param {Object} options
+ * @return {Object} exports for chaining
+ */
+
+exports.write = function(str, options) {
+  options = options || {};
+  (options.stream || process.stdout).write(str);
+  return this;
+};
+```
+
+yields:
+
+```js
+tags: 
+   [ { type: 'param',
+       types: [ 'String' ],
+       name: 'str',
+       description: '' },
+     { type: 'param',
+       types: [ 'Object' ],
+       name: 'options',
+       description: '' },
+     { type: 'return',
+       types: [ 'Object' ],
+       description: 'exports for chaining' },
+     { type: 'api',
+       visibility: 'public' } ]
+```
