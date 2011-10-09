@@ -43,31 +43,48 @@ exports.escape = function(html){
 };
 ```
 
-output using `--debug` (json is too hard to read):
+output:
 
 ```js
-[ { tags: 
-     [ { type: [32m'param'[39m,
-         types: [ [32m'String'[39m ],
-         name: [32m'html'[39m,
-         description: [32m'string to be escaped'[39m },
-       { type: [32m'return'[39m,
-         types: [ [32m'String'[39m ],
-         description: [32m'escaped html'[39m },
-       { type: [32m'api'[39m,
-         visibility: [32m'public'[39m } ],
-    description: 
-     { full: [32m'<p>Escape the given <code>html</code>.</p>\n\n<h2>Examples</h2>\n\n<pre><code>utils.escape(\'&amp;lt;script&amp;gt;&amp;lt;/script&amp;gt;\')\n// =&amp;gt; \'&amp;lt;script&amp;gt;&amp;lt;/script&amp;gt;\'\n</code></pre>'[39m,
-       summary: [32m'<p>Escape the given <code>html</code>.</p>'[39m,
-       body: [32m'<h2>Examples</h2>\n\n<pre><code>utils.escape(\'&amp;lt;script&amp;gt;&amp;lt;/script&amp;gt;\')\n// =&amp;gt; \'&amp;lt;script&amp;gt;&amp;lt;/script&amp;gt;\'\n</code></pre>'[39m },
-    isPrivate: [33mfalse[39m,
-    ignore: [33mfalse[39m,
-    code: [32m'exports.escape = function(html){\n  return String(html)\n    .replace(/&(?!\\w+;)/g, \'&amp;\')\n    .replace(/</g, \'&lt;\')\n    .replace(/>/g, \'&gt;\');\n};'[39m,
-    ctx: 
-     { type: [32m'method'[39m,
-       receiver: [32m'exports'[39m,
-       name: [32m'escape'[39m,
-       string: [32m'exports.escape()'[39m } } ]
+[
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "String"
+        ],
+        "name": "html",
+        "description": "string to be escaped"
+      },
+      {
+        "type": "return",
+        "types": [
+          "String"
+        ],
+        "description": "escaped html"
+      },
+      {
+        "type": "api",
+        "visibility": "public"
+      }
+    ],
+    "description": {
+      "full": "<p>Escape the given <code>html</code>.</p>\n\n<h2>Examples</h2>\n\n<pre><code>utils.escape('&amp;lt;script&amp;gt;&amp;lt;/script&amp;gt;')\n// =&amp;gt; '&amp;lt;script&amp;gt;&amp;lt;/script&amp;gt;'\n</code></pre>",
+      "summary": "<p>Escape the given <code>html</code>.</p>",
+      "body": "<h2>Examples</h2>\n\n<pre><code>utils.escape('&amp;lt;script&amp;gt;&amp;lt;/script&amp;gt;')\n// =&amp;gt; '&amp;lt;script&amp;gt;&amp;lt;/script&amp;gt;'\n</code></pre>"
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "exports.escape = function(html){\n  return String(html)\n    .replace(/&(?!\\w+;)/g, '&amp;')\n    .replace(/</g, '&lt;')\n    .replace(/>/g, '&gt;');\n};",
+    "ctx": {
+      "type": "method",
+      "receiver": "exports",
+      "name": "escape",
+      "string": "exports.escape()"
+    }
+  }
+]
 ```
 
 This output can then be passed to a template for rendering. Look below at the "Properties" section for details.
