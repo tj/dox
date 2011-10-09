@@ -267,6 +267,14 @@ ctx:
    string: 'User()' } }
 ```
 
+```js
+ctx: 
+ { type: 'method',
+   constructor: 'User',
+   name: 'toString',
+   string: 'User.prototype.toString()' } }
+```
+
 ### Ignore
 
 Comments and their associated bodies of code may be flagged with "!" to be considered worth ignoring, these are typically things like file comments containing copyright etc, however you of course can output them in your templates if you want.
