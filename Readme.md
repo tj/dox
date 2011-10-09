@@ -85,7 +85,7 @@ Options:
 
   -h, --help     output usage information
   -v, --version  output the version number
-  -D, --debug    output parsed comments for debugging
+  -d, --debug    output parsed comments for debugging
 
 Examples:
 
@@ -205,4 +205,22 @@ tags:
        description: 'exports for chaining' },
      { type: 'api',
        visibility: 'public' } ]
+```
+
+### Ignore
+
+Comments and their associated bodies of code may be flagged with "!" to be considered worth ignoring, these are typically things like file comments containing copyright etc, however you of course can output them in your templates if you want.
+
+```
+/**
+ * Not ignored.
+ */
+```
+
+vs
+
+```
+/*!
+ * Ignored.
+ */
 ```

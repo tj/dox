@@ -12,7 +12,7 @@ var program = require('commander')
 
 program
   .version(dox.version)
-  .option('-D, --debug', 'output parsed comments for debugging');
+  .option('-d, --debug', 'output parsed comments for debugging');
 
 // examples
 
