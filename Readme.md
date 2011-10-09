@@ -13,6 +13,11 @@ Install from npm:
 `dox(1)` operates over stdio:
 
     $ dox < utils.js
+    ...JSON... 
+
+ to inspect the generated data you can use the `--debug` flag, which is easier to read than the JSON output:
+ 
+     $ dox --debug < utils.js 
 
 utils.js:
 
