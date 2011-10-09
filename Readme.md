@@ -207,6 +207,37 @@ tags:
        visibility: 'public' } ]
 ```
 
+### Code
+
+ The `.code` property is the code following the comment block, in our previous examples:
+
+```js
+exports.write = function(str, options) {
+  options = options || {};
+  (options.stream || process.stdout).write(str);
+  return this;
+};
+```
+
+### Ctx
+
+  The `.ctx` object indicates the context of the code block, is it a method, a function, a variable etc. Below are some examples:
+
+```js
+exports.write = function(str, options) {
+};
+```
+
+yields:
+
+```js
+ctx: 
+ { type: 'method',
+   receiver: 'exports',
+   name: 'write',
+   string: 'exports.write()' } }
+```
+
 ### Ignore
 
 Comments and their associated bodies of code may be flagged with "!" to be considered worth ignoring, these are typically things like file comments containing copyright etc, however you of course can output them in your templates if you want.
