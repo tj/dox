@@ -121,7 +121,7 @@ Examples:
  */
 
 exports.write = function(str) {
-  console.log(str);
+  process.stdout.write(str);
 };
 ````
 yields:
@@ -131,4 +131,37 @@ description:
      { full: '<p>Output the given <code>str</code> to <em>stdout</em>.</p>',
        summary: '<p>Output the given <code>str</code> to <em>stdout</em>.</p>',
        body: '' },
+```
+
+  Large descriptions might look something like the following, where the "summary" is still the first paragraph, the remaining description becomes the "body". Keep in mind this _is_ markdown, so you can indent code, use lists, links, etc. Dox also augments markdown, allowing "Some Title:\n" to form a header.
+
+```js
+/**
+ * Output the given `str` to _stdout_
+ * or the stream specified by `options`.
+ * 
+ * Options:
+ * 
+ *   - `stream` defaulting to _stdout_
+ * 
+ * Examples:
+ * 
+ *     mymodule.write('foo')
+ *     mymodule.write('foo', { stream: process.stderr })
+ * 
+ */
+
+exports.write = function(str, options) {
+  options = options || {};
+  (options.stream || process.stdout).write(str);
+};
+```
+
+yields:
+
+```js
+description: 
+     { full: '<p>Output the given <code>str</code> to <em>stdout</em><br />or the stream specified by <code>options</code>.</p>\n\n<h2>Options</h2>\n\n<ul>\n<li><code>stream</code> defaulting to <em>stdout</em></li>\n</ul>\n\n<h2>Examples</h2>\n\n<pre><code>mymodule.write(\'foo\')\nmymodule.write(\'foo\', { stream: process.stderr })\n</code></pre>',
+       summary: '<p>Output the given <code>str</code> to <em>stdout</em><br />or the stream specified by <code>options</code>.</p>',
+       body: '<h2>Options</h2>\n\n<ul>\n<li><code>stream</code> defaulting to <em>stdout</em></li>\n</ul>\n\n<h2>Examples</h2>\n\n<pre><code>mymodule.write(\'foo\')\nmymodule.write(\'foo\', { stream: process.stderr })\n</code></pre>' }
 ```
