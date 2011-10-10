@@ -1,4 +1,9 @@
 
+0.1.1 / 2011-10-10 
+==================
+
+  * Fixed: colons in comment lines not intended as headers [Evan Owen]
+
 0.0.5 / 2011-03-02 
 ==================
 
