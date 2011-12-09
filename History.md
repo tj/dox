@@ -1,4 +1,10 @@
 
+0.1.3 / 2011-12-08 
+==================
+
+  * Added: allow arbitrary tags [logicalparadox]
+  * Fixed function whitespace [TooTallNate]
+
 0.1.2 / 2011-10-22 
 ==================
 
