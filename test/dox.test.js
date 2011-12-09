@@ -123,7 +123,7 @@ module.exports = {
     fixture('d.js', function(err, str){
       var comments = dox.parseComments(str);
       var first = comments.shift();
-      first.tags.should.have.length(3);
+      first.tags.should.have.length(4);
       first.description.full.should.equal('<p>Parse tag type string "{Array|Object}" etc.</p>');
       first.description.summary.should.equal('<p>Parse tag type string "{Array|Object}" etc.</p>');
       first.description.body.should.equal('');
@@ -242,5 +242,11 @@ module.exports = {
     tag.type.should.equal('return');
     tag.types.should.eql(['String']);
     tag.description.should.equal('a normal string');
+  },
+  
+  'test .parseTag() default': function(){
+    var tag = dox.parseTag('@hello universe is better than world');
+    tag.type.should.equal('hello');
+    tag.string.should.equal('universe is better than world');
   }
 };
