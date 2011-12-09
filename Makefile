@@ -1,7 +1,12 @@
 
+TESTS = test/*.test.js
+REPORTER = dot
+
 test:
-	@./node_modules/.bin/expresso \
-	  -I support
+	@NODE_ENV=test ./node_modules/.bin/mocha \
+		--ui exports \
+		--reporter $(REPORTER) \
+		$(TESTS)
 
 docs:
 	@./bin/dox \
