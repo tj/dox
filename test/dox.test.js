@@ -233,5 +233,30 @@ module.exports = {
     tag.type.should.equal('return');
     tag.types.should.eql(['String']);
     tag.description.should.equal('a normal string');
+  },
+
+  'test .parseTag() @augments': function(){
+    var tag = dox.parseTag('@augments otherClass');
+    tag.type.should.equal('augments');
+    tag.otherClass.should.equal('otherClass')
+  },
+
+  'test .parseTag() @author': function(){
+    var tag = dox.parseTag('@author Bob Bobson');
+    tag.type.should.equal('author');
+    tag.name.should.equal('Bob Bobson');
+  },
+
+  'test .parseTag() @borrows': function(){
+    var tag = dox.parseTag('@borrows foo as bar');
+    tag.type.should.equal('borrows');
+    tag.otherMemberName.should.equal('foo');
+    tag.thisMemberName.should.equal('bar');
+  },
+
+  'test .parseTag() @memberOf': function(){
+    var tag = dox.parseTag('@memberOf Foo.bar')
+    tag.type.should.equal('memberOf')
+    tag.parent.should.equal('Foo.bar')
   }
 };
