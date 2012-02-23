@@ -6,7 +6,7 @@
   , "bin": { "dox": "./bin/dox" }
   , "dependencies": {
       "github-flavored-markdown": ">= 0.0.1"
-    , "commander": "0.3.3"
+    , "commander": "0.5.2"
   }
   , "devDependencies": {
       "mocha": "*"
