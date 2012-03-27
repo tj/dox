@@ -16,15 +16,14 @@ module.exports = {
     dox.version.should.match(/^\d+\.\d+\.\d+$/);
   },
   
-  'test .parseComments() blocks': function(){
+  'test .parseComments() blocks': function(done){
     fixture('a.js', function(err, str){
       var comments = dox.parseComments(str)
         , file = comments.shift()
         , version = comments.shift();
-
       file.should.have.property('ignore', true);
-      file.description.full.should.equal('<p>A<br />Copyright (c) 2010 Author Name &lt;Author Email&gt;<br />MIT Licensed</p>');
-      file.description.summary.should.equal('<p>A<br />Copyright (c) 2010 Author Name &lt;Author Email&gt;<br />MIT Licensed</p>');
+      file.description.full.should.equal('<p>A<br />Copyright (c) 2010 Author Name <Author Email><br />MIT Licensed</p>');
+      file.description.summary.should.equal('<p>A<br />Copyright (c) 2010 Author Name <Author Email><br />MIT Licensed</p>');
       file.description.body.should.equal('');
       file.tags.should.be.empty;
 
@@ -33,10 +32,11 @@ module.exports = {
       version.description.summary.should.equal('<p>Library version.</p>');
       version.description.body.should.equal('');
       version.tags.should.be.empty;
+      done();
     });
   },
   
-  'test .parseComments() tags': function(){
+  'test .parseComments() tags': function(done){
     fixture('b.js', function(err, str){
       var comments = dox.parseComments(str);
 
@@ -64,16 +64,20 @@ module.exports = {
       parse.tags[1].type.should.equal('return');
       parse.tags[1].types.should.eql(['String']);
       parse.tags[2].visibility.should.equal('public');
+      done();
     });
   },
 
-  'test .parseComments() complex': function(){
+  'test .parseComments() complex': function(done){
     fixture('c.js', function(err, str){
       var comments = dox.parseComments(str);
 
       var file = comments.shift();
+
       file.tags.should.be.empty;
-      file.description.full.should.equal('<p>Dox<br />Copyright (c) 2010 TJ Holowaychuk &lt;<a href=\'mailto:tj@vision-media.ca\'>tj@vision-media.ca</a>&gt;<br />MIT Licensed</p>');
+      // the following doesn't work as gh-md now obfuscates emails different on every pass
+      //file.description.full.should.equal('<p>Dox<br />Copyright (c) 2010 TJ Holowaychuk <a href=\'mailto:tj@vision-media.ca\'>tj@vision-media.ca</a><br />MIT Licensed</p>');
+      file.description.full.should.be.a('string');
       file.ignore.should.be.true;
 
       var mods = comments.shift();
@@ -111,12 +115,15 @@ module.exports = {
       escape.description.full.should.equal('<p>Escape the given <code>html</code>.</p>');
       escape.ctx.type.should.equal('function');
       escape.ctx.name.should.equal('escape');
+      done();
     });
-
+  },
+  
+  'test .parseComments() tags': function (done){
     fixture('d.js', function(err, str){
       var comments = dox.parseComments(str);
       var first = comments.shift();
-      first.tags.should.have.length(3);
+      first.tags.should.have.length(4);
       first.description.full.should.equal('<p>Parse tag type string "{Array|Object}" etc.</p>');
       first.description.summary.should.equal('<p>Parse tag type string "{Array|Object}" etc.</p>');
       first.description.body.should.equal('');
@@ -124,10 +131,11 @@ module.exports = {
       first.ctx.receiver.should.equal('exports');
       first.ctx.name.should.equal('parseTagTypes');
       first.code.should.equal('exports.parseTagTypes = function(str) {\n  return str\n    .replace(/[{}]/g, \'\')\n    .split(/ *[|,\\/] */);\n};');
+      done();
     });
   },
   
-  'test .parseComments() code': function(){
+  'test .parseComments() code': function(done){
     fixture('b.js', function(err, str){
       var comments = dox.parseComments(str)
         , version = comments.shift()
@@ -135,6 +143,7 @@ module.exports = {
 
       version.code.should.equal("exports.version = '0.0.1';");
       parse.code.should.equal('exports.parse = function(str) {\n  return "wahoo";\n}');
+      done();
     });
   },
 
@@ -258,5 +267,11 @@ module.exports = {
     var tag = dox.parseTag('@memberOf Foo.bar')
     tag.type.should.equal('memberOf')
     tag.parent.should.equal('Foo.bar')
+  },
+  
+  'test .parseTag() default': function(){
+    var tag = dox.parseTag('@hello universe is better than world');
+    tag.type.should.equal('hello');
+    tag.string.should.equal('universe is better than world');
   }
 };
