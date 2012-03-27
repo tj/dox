@@ -253,7 +253,7 @@ module.exports = {
   'test .parseTag() @author': function(){
     var tag = dox.parseTag('@author Bob Bobson');
     tag.type.should.equal('author');
-    tag.name.should.equal('Bob Bobson');
+    tag.string.should.equal('Bob Bobson');
   },
 
   'test .parseTag() @borrows': function(){
