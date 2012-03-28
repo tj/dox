@@ -1,4 +1,11 @@
 
+0.3.0 / 2012-03-27 
+==================
+
+  * Added __@memberOf__ [olivernn]
+  * Added __@arguments__ [olivernn]
+  * Added __@borrows__ [olivernn]
+
 0.2.0 / 2012-02-23 
 ==================
 
