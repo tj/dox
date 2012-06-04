@@ -176,10 +176,25 @@ module.exports = {
     ctx.name.should.equal('save');
   },
   
+  'test .parseCodeContext() prototype method in a namespace': function(){
+    var ctx = dox.parseCodeContext('App.User.prototype.save = function(){}');
+    ctx.type.should.equal('method');
+    ctx.constructor.should.equal('App.User');
+    ctx.name.should.equal('save');
+  },
+  
   'test .parseCodeContext() prototype property': function(){
     var ctx = dox.parseCodeContext('Database.prototype.enabled = true;\nasdf');
     ctx.type.should.equal('property');
     ctx.constructor.should.equal('Database');
+    ctx.name.should.equal('enabled');
+    ctx.value.should.equal('true');
+  },
+  
+  'test .parseCodeContext() prototype property in a namespace': function(){
+    var ctx = dox.parseCodeContext('App.Database.prototype.enabled = true;\nasdf');
+    ctx.type.should.equal('property');
+    ctx.constructor.should.equal('App.Database');
     ctx.name.should.equal('enabled');
     ctx.value.should.equal('true');
   },
