@@ -283,5 +283,14 @@ module.exports = {
     var tag = dox.parseTag('@hello universe is better than world');
     tag.type.should.equal('hello');
     tag.string.should.equal('universe is better than world');
-  }
+  },
+
+  'test .parseComments() code with no comments': function(done){
+    fixture('uncommented.js', function(err, str){
+      var comments = dox.parseComments(str)
+        , all = comments.shift();
+      all.code.should.equal("function foo() {\n  doSomething();\n}");
+      done();
+    });
+  },
 };
