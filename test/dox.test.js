@@ -110,6 +110,15 @@ module.exports = {
       parseComment.description.full.should.equal('<p>Parse the given comment <code>str</code>.</p>\n\n<h2>The comment object returned contains the following</h2>\n\n<ul>\n<li><code>tags</code>  array of tag objects</li>\n<li><code>description</code> the first line of the comment</li>\n<li><code>body</code> lines following the description</li>\n<li><code>content</code> both the description and the body</li>\n<li><code>isPrivate</code> true when "@api private" is used</li>\n</ul>');
       parseComment.description.body.should.equal('<h2>The comment object returned contains the following</h2>\n\n<ul>\n<li><code>tags</code>  array of tag objects</li>\n<li><code>description</code> the first line of the comment</li>\n<li><code>body</code> lines following the description</li>\n<li><code>content</code> both the description and the body</li>\n<li><code>isPrivate</code> true when "@api private" is used</li>\n</ul>');
 
+      var parseTag = comments.shift();
+      
+      // Should be the comment be parsed ?
+      var shouldNotFail = comments.shift();
+
+      var parseTagTypes = comments.shift();
+      parseTagTypes.tags.should.have.length(3);
+      parseTagTypes.description.full.should.equal('<p>Parse tag type string \"{Array|Object}\" etc.</p>');
+      
       var escape = comments.pop();
       escape.tags.should.have.length(3);
       escape.description.full.should.equal('<p>Escape the given <code>html</code>.</p>');
