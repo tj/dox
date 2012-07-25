@@ -302,4 +302,13 @@ module.exports = {
       done();
     });
   },
+
+  'test .parseComments() with a simple single line comment in code': function(done){
+    fixture('singleline.js', function(err, str){
+      var comments = dox.parseComments(str)
+        , all = comments.shift();
+      all.code.should.equal("function foo() {\n  // Maybe useful\n  doSomething();\n}");
+      done();
+    });
+  },
 };
