@@ -89,6 +89,78 @@ output:
 
 This output can then be passed to a template for rendering. Look below at the "Properties" section for details.
 
+## CoffeeScript
+
+    $ dox -c < utils.coffee
+    ...JSON... 
+
+utils.coffee:
+
+```coffee
+###
+# Escape the given `html`.
+#
+# Examples:
+#
+#     utils.escape('<script></script>')
+#     // => '&lt;script&gt;&lt;/script&gt;'
+#
+# @param {String} html string to be escaped
+# @return {String} escaped html
+# @api public
+###
+
+exports.escape = (html) ->
+  return String(html)
+    .replace(/&(?!\w+;)/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+```
+
+output:
+
+```json
+[
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "String"
+        ],
+        "name": "html",
+        "description": "string to be escaped"
+      },
+      {
+        "type": "return",
+        "types": [
+          "String"
+        ],
+        "description": "escaped html"
+      },
+      {
+        "type": "api",
+        "visibility": "public"
+      }
+    ],
+    "description": {
+      "full": "<p>Escape the given <code>html</code>.</p>\n\n<h2>Examples</h2>\n\n<pre><code>utils.escape('&lt;script&gt;&lt;/script&gt;')\n// =&gt; '&amp;lt;script&amp;gt;&amp;lt;/script&amp;gt;'\n</code></pre>",
+      "summary": "<p>Escape the given <code>html</code>.</p>",
+      "body": "<h2>Examples</h2>\n\n<pre><code>utils.escape('&lt;script&gt;&lt;/script&gt;')\n// =&gt; '&amp;lt;script&amp;gt;&amp;lt;/script&amp;gt;'\n</code></pre>"
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "exports.escape = (html) ->\n  return String(html)\n    .replace(/&(?!\\w+;)/g, '&amp;')\n    .replace(/</g, '&lt;')\n    .replace(/>/g, '&gt;')",
+    "ctx": {
+      "type": "method",
+      "receiver": "exports",
+      "name": "escape",
+      "string": "exports.escape()"
+    }
+  }
+]
+```
+
 ## Usage
 
 ```
@@ -99,6 +171,8 @@ Options:
 
   -h, --help     output usage information
   -v, --version  output the version number
+  -c, --coffee   input a "CoffeeScript" code instead of "JavaScript"
+  -r, --raw      output "raw" comments, leaving the markdown intact
   -d, --debug    output parsed comments for debugging
 
 Examples:
