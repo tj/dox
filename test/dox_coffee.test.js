@@ -223,4 +223,49 @@ module.exports = {
       done();
     });
   },
+  
+  'test .parseCommentsCoffee() for CoffeeScript class syntax': function(done){
+    fixture('class.coffee', function(err, str){
+      var comments = dox.parseCommentsCoffee(str);
+
+      var klass = comments.shift();
+      klass.description.summary.should.equal('<p>An Animal</p>');
+      klass.description.full.should.equal('<p>An Animal</p>');
+      klass.tags.should.have.length(1);
+      klass.tags[0].type.should.equal('param');
+      klass.tags[0].types.should.eql(['String']);
+      klass.tags[0].name.should.equal('name');
+      klass.tags[0].description.should.equal('its name');
+      klass.ctx.type.should.equal('class');
+      klass.ctx.name.should.equal('Animal');
+      klass.code.should.equal('class Animal\n  constructor: (@name) ->');
+
+      var instance_method = comments.shift();
+      instance_method.description.summary.should.equal('<p>moves</p>');
+      instance_method.description.full.should.equal('<p>moves</p>');
+      instance_method.tags.should.have.length(1);
+      instance_method.tags[0].type.should.equal('param');
+      instance_method.tags[0].types.should.eql(['Number']);
+      instance_method.tags[0].name.should.equal('meters');
+      instance_method.tags[0].description.should.equal('move amount');
+      instance_method.ctx.type.should.equal('method');
+      instance_method.ctx.constructor.should.equal('Animal');
+      instance_method.ctx.name.should.equal('move');
+      instance_method.code.should.equal('move: (meters) ->\n  console.log @name + " moved #{meters}m."');
+
+      var static_method = comments.shift();
+      static_method.description.summary.should.equal('<p>create</p>');
+      static_method.description.full.should.equal('<p>create</p>');
+      static_method.tags.should.have.length(1);
+      static_method.tags[0].type.should.equal('return');
+      static_method.tags[0].types.should.eql(['Animal']);
+      static_method.tags[0].description.should.equal('A new animal instance');
+      static_method.ctx.type.should.equal('method');
+      static_method.ctx.receiver.should.equal('Animal');
+      static_method.ctx.name.should.equal('create');
+      static_method.code.should.equal('@create: (name) ->\n  return new Animal(name)');
+
+      done();
+    });
+  },
 };
