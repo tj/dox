@@ -75,7 +75,7 @@ exports.parseComments = function(js){
 /**
  * Parse the given comment `str`.
  *
- * The comment object returned contains the following:
+ * ## The comment object returned contains the following
  *
  *  - `tags`  array of tag objects
  *  - `description` the first line of the comment

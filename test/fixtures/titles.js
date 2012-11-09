@@ -2,12 +2,11 @@
 /**
  * Description.
  * 
- * Some examples:
+ * ## Some examples
  * 
  *  foo
  * 
- * Some longer thing
- * for example:
+ * ## Some longer thing for example
  * 
  *  bar
  * 
