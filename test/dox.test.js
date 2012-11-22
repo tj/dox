@@ -311,4 +311,21 @@ module.exports = {
       done();
     });
   },
+
+  'test nesting': function(done){
+    fixture('nesting.js', function(err, str){
+      var comments = dox.parseComments(str);
+
+      comments[0].path.should.equal('/');
+      comments[1].path.should.equal('/<anonymous>/');
+      comments[2].path.should.equal('/<anonymous>/AA/');
+      comments[3].path.should.equal('/<anonymous>/');
+      comments[4].path.should.equal('/<anonymous>/BB/');
+      comments[5].path.should.equal('/<anonymous>/BB/');
+      comments[6].path.should.equal('/<anonymous>/BB/CCC/');
+      comments[7].path.should.equal('/');
+      comments[8].path.should.equal('/B/');
+      done();
+    });
+  }
 };
