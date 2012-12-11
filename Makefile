@@ -8,6 +8,12 @@ test:
 		--reporter $(REPORTER) \
 		$(TESTS)
 
+watch:
+	@NODE_ENV=test ./node_modules/.bin/mocha \
+		--ui exports \
+		--reporter $(REPORTER) \
+		--growl \
+		watch
 docs:
 	@./bin/dox \
 	  --verbose \
@@ -21,4 +27,4 @@ doc-server:
 	@./bin/dox \
 		--server docs
 
-.PHONY: test docs
+.PHONY: test watch docs
