@@ -15,7 +15,7 @@ module.exports = {
   'test .version': function(){
     dox.version.should.match(/^\d+\.\d+\.\d+$/);
   },
-  
+
   'test .parseComments() blocks': function(done){
     fixture('a.js', function(err, str){
       var comments = dox.parseComments(str)
@@ -35,7 +35,7 @@ module.exports = {
       done();
     });
   },
-  
+
   'test .parseComments() tags': function(done){
     fixture('b.js', function(err, str){
       var comments = dox.parseComments(str);
@@ -111,14 +111,14 @@ module.exports = {
       parseComment.description.body.should.equal('<h2>The comment object returned contains the following</h2>\n\n<ul>\n<li><code>tags</code>  array of tag objects</li>\n<li><code>description</code> the first line of the comment</li>\n<li><code>body</code> lines following the description</li>\n<li><code>content</code> both the description and the body</li>\n<li><code>isPrivate</code> true when "@api private" is used</li>\n</ul>');
 
       var parseTag = comments.shift();
-      
+
       // Should be the comment be parsed ?
       var shouldNotFail = comments.shift();
 
       var parseTagTypes = comments.shift();
       parseTagTypes.tags.should.have.length(3);
       parseTagTypes.description.full.should.equal('<p>Parse tag type string \"{Array|Object}\" etc.</p>');
-      
+
       var escape = comments.pop();
       escape.tags.should.have.length(3);
       escape.description.full.should.equal('<p>Escape the given <code>html</code>.</p>');
@@ -127,7 +127,7 @@ module.exports = {
       done();
     });
   },
-  
+
   'test .parseComments() tags': function (done){
     fixture('d.js', function(err, str){
       var comments = dox.parseComments(str);
@@ -143,7 +143,7 @@ module.exports = {
       done();
     });
   },
-  
+
   'test .parseComments() code': function(done){
     fixture('b.js', function(err, str){
       var comments = dox.parseComments(str)
@@ -171,20 +171,20 @@ module.exports = {
     ctx.type.should.equal('function');
     ctx.name.should.equal('foo');
   },
-  
+
   'test .parseCodeContext() function expression': function(){
     var ctx = dox.parseCodeContext('var foo = function(){\n\n}');
     ctx.type.should.equal('function');
     ctx.name.should.equal('foo');
   },
-  
+
   'test .parseCodeContext() prototype method': function(){
     var ctx = dox.parseCodeContext('User.prototype.save = function(){}');
     ctx.type.should.equal('method');
     ctx.constructor.should.equal('User');
     ctx.name.should.equal('save');
   },
-  
+
   'test .parseCodeContext() prototype property': function(){
     var ctx = dox.parseCodeContext('Database.prototype.enabled = true;\nasdf');
     ctx.type.should.equal('property');
@@ -192,14 +192,14 @@ module.exports = {
     ctx.name.should.equal('enabled');
     ctx.value.should.equal('true');
   },
-  
+
   'test .parseCodeContext() method': function(){
     var ctx = dox.parseCodeContext('user.save = function(){}');
     ctx.type.should.equal('method');
     ctx.receiver.should.equal('user');
     ctx.name.should.equal('save');
   },
-  
+
   'test .parseCodeContext() property': function(){
     var ctx = dox.parseCodeContext('user.name = "tj";\nasdf');
     ctx.type.should.equal('property');
@@ -207,7 +207,7 @@ module.exports = {
     ctx.name.should.equal('name');
     ctx.value.should.equal('"tj"');
   },
-  
+
   'test .parseCodeContext() declaration': function(){
     var ctx = dox.parseCodeContext('var name = "tj";\nasdf');
     ctx.type.should.equal('declaration');
@@ -219,35 +219,35 @@ module.exports = {
     var tag = dox.parseTag('@constructor');
     tag.type.should.equal('constructor');
   },
-  
+
   'test .parseTag() @see': function(){
     var tag = dox.parseTag('@see http://google.com');
     tag.type.should.equal('see');
     tag.title.should.equal('');
     tag.url.should.equal('http://google.com');
-    
+
     var tag = dox.parseTag('@see Google http://google.com');
     tag.type.should.equal('see');
     tag.title.should.equal('Google');
     tag.url.should.equal('http://google.com');
-    
+
     var tag = dox.parseTag('@see exports.parseComment');
     tag.type.should.equal('see');
     tag.local.should.equal('exports.parseComment');
    },
-  
+
   'test .parseTag() @api': function(){
     var tag = dox.parseTag('@api private');
     tag.type.should.equal('api');
     tag.visibility.should.equal('private');
   },
-  
+
   'test .parseTag() @type': function(){
     var tag = dox.parseTag('@type {String}');
     tag.type.should.equal('type');
     tag.types.should.eql(['String']);
   },
-  
+
   'test .parseTag() @param': function(){
     var tag = dox.parseTag('@param {String|Buffer}');
     tag.type.should.equal('param');
@@ -255,7 +255,7 @@ module.exports = {
     tag.name.should.equal('');
     tag.description.should.equal('');
   },
-  
+
   'test .parseTag() @return': function(){
     var tag = dox.parseTag('@return {String} a normal string');
     tag.type.should.equal('return');
@@ -287,7 +287,7 @@ module.exports = {
     tag.type.should.equal('memberOf')
     tag.parent.should.equal('Foo.bar')
   },
-  
+
   'test .parseTag() default': function(){
     var tag = dox.parseTag('@hello universe is better than world');
     tag.type.should.equal('hello');
@@ -308,6 +308,21 @@ module.exports = {
       var comments = dox.parseComments(str)
         , all = comments.shift();
       all.code.should.equal("function foo() {\n  // Maybe useful\n  doSomething();\n}");
+      done();
+    });
+  },
+
+  'test .parseComments() with an indented code block': function(done){
+    fixture('indented.js', function(err, str){
+      var comments = dox.parseComments(str, {
+        keepIndent: true
+      })
+        , all = comments.shift();
+      all.code.indexOf("  ").should.equal(0);
+      // test with the option off
+      comments = dox.parseComments(str);
+      all = comments.shift();
+      all.code.indexOf("return").should.equal(0);
       done();
     });
   },
