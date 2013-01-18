@@ -1,4 +1,9 @@
 
+0.4.2 / 2013-01-18 
+==================
+
+  * Prevent error when using --api & comments have no example code.
+
 0.4.1 / 2012-11-11 
 ==================
 
