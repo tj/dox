@@ -311,4 +311,12 @@ module.exports = {
       done();
     });
   },
+  'test .api() without inline code in comments': function(done) {
+    fixture('a.js', function(err, str){
+      var comments = dox.parseComments(str);
+      var apiDocs = dox.api(comments);
+      apiDocs.should.equal("  - [exports.version](#exportsversion)\n\n## exports.version\n\n  <p>Library version.</p>\n");
+      done();
+    });
+  }
 };
