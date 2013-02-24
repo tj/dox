@@ -9,6 +9,16 @@ var obj1 = {
   add: function(a, b) {
     return a + b;
   },
+
+  /**
+   * Literal function "subtract" with space
+   * @param {number} a first number
+   * @param {number} b second number
+   * @return {number} a less b
+   */
+  subtract: function (a, b) {
+    return a - b;
+  },
   
   /**
    * Literal property

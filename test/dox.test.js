@@ -175,10 +175,15 @@ module.exports = {
     fixture('literal.js', function(err, str){
       var comments = dox.parseComments(str);
       
-      var method = comments.shift();
-      method.ctx.type.should.equal('method');
-      method.ctx.name.should.equal('add');
-      method.ctx.string.should.equal("add()");
+      var addMethod = comments.shift();
+      addMethod.ctx.type.should.equal('method');
+      addMethod.ctx.name.should.equal('add');
+      addMethod.ctx.string.should.equal("add()");
+
+      var subMethod = comments.shift();
+      subMethod.ctx.type.should.equal('method');
+      subMethod.ctx.name.should.equal('subtract');
+      subMethod.ctx.string.should.equal("subtract()");
       
       var property = comments.shift();
       property.ctx.type.should.equal('property');
