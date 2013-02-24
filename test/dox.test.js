@@ -185,6 +185,22 @@ module.exports = {
       property.ctx.name.should.equal('count');
       property.ctx.value.should.equal("42");
       property.ctx.string.should.equal('count');
+
+      comments.shift();
+      
+      var lendedMethod = comments.shift();
+      lendedMethod.ctx.type.should.equal('method');
+      lendedMethod.ctx.name.should.equal('add');
+      lendedMethod.ctx.string.should.equal("add()");
+      lendedMethod.lends.should.equal("User.prototype");
+      
+      var lendedProperty = comments.shift();
+      lendedProperty.ctx.type.should.equal('property');
+      lendedProperty.ctx.name.should.equal('count');
+      lendedProperty.ctx.value.should.equal("42");
+      lendedProperty.ctx.string.should.equal('count');
+      lendedProperty.lends.should.equal("User.prototype");
+
       done();
     });
   },
