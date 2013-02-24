@@ -55,8 +55,8 @@ module.exports = {
 
       var parse = comments.shift();
       parse.description.summary.should.equal('<p>Parse the given <code>str</code>.</p>');
-      parse.description.body.should.equal('<h2>Examples</h2>\n\n<pre><code>parse(str)\n// =&amp;gt; "wahoo"\n</code></pre>');
-      parse.description.full.should.equal('<p>Parse the given <code>str</code>.</p>\n\n<h2>Examples</h2>\n\n<pre><code>parse(str)\n// =&amp;gt; "wahoo"\n</code></pre>');
+      parse.description.body.should.equal('<h2>Examples</h2>\n\n<pre><code>parse(str)\n// =&gt; "wahoo"\n</code></pre>');
+      parse.description.full.should.equal('<p>Parse the given <code>str</code>.</p>\n\n<h2>Examples</h2>\n\n<pre><code>parse(str)\n// =&gt; "wahoo"\n</code></pre>');
       parse.tags[0].type.should.equal('param');
       parse.tags[0].name.should.equal('str');
       parse.tags[0].description.should.equal('to parse');
@@ -64,6 +64,11 @@ module.exports = {
       parse.tags[1].type.should.equal('return');
       parse.tags[1].types.should.eql(['String']);
       parse.tags[2].visibility.should.equal('public');
+      parse.ctx.type.should.equal('method');
+      parse.ctx.receiver.should.equal('exports');
+      parse.ctx.name.should.equal('parse');
+      parse.ctx.string.should.equal('exports.parse()');
+      
       done();
     });
   },
@@ -128,7 +133,7 @@ module.exports = {
     });
   },
   
-  'test .parseComments() tags': function (done){
+  'test .parseComments() tagTypes': function (done){
     fixture('d.js', function(err, str){
       var comments = dox.parseComments(str);
       var first = comments.shift();
@@ -162,6 +167,24 @@ module.exports = {
       comments[0].description.body.should.include('<h2>Some examples</h2>');
       comments[0].description.body.should.not.include('<h2>for example</h2>');
       comments[0].description.body.should.include('<h2>Some longer thing for example</h2>');
+      done();
+    });
+  },
+
+  'test .parseComments() literal': function(done){
+    fixture('literal.js', function(err, str){
+      var comments = dox.parseComments(str);
+      
+      var method = comments.shift();
+      method.ctx.type.should.equal('method');
+      method.ctx.name.should.equal('add');
+      method.ctx.string.should.equal("add()");
+      
+      var property = comments.shift();
+      property.ctx.type.should.equal('property');
+      property.ctx.name.should.equal('count');
+      property.ctx.value.should.equal("42");
+      property.ctx.string.should.equal('count');
       done();
     });
   },
