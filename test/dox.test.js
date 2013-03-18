@@ -12,10 +12,6 @@ function fixture(name, fn) {
 }
 
 module.exports = {
-  'test .version': function(){
-    dox.version.should.match(/^\d+\.\d+\.\d+$/);
-  },
-
   'test .parseComments() blocks': function(done){
     fixture('a.js', function(err, str){
       var comments = dox.parseComments(str)
