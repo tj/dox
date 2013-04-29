@@ -150,7 +150,7 @@ module.exports = {
 
       // constructor
       comments[0].description.full.should.equal('<p>Does a lot of foo</p>');
-      comments[0].ctx.type.should.be.equal('function');
+      comments[0].ctx.type.should.be.equal('constructor');
       comments[0].ctx.name.should.be.equal('Foo');
       comments[0].ctx.string.should.be.equal('Foo()');
 
