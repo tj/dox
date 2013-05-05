@@ -358,5 +358,30 @@ module.exports = {
       apiDocs.should.equal("  - [exports.version](#exportsversion)\n\n## exports.version\n\n  <p>Library version.</p>\n");
       done();
     });
+  },
+  'test .parseComments() on single star comments with singleStar=false': function (done) {
+    fixture('single.js', function(err, str){
+      var comments = dox.parseComments(str, { singleStar: false });
+
+      comments.should.have.lengthOf(1);
+      comments[0].tags.should.be.empty;
+      comments[0].code.should.be.equal(str.trim());
+      comments[0].description.full.should.be.empty;
+      done();
+    });
+  },
+  'test .parseComments() on single star comments no options': function (done) {
+    fixture('single.js', function(err, str){
+      var comments = dox.parseComments(str);
+
+      comments.should.have.lengthOf(1);
+      comments[0].tags[0].should.be.eql({
+          type: 'return'
+        , types: [ 'Object' ]
+        , description: 'description'
+      });
+      comments[0].description.full.should.be.equal('<p>foo description</p>');
+      done();
+    });
   }
 };
