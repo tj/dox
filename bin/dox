@@ -5,13 +5,14 @@
  */
 
 var program = require('commander')
+  , pkg = require('../package')
   , util = require('util')
   , dox = require('..');
 
 // options
 
 program
-  .version(dox.version)
+  .version(pkg.version)
   .option('-r, --raw', 'output "raw" comments, leaving the markdown intact')
   .option('-a, --api', 'output markdown readme documentation')
   .option('-d, --debug', 'output parsed comments for debugging');

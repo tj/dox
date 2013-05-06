@@ -1,4 +1,11 @@
 
+0.4.3 / 2013-03-18 
+==================
+
+  * fix dox(1) --version. Closes #91
+  * fix ctx.string on properties of a prototype
+  * add support tab-indented comments
+
 0.4.2 / 2013-01-18 
 ==================
 
