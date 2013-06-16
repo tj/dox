@@ -85,6 +85,7 @@ output:
     }
   }
 ]
+
 ```
 
 This output can then be passed to a template for rendering. Look below at the "Properties" section for details.
@@ -297,6 +298,19 @@ vs
 /*!
  * Ignored.
  */
+```
+
+### Programmatic Usage
+
+``` javascript
+
+var dox = require('dox'),
+    code = "...";
+
+var obj = dox.parseComments(code);
+
+// [{ tags:[ ... ], description, ... }, { ... }, ...]
+
 ```
 
 ### Running tests
