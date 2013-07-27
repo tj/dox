@@ -207,51 +207,51 @@ module.exports = {
   },
 
   'test .parseCodeContext() function statement': function(){
-    var ctx = dox.parseCodeContext('function foo(){\n\n}');
+    var ctx = dox.parseCodeContext('function $foo(){\n\n}');
     ctx.type.should.equal('function');
-    ctx.name.should.equal('foo');
+    ctx.name.should.equal('$foo');
   },
 
   'test .parseCodeContext() function expression': function(){
-    var ctx = dox.parseCodeContext('var foo = function(){\n\n}');
+    var ctx = dox.parseCodeContext('var $foo = function(){\n\n}');
     ctx.type.should.equal('function');
-    ctx.name.should.equal('foo');
+    ctx.name.should.equal('$foo');
   },
 
   'test .parseCodeContext() prototype method': function(){
-    var ctx = dox.parseCodeContext('User.prototype.save = function(){}');
+    var ctx = dox.parseCodeContext('$User.prototype.$save = function(){}');
     ctx.type.should.equal('method');
-    ctx.constructor.should.equal('User');
-    ctx.name.should.equal('save');
+    ctx.constructor.should.equal('$User');
+    ctx.name.should.equal('$save');
   },
 
   'test .parseCodeContext() prototype property': function(){
-    var ctx = dox.parseCodeContext('Database.prototype.enabled = true;\nasdf');
+    var ctx = dox.parseCodeContext('$Database.prototype.$enabled = true;\nasdf');
     ctx.type.should.equal('property');
-    ctx.constructor.should.equal('Database');
-    ctx.name.should.equal('enabled');
+    ctx.constructor.should.equal('$Database');
+    ctx.name.should.equal('$enabled');
     ctx.value.should.equal('true');
   },
 
   'test .parseCodeContext() method': function(){
-    var ctx = dox.parseCodeContext('user.save = function(){}');
+    var ctx = dox.parseCodeContext('$user.$save = function(){}');
     ctx.type.should.equal('method');
-    ctx.receiver.should.equal('user');
-    ctx.name.should.equal('save');
+    ctx.receiver.should.equal('$user');
+    ctx.name.should.equal('$save');
   },
 
   'test .parseCodeContext() property': function(){
-    var ctx = dox.parseCodeContext('user.name = "tj";\nasdf');
+    var ctx = dox.parseCodeContext('$user.$name = "tj";\nasdf');
     ctx.type.should.equal('property');
-    ctx.receiver.should.equal('user');
-    ctx.name.should.equal('name');
+    ctx.receiver.should.equal('$user');
+    ctx.name.should.equal('$name');
     ctx.value.should.equal('"tj"');
   },
 
   'test .parseCodeContext() declaration': function(){
-    var ctx = dox.parseCodeContext('var name = "tj";\nasdf');
+    var ctx = dox.parseCodeContext('var $name = "tj";\nasdf');
     ctx.type.should.equal('declaration');
-    ctx.name.should.equal('name');
+    ctx.name.should.equal('$name');
     ctx.value.should.equal('"tj"');
   },
 
