@@ -54,6 +54,15 @@ Foo.prototype = {
 };
 
 /**
+ * My only purpose is to check we do not inherit from any parent context.
+ *
+ * @returns {string}
+ */
+function breakingBad() {
+  return "Meth";
+}
+
+/**
  * Returns the last item.
  *
  * ```javascript

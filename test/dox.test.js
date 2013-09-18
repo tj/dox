@@ -173,7 +173,7 @@ module.exports = {
       var comments = dox.parseComments(str)
 
       comments.should.be.an.instanceOf(Array);
-      comments.should.have.lengthOf(7);
+      comments.should.have.lengthOf(8);
 
       // constructor
       comments[0].description.full.should.equal('<p>Luke, I am your constructor.</p>');
@@ -194,7 +194,7 @@ module.exports = {
       comments[2].ctx.string.should.be.equal('Foo.prototype.getFirst()');
 
       // getter function
-      comments[3].description.full.should.equal('<p>Returns the first item.<br>Acts as an ES5 alias of <code>Foo.prototype.getFirst</code> for feature sake.</p>');
+      comments[3].description.full.should.equal('<p>Returns the first item.<br />Acts as an ES5 alias of <code>Foo.prototype.getFirst</code> for feature sake.</p>');
       comments[3].ctx.type.should.be.equal('property');
       comments[3].ctx.name.should.be.equal('first');
       comments[3].ctx.string.should.be.equal('Foo.prototype.first');
@@ -211,11 +211,16 @@ module.exports = {
       comments[5].ctx.name.should.be.equal('method');
       comments[5].ctx.string.should.be.equal('Foo.prototype.random()');
 
+      // this should be a separated function
+      comments[6].description.full.should.equal('<p>My only purpose is to check we do not inherit from any parent context.</p>');
+      comments[6].ctx.type.should.be.equal('function');
+      comments[6].ctx.name.should.be.equal('breakingBad');
+
       // classical prototype function property
-      comments[6].description.full.should.equal('<p>Returns the last item.</p>\n\n<div class="highlight"><pre lang="javascript">var f = new Foo([1, 5, 10]);\n\nf.getLast() === 10;\n</pre></div>');
-      comments[6].ctx.type.should.be.equal('method');
-      comments[6].ctx.name.should.be.equal('method');
-      comments[6].ctx.string.should.be.equal('Foo.prototype.getLast()');
+      comments[7].description.full.should.equal('<p>Returns the last item.</p>\n\n<div class="highlight"><pre lang="javascript">var f = new Foo([1, 5, 10]);\n\nf.getLast() === 10;\n</pre></div>');
+      comments[7].ctx.type.should.be.equal('method');
+      comments[7].ctx.name.should.be.equal('method');
+      comments[7].ctx.string.should.be.equal('Foo.prototype.getLast()');
 
       done();
     });
