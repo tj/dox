@@ -184,7 +184,7 @@ module.exports = {
       // prototoype object
       comments[1].description.full.should.equal('<p>To be relevant or not to be. This is the question.</p>');
       comments[1].ctx.type.should.be.equal('prototype');
-      comments[1].ctx.name.should.be.equal('prototype');
+      comments[1].ctx.name.should.be.equal('Foo');
       comments[1].ctx.string.should.be.equal('Foo.prototype');
 
       // property as a named method function
