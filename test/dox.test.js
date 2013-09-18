@@ -176,36 +176,43 @@ module.exports = {
       comments.should.have.lengthOf(7);
 
       // constructor
+      comments[0].description.full.should.equal('<p>Luke, I am your constructor.</p>');
       comments[0].ctx.type.should.be.equal('function');
       comments[0].ctx.name.should.be.equal('Foo');
       comments[0].ctx.string.should.be.equal('Foo()');
 
       // prototoype object
+      comments[1].description.full.should.equal('<p>To be relevant or not to be. This is the question.</p>');
       comments[1].ctx.type.should.be.equal('prototype');
       comments[1].ctx.name.should.be.equal('prototype');
       comments[1].ctx.string.should.be.equal('Foo.prototype');
 
       // property as a named method function
+      comments[2].description.full.should.equal('<p>Returns the first item.</p>');
       comments[2].ctx.type.should.be.equal('method');
       comments[2].ctx.name.should.be.equal('getFirst');
       comments[2].ctx.string.should.be.equal('Foo.prototype.getFirst()');
 
       // getter function
+      comments[3].description.full.should.equal('<p>Returns the first item.<br>Acts as an ES5 alias of <code>Foo.prototype.getFirst</code> for feature sake.</p>');
       comments[3].ctx.type.should.be.equal('property');
       comments[3].ctx.name.should.be.equal('first');
       comments[3].ctx.string.should.be.equal('Foo.prototype.first');
 
       // setter function
+      comments[4].description.full.should.equal('<p>Sets an internal property.</p>');
       comments[4].ctx.type.should.be.equal('property');
       comments[4].ctx.name.should.be.equal('seed');
       comments[4].ctx.string.should.be.equal('Foo.prototype.seed');
 
       // property as an anonymous method function
+      comments[5].description.full.should.equal('<p>Anonymous function on property.</p>');
       comments[5].ctx.type.should.be.equal('method');
       comments[5].ctx.name.should.be.equal('method');
       comments[5].ctx.string.should.be.equal('Foo.prototype.random()');
 
       // classical prototype function property
+      comments[6].description.full.should.equal('<p>Returns the last item.</p>\n\n<div class="highlight"><pre lang="javascript">var f = new Foo([1, 5, 10]);\n\nf.getLast() === 10;\n</pre></div>');
       comments[6].ctx.type.should.be.equal('method');
       comments[6].ctx.name.should.be.equal('method');
       comments[6].ctx.string.should.be.equal('Foo.prototype.getLast()');
