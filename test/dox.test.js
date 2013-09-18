@@ -208,7 +208,7 @@ module.exports = {
       // property as an anonymous method function
       comments[5].description.full.should.equal('<p>Anonymous function on property.</p>');
       comments[5].ctx.type.should.be.equal('method');
-      comments[5].ctx.name.should.be.equal('method');
+      comments[5].ctx.name.should.be.equal('random');
       comments[5].ctx.string.should.be.equal('Foo.prototype.random()');
 
       // this should be a separated function
@@ -219,7 +219,7 @@ module.exports = {
       // classical prototype function property
       comments[7].description.full.should.equal('<p>Returns the last item.</p>\n\n<div class="highlight"><pre lang="javascript">var f = new Foo([1, 5, 10]);\n\nf.getLast() === 10;\n</pre></div>');
       comments[7].ctx.type.should.be.equal('method');
-      comments[7].ctx.name.should.be.equal('method');
+      comments[7].ctx.name.should.be.equal('getLast');
       comments[7].ctx.string.should.be.equal('Foo.prototype.getLast()');
 
       done();
