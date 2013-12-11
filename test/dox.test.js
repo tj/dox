@@ -18,14 +18,14 @@ module.exports = {
         , file = comments.shift()
         , version = comments.shift();
       file.should.have.property('ignore', true);
-      file.description.full.should.equal('<p>A<br />Copyright (c) 2010 Author Name <Author Email><br />MIT Licensed</p>');
-      file.description.summary.should.equal('<p>A<br />Copyright (c) 2010 Author Name <Author Email><br />MIT Licensed</p>');
+      file.description.full.should.equal('<p>A\nCopyright (c) 2010 Author Name <Author Email>\nMIT Licensed</p>\n');
+      file.description.summary.should.equal('<p>A\nCopyright (c) 2010 Author Name <Author Email>\nMIT Licensed</p>\n');
       file.description.body.should.equal('');
       file.tags.should.be.empty;
 
       version.should.have.property('ignore', false);
-      version.description.full.should.equal('<p>Library version.</p>');
-      version.description.summary.should.equal('<p>Library version.</p>');
+      version.description.full.should.equal('<p>Library version.</p>\n');
+      version.description.summary.should.equal('<p>Library version.</p>\n');
       version.description.body.should.equal('');
       version.tags.should.be.empty;
       done();
@@ -82,10 +82,10 @@ module.exports = {
       mods.description.summary.should.equal('<p>Module dependencies.</p>');
       mods.description.body.should.equal('');
       mods.ignore.should.be.false;
-      mods.code.should.equal('var markdown = require(\'github-flavored-markdown\').parse;');
+      mods.code.should.equal('var markdown = require(\'marked\').parse;');
       mods.ctx.type.should.equal('declaration');
       mods.ctx.name.should.equal('markdown');
-      mods.ctx.value.should.equal('require(\'github-flavored-markdown\').parse');
+      mods.ctx.value.should.equal('require(\'marked\').parse');
 
       var version = comments.shift();
       version.tags.should.be.empty;
@@ -130,8 +130,8 @@ module.exports = {
          , first = comments.shift();
 
       first.tags.should.have.length(4);
-      first.description.full.should.equal('<p>Parse tag type string "{Array|Object}" etc.</p>');
-      first.description.summary.should.equal('<p>Parse tag type string "{Array|Object}" etc.</p>');
+      first.description.full.should.equal('<p>Parse tag type string &quot;{Array|Object}&quot; etc.</p>\n');
+      first.description.summary.should.equal('<p>Parse tag type string &quot;{Array|Object}&quot; etc.</p>\n');
       first.description.body.should.equal('');
       first.ctx.type.should.equal('method');
       first.ctx.receiver.should.equal('exports');
@@ -149,17 +149,17 @@ module.exports = {
       comments.should.have.lengthOf(3);
 
       // constructor
-      comments[0].description.full.should.equal('<p>Does a lot of foo</p>');
+      comments[0].description.full.should.equal('<p>Does a lot of foo</p>\n');
       comments[0].ctx.type.should.be.equal('function');
       comments[0].ctx.name.should.be.equal('Foo');
       comments[0].ctx.string.should.be.equal('Foo()');
 
-      comments[1].description.full.should.equal('<p>A property of an instance of Foo</p>');
+      comments[1].description.full.should.equal('<p>A property of an instance of Foo</p>\n');
       comments[1].ctx.type.should.be.equal('property');
       comments[1].ctx.name.should.be.equal('property');
       comments[1].ctx.string.should.be.equal('Foo.prototype.property');
 
-      comments[2].description.full.should.equal('<p>A method of an instance of Foo</p>');
+      comments[2].description.full.should.equal('<p>A method of an instance of Foo</p>\n');
       comments[2].ctx.type.should.be.equal('method');
       comments[2].ctx.name.should.be.equal('method');
       comments[2].ctx.string.should.be.equal('Foo.prototype.method()');
@@ -173,8 +173,8 @@ module.exports = {
       var comments = dox.parseComments(str);
       var first = comments.shift();
       first.tags.should.have.length(4);
-      first.description.full.should.equal('<p>Parse tag type string "{Array|Object}" etc.</p>');
-      first.description.summary.should.equal('<p>Parse tag type string "{Array|Object}" etc.</p>');
+      first.description.full.should.equal('<p>Parse tag type string &quot;{Array|Object}&quot; etc.</p>\n');
+      first.description.summary.should.equal('<p>Parse tag type string &quot;{Array|Object}&quot; etc.</p>\n');
       first.description.body.should.equal('');
       first.ctx.type.should.equal('method');
       first.ctx.receiver.should.equal('exports');
@@ -199,9 +199,9 @@ module.exports = {
   'test .parseComments() titles': function(done){
     fixture('titles.js', function(err, str){
       var comments = dox.parseComments(str);
-      comments[0].description.body.should.include('<h2>Some examples</h2>');
-      comments[0].description.body.should.not.include('<h2>for example</h2>');
-      comments[0].description.body.should.include('<h2>Some longer thing for example</h2>');
+      comments[0].description.body.should.include('<h2 id="some-examples">Some examples</h2>');
+      comments[0].description.body.should.not.include('<h2 id="for-example">for example</h2>');
+      comments[0].description.body.should.include('<h2 id="some-longer-thing-for-example">Some longer thing for example</h2>');
       done();
     });
   },
