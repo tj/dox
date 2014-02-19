@@ -73,7 +73,7 @@ module.exports = {
       file.tags.should.be.empty;
       // the following doesn't work as gh-md now obfuscates emails different on every pass
       //file.description.full.should.equal('<p>Dox<br />Copyright (c) 2010 TJ Holowaychuk <a href=\'mailto:tj@vision-media.ca\'>tj@vision-media.ca</a><br />MIT Licensed</p>');
-      file.description.full.should.be.a('string');
+      file.description.full.should.be.type('string');
       file.ignore.should.be.true;
 
       var mods = comments.shift();
@@ -103,8 +103,8 @@ module.exports = {
       var parseComment = comments.shift();
       parseComment.tags.should.have.length(4);
       parseComment.description.summary.should.equal('<p>Parse the given comment <code>str</code>.</p>');
-      parseComment.description.full.should.equal('<p>Parse the given comment <code>str</code>.</p>\n\n<h2>The comment object returned contains the following</h2>\n\n<ul>\n<li><code>tags</code>  array of tag objects</li>\n<li><code>description</code> the first line of the comment</li>\n<li><code>body</code> lines following the description</li>\n<li><code>content</code> both the description and the body</li>\n<li><code>isPrivate</code> true when "@api private" is used</li>\n</ul>');
-      parseComment.description.body.should.equal('<h2>The comment object returned contains the following</h2>\n\n<ul>\n<li><code>tags</code>  array of tag objects</li>\n<li><code>description</code> the first line of the comment</li>\n<li><code>body</code> lines following the description</li>\n<li><code>content</code> both the description and the body</li>\n<li><code>isPrivate</code> true when "@api private" is used</li>\n</ul>');
+      parseComment.description.full.should.equal('<p>Parse the given comment <code>str</code>.</p><h2>The comment object returned contains the following</h2>\n<ul>\n<li><code>tags</code>  array of tag objects</li>\n<li><code>description</code> the first line of the comment</li>\n<li><code>body</code> lines following the description</li>\n<li><code>content</code> both the description and the body</li>\n<li><code>isPrivate</code> true when &quot;@api private&quot; is used</li>\n</ul>\n');
+      parseComment.description.body.should.equal('<h2>The comment object returned contains the following</h2>\n<ul>\n<li><code>tags</code>  array of tag objects</li>\n<li><code>description</code> the first line of the comment</li>\n<li><code>body</code> lines following the description</li>\n<li><code>content</code> both the description and the body</li>\n<li><code>isPrivate</code> true when &quot;@api private&quot; is used</li>\n</ul>\n');
 
       var parseTag = comments.shift();
 
@@ -113,7 +113,7 @@ module.exports = {
 
       var parseTagTypes = comments.shift();
       parseTagTypes.tags.should.have.length(3);
-      parseTagTypes.description.full.should.equal('<p>Parse tag type string \"{Array|Object}\" etc.</p>');
+      parseTagTypes.description.full.should.equal('<p>Parse tag type string &quot;{Array|Object}&quot; etc.</p>');
 
       var escape = comments.pop();
       escape.tags.should.have.length(3);
@@ -130,8 +130,8 @@ module.exports = {
          , first = comments.shift();
 
       first.tags.should.have.length(4);
-      first.description.full.should.equal('<p>Parse tag type string "{Array|Object}" etc.</p>');
-      first.description.summary.should.equal('<p>Parse tag type string "{Array|Object}" etc.</p>');
+      first.description.full.should.equal('<p>Parse tag type string &quot;{Array|Object}&quot; etc.</p>');
+      first.description.summary.should.equal('<p>Parse tag type string &quot;{Array|Object}&quot; etc.</p>');
       first.description.body.should.equal('');
       first.ctx.type.should.equal('method');
       first.ctx.receiver.should.equal('exports');
@@ -173,8 +173,8 @@ module.exports = {
       var comments = dox.parseComments(str);
       var first = comments.shift();
       first.tags.should.have.length(4);
-      first.description.full.should.equal('<p>Parse tag type string "{Array|Object}" etc.</p>');
-      first.description.summary.should.equal('<p>Parse tag type string "{Array|Object}" etc.</p>');
+      first.description.full.should.equal('<p>Parse tag type string &quot;{Array|Object}&quot; etc.</p>');
+      first.description.summary.should.equal('<p>Parse tag type string &quot;{Array|Object}&quot; etc.</p>');
       first.description.body.should.equal('');
       first.ctx.type.should.equal('method');
       first.ctx.receiver.should.equal('exports');
