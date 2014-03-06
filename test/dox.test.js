@@ -289,11 +289,11 @@ module.exports = {
   },
 
   'test .parseTag() @param': function(){
-    var tag = dox.parseTag('@param {String|Buffer}');
+    var tag = dox.parseTag('@param {String|Buffer} theName this is my parameter');
     tag.type.should.equal('param');
     tag.types.should.eql(['String', 'Buffer']);
-    tag.name.should.equal('');
-    tag.description.should.equal('');
+    tag.name.should.equal('theName');
+    tag.description.should.equal('this is my parameter');
   },
 
   'test .parseTag() @return': function(){
