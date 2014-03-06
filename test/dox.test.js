@@ -296,6 +296,15 @@ module.exports = {
     tag.description.should.equal('this is my parameter');
   },
 
+  'test .parseTag() @option': function(){
+    var tag = dox.parseTag('@option opt {Number|String} cache determines if cache should be used');
+    tag.type.should.equal('option');
+    tag.param.should.equal('opt')
+    tag.types.should.eql(['Number', 'String']);
+    tag.name.should.equal('cache');
+    tag.description.should.equal('determines if cache should be used');
+  },
+
   'test .parseTag() @return': function(){
     var tag = dox.parseTag('@return {String} a normal string');
     tag.type.should.equal('return');
