@@ -73,7 +73,7 @@ module.exports = {
       file.tags.should.be.empty;
       // the following doesn't work as gh-md now obfuscates emails different on every pass
       //file.description.full.should.equal('<p>Dox<br />Copyright (c) 2010 TJ Holowaychuk <a href=\'mailto:tj@vision-media.ca\'>tj@vision-media.ca</a><br />MIT Licensed</p>');
-      file.description.full.should.be.a('string');
+      file.description.full.should.be.a.String;
       file.ignore.should.be.true;
 
       var mods = comments.shift();
