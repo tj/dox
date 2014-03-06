@@ -73,7 +73,7 @@ module.exports = {
       file.tags.should.be.empty;
       // the following doesn't work as gh-md now obfuscates emails different on every pass
       //file.description.full.should.equal('<p>Dox<br />Copyright (c) 2010 TJ Holowaychuk <a href=\'mailto:tj@vision-media.ca\'>tj@vision-media.ca</a><br />MIT Licensed</p>');
-      file.description.full.should.be.a('string');
+      file.description.full.should.be.a.String;
       file.ignore.should.be.true;
 
       var mods = comments.shift();
@@ -289,11 +289,20 @@ module.exports = {
   },
 
   'test .parseTag() @param': function(){
-    var tag = dox.parseTag('@param {String|Buffer}');
+    var tag = dox.parseTag('@param {String|Buffer} theName this is my parameter');
     tag.type.should.equal('param');
     tag.types.should.eql(['String', 'Buffer']);
-    tag.name.should.equal('');
-    tag.description.should.equal('');
+    tag.name.should.equal('theName');
+    tag.description.should.equal('this is my parameter');
+  },
+
+  'test .parseTag() @option': function(){
+    var tag = dox.parseTag('@option opt {Number|String} cache determines if cache should be used');
+    tag.type.should.equal('option');
+    tag.param.should.equal('opt')
+    tag.types.should.eql(['Number', 'String']);
+    tag.name.should.equal('cache');
+    tag.description.should.equal('determines if cache should be used');
   },
 
   'test .parseTag() @return': function(){
