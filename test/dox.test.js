@@ -364,8 +364,16 @@ module.exports = {
   'test .parseComments() does not interpret jshint directives as jsdoc': function (done) {
     fixture('jshint.js', function (err, str){
       var comments = dox.parseComments(str);
-      console.log("comments:", comments);
       comments[0].description.full.should.not.containEql("shint");
+      comments[0].description.full.should.not.containEql("/* something else");
+      done();
+    });
+  },
+
+  'test skipPrefix': function (done) {
+    fixture('skip_prefix.js', function (err, str){
+      var comments = dox.parseComments(str, {skipPrefix: "myspecialawesomelinter"});
+      comments[0].description.full.should.not.containEql("yspecialawesomelinter");
       comments[0].description.full.should.not.containEql("/* something else");
       done();
     });
