@@ -73,7 +73,7 @@ module.exports = {
       file.tags.should.be.empty;
       // the following doesn't work as gh-md now obfuscates emails different on every pass
       //file.description.full.should.equal('<p>Dox<br />Copyright (c) 2010 TJ Holowaychuk <a href=\'mailto:tj@vision-media.ca\'>tj@vision-media.ca</a><br />MIT Licensed</p>');
-      file.description.full.should.be.a('string');
+      file.description.full.should.be.a.string;
       file.ignore.should.be.true;
 
       var mods = comments.shift();
@@ -184,6 +184,15 @@ module.exports = {
     });
   },
 
+   'test .parseComments() tags extended': function(done){
+       fixture('params.js', function(err, str){
+            var comments = dox.parseComments(str);
+            var first = comments.shift();
+            first.tags.should.have.length(1);
+            done();
+       });
+   },
+
   'test .parseComments() code': function(done){
     fixture('b.js', function(err, str){
       var comments = dox.parseComments(str)
@@ -196,12 +205,14 @@ module.exports = {
     });
   },
 
+
+
   'test .parseComments() titles': function(done){
     fixture('titles.js', function(err, str){
       var comments = dox.parseComments(str);
-      comments[0].description.body.should.include('<h2>Some examples</h2>');
-      comments[0].description.body.should.not.include('<h2>for example</h2>');
-      comments[0].description.body.should.include('<h2>Some longer thing for example</h2>');
+      comments[0].description.body.should.containEql('<h2>Some examples</h2>');
+      comments[0].description.body.should.not.containEql('<h2>for example</h2>');
+      comments[0].description.body.should.containEql('<h2>Some longer thing for example</h2>');
       done();
     });
   },
