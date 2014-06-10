@@ -184,6 +184,15 @@ module.exports = {
     });
   },
 
+   'test .parseComments() tags extended': function(done){
+       fixture('params.js', function(err, str){
+            var comments = dox.parseComments(str);
+            var first = comments.shift();
+            first.tags.should.have.length(1);
+            done();
+       });
+   },
+
   'test .parseComments() code': function(done){
     fixture('b.js', function(err, str){
       var comments = dox.parseComments(str)
@@ -195,6 +204,8 @@ module.exports = {
       done();
     });
   },
+
+
 
   'test .parseComments() titles': function(done){
     fixture('titles.js', function(err, str){
