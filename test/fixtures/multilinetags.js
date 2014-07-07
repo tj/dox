@@ -141,3 +141,12 @@ function lastReturn() {
  */
 function midReturn() {
 }
+
+/**
+ * example
+ *
+ * @example
+ *     test(one);
+ */
+function example() {
+}

@@ -25,15 +25,8 @@ module.exports = {
         , onlyReturn = comments.shift()
         , firstReturn = comments.shift()
         , lastReturn = comments.shift()
-        , midReturn = comments.shift();
-      console.log('only=', only);
-      console.log('first=', first);
-      console.log('last=', last);
-      console.log('mid=', mid);
-      console.log('onlyReturn=', onlyReturn.tags);
-      console.log('firstReturn=', firstReturn.tags);
-      console.log('lastReturn=', lastReturn.tags);
-      console.log('midReturn=', midReturn.tags);
+        , midReturn = comments.shift()
+        , example = comments.shift();
 
       only.tags.should.with.lengthOf(1);
       only.tags[0].string.should.equal('one\ntwo\nthree');
@@ -94,6 +87,8 @@ module.exports = {
       midReturn.tags[1].description.should.equal('one\ntwo\nthree');
       midReturn.tags[2].string.should.equal('last');
 
+      example.tags.should.with.lengthOf(1);
+      example.tags[0].string.should.equal('<pre><code>test(one);\n</code></pre>')
       done();
     });
   }
