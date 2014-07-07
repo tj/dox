@@ -328,6 +328,16 @@ module.exports = {
     tag.parent.should.equal('Foo.bar')
   },
 
+  'test .parseTag() @example': function(){
+    var tag = dox.parseTag('@example\n    Foo.bar();');
+    tag.type.should.equal('example')
+    tag.string.should.equal('<pre><code>Foo.bar();\n</code></pre>');
+
+    tag = dox.parseTag('@example\n    Foo.bar();', true);
+    tag.type.should.equal('example')
+    tag.string.should.equal('    Foo.bar();');
+  },
+
   'test .parseTag() default': function(){
     var tag = dox.parseTag('@hello universe is better than world');
     tag.type.should.equal('hello');
