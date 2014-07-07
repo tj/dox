@@ -199,9 +199,9 @@ module.exports = {
   'test .parseComments() titles': function(done){
     fixture('titles.js', function(err, str){
       var comments = dox.parseComments(str);
-      comments[0].description.body.should.include('<h2>Some examples</h2>');
-      comments[0].description.body.should.not.include('<h2>for example</h2>');
-      comments[0].description.body.should.include('<h2>Some longer thing for example</h2>');
+      comments[0].description.body.should.containEql('<h2>Some examples</h2>');
+      comments[0].description.body.should.not.containEql('<h2>for example</h2>');
+      comments[0].description.body.should.containEql('<h2>Some longer thing for example</h2>');
       done();
     });
   },
