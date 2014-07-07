@@ -51,8 +51,8 @@ module.exports = {
 
       var parse = comments.shift();
       parse.description.summary.should.equal('<p>Parse the given <code>str</code>.</p>');
-      parse.description.body.should.equal('<h2>Examples</h2>\n\n<pre><code>parse(str)\n// =&amp;gt; "wahoo"\n</code></pre>');
-      parse.description.full.should.equal('<p>Parse the given <code>str</code>.</p>\n\n<h2>Examples</h2>\n\n<pre><code>parse(str)\n// =&amp;gt; "wahoo"\n</code></pre>');
+      parse.description.body.should.equal('<h2>Examples</h2>\n\n<pre><code>parse(str)\n// =&gt; "wahoo"\n</code></pre>');
+      parse.description.full.should.equal('<p>Parse the given <code>str</code>.</p>\n\n<h2>Examples</h2>\n\n<pre><code>parse(str)\n// =&gt; "wahoo"\n</code></pre>');
       parse.tags[0].type.should.equal('param');
       parse.tags[0].name.should.equal('str');
       parse.tags[0].description.should.equal('to parse');
@@ -60,6 +60,11 @@ module.exports = {
       parse.tags[1].type.should.equal('return');
       parse.tags[1].types.should.eql(['String']);
       parse.tags[2].visibility.should.equal('public');
+      parse.ctx.type.should.equal('method');
+      parse.ctx.receiver.should.equal('exports');
+      parse.ctx.name.should.equal('parse');
+      parse.ctx.string.should.equal('exports.parse()');
+      
       done();
     });
   },
@@ -202,6 +207,45 @@ module.exports = {
       comments[0].description.body.should.containEql('<h2>Some examples</h2>');
       comments[0].description.body.should.not.containEql('<h2>for example</h2>');
       comments[0].description.body.should.containEql('<h2>Some longer thing for example</h2>');
+      done();
+    });
+  },
+
+  'test .parseComments() literal': function(done){
+    fixture('literal.js', function(err, str){
+      var comments = dox.parseComments(str);
+      
+      var addMethod = comments.shift();
+      addMethod.ctx.type.should.equal('method');
+      addMethod.ctx.name.should.equal('add');
+      addMethod.ctx.string.should.equal("add()");
+
+      var subMethod = comments.shift();
+      subMethod.ctx.type.should.equal('method');
+      subMethod.ctx.name.should.equal('subtract');
+      subMethod.ctx.string.should.equal("subtract()");
+      
+      var property = comments.shift();
+      property.ctx.type.should.equal('property');
+      property.ctx.name.should.equal('count');
+      property.ctx.value.should.equal("42");
+      property.ctx.string.should.equal('count');
+
+      comments.shift();
+      
+      var lendedMethod = comments.shift();
+      lendedMethod.ctx.type.should.equal('method');
+      lendedMethod.ctx.name.should.equal('add');
+      lendedMethod.ctx.string.should.equal("add()");
+      lendedMethod.lends.should.equal("User.prototype");
+      
+      var lendedProperty = comments.shift();
+      lendedProperty.ctx.type.should.equal('property');
+      lendedProperty.ctx.name.should.equal('count');
+      lendedProperty.ctx.value.should.equal("42");
+      lendedProperty.ctx.string.should.equal('count');
+      lendedProperty.lends.should.equal("User.prototype");
+
       done();
     });
   },
