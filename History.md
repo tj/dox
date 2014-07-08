@@ -1,3 +1,10 @@
+0.4.5 / 2014-07-09
+==================
+
+ * use marked for markdown rendering
+ * multiline tags support (@example)
+ * support for @template, @property, @define, @public, @private, @protected,
+   @lends, @extends, @implements, @enum, @typedef
 
 0.4.4 / 2013-07-28 
 ==================
