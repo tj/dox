@@ -26,8 +26,7 @@ utils.js:
 /**
  * Escape the given `html`.
  *
- * Examples:
- *
+ * @example
  *     utils.escape('<script></script>')
  *     // => '&lt;script&gt;&lt;/script&gt;'
  *
@@ -51,6 +50,10 @@ output:
   {
     "tags": [
       {
+        "type": "example",
+        "string": "<pre><code>utils.escape(&#39;&lt;script&gt;&lt;/script&gt;&#39;)\n// =&gt; &#39;&amp;lt;script&amp;gt;&amp;lt;/script&amp;gt;&#39;\n</code></pre>"
+      },
+      {
         "type": "param",
         "types": [
           "String"
@@ -71,9 +74,9 @@ output:
       }
     ],
     "description": {
-      "full": "<p>Escape the given <code>html</code>.</p>\n\n<h2>Examples</h2>\n\n<pre><code>utils.escape('&amp;lt;script&amp;gt;&amp;lt;/script&amp;gt;')\n// =&amp;gt; '&amp;lt;script&amp;gt;&amp;lt;/script&amp;gt;'\n</code></pre>",
+      "full": "<p>Escape the given <code>html</code>.</p>",
       "summary": "<p>Escape the given <code>html</code>.</p>",
-      "body": "<h2>Examples</h2>\n\n<pre><code>utils.escape('&amp;lt;script&amp;gt;&amp;lt;/script&amp;gt;')\n// =&amp;gt; '&amp;lt;script&amp;gt;&amp;lt;/script&amp;gt;'\n</code></pre>"
+      "body": ""
     },
     "isPrivate": false,
     "ignore": false,
