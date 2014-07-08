@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/visionmedia/dox.png)](http://travis-ci.org/visionmedia/dox)
 # Dox
 
  Dox is a JavaScript documentation generator written with [node](http://nodejs.org). Dox no longer generates an opinionated structure or style for your docs, it simply gives you a JSON representation, allowing you to use _markdown_ and _JSDoc_-style tags.
@@ -13,11 +14,11 @@ Install from npm:
 `dox(1)` operates over stdio:
 
     $ dox < utils.js
-    ...JSON... 
+    ...JSON...
 
  to inspect the generated data you can use the `--debug` flag, which is easier to read than the JSON output:
- 
-     $ dox --debug < utils.js 
+
+     $ dox --debug < utils.js
 
 utils.js:
 
@@ -114,7 +115,7 @@ Examples:
 ## Properties
 
   A "comment" is comprised of the following detailed properties:
-  
+
     - tags
     - description
     - isPrivate
@@ -141,7 +142,7 @@ exports.write = function(str) {
 yields:
 
 ```js
-description: 
+description:
      { full: '<p>Output the given <code>str</code> to <em>stdout</em>.</p>',
        summary: '<p>Output the given <code>str</code> to <em>stdout</em>.</p>',
        body: '' },
@@ -153,16 +154,16 @@ description:
 /**
  * Output the given `str` to _stdout_
  * or the stream specified by `options`.
- * 
+ *
  * Options:
- * 
+ *
  *   - `stream` defaulting to _stdout_
- * 
+ *
  * Examples:
- * 
+ *
  *     mymodule.write('foo')
  *     mymodule.write('foo', { stream: process.stderr })
- * 
+ *
  */
 
 exports.write = function(str, options) {
@@ -174,7 +175,7 @@ exports.write = function(str, options) {
 yields:
 
 ```js
-description: 
+description:
      { full: '<p>Output the given <code>str</code> to <em>stdout</em><br />or the stream specified by <code>options</code>.</p>\n\n<h2>Options</h2>\n\n<ul>\n<li><code>stream</code> defaulting to <em>stdout</em></li>\n</ul>\n\n<h2>Examples</h2>\n\n<pre><code>mymodule.write(\'foo\')\nmymodule.write(\'foo\', { stream: process.stderr })\n</code></pre>',
        summary: '<p>Output the given <code>str</code> to <em>stdout</em><br />or the stream specified by <code>options</code>.</p>',
        body: '<h2>Options</h2>\n\n<ul>\n<li><code>stream</code> defaulting to <em>stdout</em></li>\n</ul>\n\n<h2>Examples</h2>\n\n<pre><code>mymodule.write(\'foo\')\nmymodule.write(\'foo\', { stream: process.stderr })\n</code></pre>' }
@@ -189,7 +190,7 @@ description:
 /**
  * Output the given `str` to _stdout_
  * or the stream specified by `options`.
- * 
+ *
  * @param {String} str
  * @param {Object} options
  * @return {Object} exports for chaining
@@ -205,7 +206,7 @@ exports.write = function(str, options) {
 yields:
 
 ```js
-tags: 
+tags:
    [ { type: 'param',
        types: [ 'String' ],
        name: 'str',
@@ -245,7 +246,7 @@ exports.write = function(str, options) {
 yields:
 
 ```js
-ctx: 
+ctx:
  { type: 'method',
    receiver: 'exports',
    name: 'write',
@@ -259,7 +260,7 @@ var foo = 'bar';
 yields:
 
 ```js
-ctx: 
+ctx:
  { type: 'declaration',
    name: 'foo',
    value: '\'bar\'',
@@ -268,14 +269,14 @@ ctx:
 
 ```js
 function User() {
-  
+
 }
 ```
 
 yields:
 
 ```js
-ctx: 
+ctx:
  { type: 'function',
    name: 'User',
    string: 'User()' } }
@@ -302,11 +303,11 @@ vs
 ### Running tests
 
  Install dev dependencies and execute `make test`:
- 
+
      $ npm install -d
      $ make test
 
-## License 
+## License
 
 (The MIT License)
 
