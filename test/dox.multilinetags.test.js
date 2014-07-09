@@ -88,7 +88,7 @@ module.exports = {
       midReturn.tags[2].string.should.equal('last');
 
       example.tags.should.with.lengthOf(1);
-      example.tags[0].string.should.equal('<pre><code>test(one);\n</code></pre>')
+      example.tags[0].string.should.equal('    test(one);\n    test(two);');
       done();
     });
   }

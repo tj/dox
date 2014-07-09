@@ -147,6 +147,7 @@ function midReturn() {
  *
  * @example
  *     test(one);
+ *     test(two);
  */
 function example() {
 }
