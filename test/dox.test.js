@@ -357,6 +357,20 @@ module.exports = {
       done();
     });
   },
+
+  'test .parseComments() code with a comment without description': function(done){
+    fixture('nodescription.js', function(err, str){
+      var comments = dox.parseComments(str)
+        , all = comments.shift();
+      all.tags.should.have.length(1);
+      all.description.full.should.equal('');
+      all.description.summary.should.equal('');
+      all.description.summary.should.equal('');
+      all.code.should.equal("function foo() {\n  return 1;\n}");
+      done();
+    });
+  },
+
   'test .api() without inline code in comments': function(done) {
     fixture('a.js', function(err, str){
       var comments = dox.parseComments(str);
