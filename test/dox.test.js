@@ -363,6 +363,8 @@ module.exports = {
       var comments = dox.parseComments(str)
         , all = comments.shift();
       all.tags.should.have.length(1);
+      all.tags[0].type.should.equal('return');
+      all.tags[0].description.should.equal('Digit');
       all.description.full.should.equal('');
       all.description.summary.should.equal('');
       all.description.summary.should.equal('');
