@@ -151,3 +151,48 @@ function midReturn() {
  */
 function example() {
 }
+
+/**
+ * only
+ *
+ * @test {ok} passed test ok
+ * one
+ * two
+ * three
+ */
+function onlyTest() {
+}
+
+/**
+ * first
+ *
+ * @test {} this test has
+ * not been
+ * implemented yet
+ * @bar last
+ */
+function firstTest() {
+}
+
+/**
+ * last
+ *
+ * @foo first
+ * @test {pending} test to be
+ * implemented soon
+ */
+function lastTest() {
+}
+
+/**
+ * mid
+ *
+ * @foo first
+ * @test {ok} passing
+ * one
+ * two
+ * three
+ * @bar last
+ */
+function midTest() {
+}
