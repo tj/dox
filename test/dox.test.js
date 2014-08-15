@@ -411,5 +411,24 @@ module.exports = {
       apiDocs.should.equal("  - [exports.version](#exportsversion)\n\n## exports.version\n\n  <p>Library version.</p>\n");
       done();
     });
+  },
+
+  'test .api() with @alias flag': function(done){
+    fixture('alias.js', function(err, str){
+      var comments = dox.parseComments(str);
+      var apiDocs = dox.api(comments);
+      apiDocs.should.startWith("  - [hello()](#hello)\n  - [window.hello()](#windowhello)\n\n");
+      done();
+    });
+  },
+
+  'test .api() still includes parameters using functions': function(done){
+    fixture('functions.js', function(err, str){
+      var comments = dox.parseComments(str);
+      var apiDocs = dox.api(comments);
+
+      apiDocs.should.containEql("## fnName(a:String, b:Number)");
+      done();
+    });
   }
 };
