@@ -26,7 +26,11 @@ module.exports = {
         , firstReturn = comments.shift()
         , lastReturn = comments.shift()
         , midReturn = comments.shift()
-        , example = comments.shift();
+        , example = comments.shift()
+        , onlyTest = comments.shift()
+        , firstTest = comments.shift()
+        , lastTest = comments.shift()
+        , midTest = comments.shift();
 
       only.tags.should.with.lengthOf(1);
       only.tags[0].string.should.equal('one\ntwo\nthree');
@@ -65,6 +69,23 @@ module.exports = {
       midParam.tags[1].types.should.eql(['String']);
       midParam.tags[1].description.should.equal('one\ntwo\nthree');
       midParam.tags[2].string.should.equal('last');
+
+      onlyTest.tags.should.with.lengthOf(1);
+      onlyTest.tags[0].type.should.equal('test');
+      onlyTest.tags[0].description.should.equal('passed test ok one\ntwo\nthree');
+      firstTest.tags.should.with.lengthOf(2);
+      firstTest.tags[0].type.should.equal('test');
+      firstTest.tags[0].description.should.equal('this test has not been\nimplemented yet');
+      firstTest.tags[1].string.should.equal('last');
+      lastTest.tags.should.with.lengthOf(2);
+      lastTest.tags[0].string.should.equal('first');
+      lastTest.tags[1].type.should.equal('test');
+      lastTest.tags[1].description.should.equal('test to be implemented soon');
+      midTest.tags.should.with.lengthOf(3);
+      midTest.tags[0].string.should.equal('first');
+      midTest.tags[1].type.should.equal('test');
+      midTest.tags[1].description.should.equal('passing one\ntwo\nthree');
+      midTest.tags[2].string.should.equal('last');
 
       onlyReturn.tags.should.with.lengthOf(1);
       onlyReturn.tags[0].type.should.equal('return');
