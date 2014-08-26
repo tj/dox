@@ -217,7 +217,7 @@ module.exports = {
       comments[6].ctx.name.should.be.equal('breakingBad');
 
       // classical prototype function property
-      comments[7].description.full.should.equal('<p>Returns the last item.</p>\n\n<div class="highlight"><pre lang="javascript">var f = new Foo([1, 5, 10]);\n\nf.getLast() === 10;\n</pre></div>');
+      comments[7].description.full.should.equal('<p>Returns the last item.</p><pre><code class="lang-javascript">var f = new Foo([1, 5, 10]);\n\nf.getLast() === 10;\n</code></pre>\n');
       comments[7].ctx.type.should.be.equal('method');
       comments[7].ctx.name.should.be.equal('getLast');
       comments[7].ctx.string.should.be.equal('Foo.prototype.getLast()');
