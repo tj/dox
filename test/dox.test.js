@@ -340,6 +340,20 @@ module.exports = {
     });
   },
 
+  'test .parseComments() code with a multi-line comment on a single line': function(done){
+    fixture('single-multiline.js', function(err, str){
+      var comments = dox.parseComments(str);
+
+      comments[0].description.full.should.equal('<p>Normal multiline doc block</p>');
+      comments[1].description.full.should.equal('<p>Single-line multiline block</p>');
+      comments[2].description.full.should.equal('<p>Unspaced-line multiline block</p>');
+      comments[3].description.full.should.equal('<p>argument A</p>');
+      comments[4].description.full.should.equal('<p>argument B</p>');
+
+      done();
+    });
+  },
+
   'test .parseCodeContext() function statement': function(){
     var ctx = dox.parseCodeContext('function $foo(){\n\n}');
     ctx.type.should.equal('function');
