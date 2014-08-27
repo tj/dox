@@ -22,12 +22,16 @@ module.exports = {
       file.description.summary.should.equal('<p>A<br />Copyright (c) 2010 Author Name <Author Email><br />MIT Licensed</p>');
       file.description.body.should.equal('');
       file.tags.should.be.empty;
+      file.line.should.equal(2);
+      file.codeStart.should.equal(7);
 
       version.should.have.property('ignore', false);
       version.description.full.should.equal('<p>Library version.</p>');
       version.description.summary.should.equal('<p>Library version.</p>');
       version.description.body.should.equal('');
       version.tags.should.be.empty;
+      version.line.should.equal(8);
+      version.codeStart.should.equal(12);
       done();
     });
   },
@@ -48,6 +52,8 @@ module.exports = {
       version.ctx.receiver.should.equal('exports');
       version.ctx.name.should.equal('version');
       version.ctx.value.should.equal("'0.0.1'");
+      version.line.should.equal(2);
+      version.codeStart.should.equal(8);
 
       var parse = comments.shift();
       parse.description.summary.should.equal('<p>Parse the given <code>str</code>.</p>');
@@ -60,6 +66,8 @@ module.exports = {
       parse.tags[1].type.should.equal('return');
       parse.tags[1].types.should.eql(['String']);
       parse.tags[2].visibility.should.equal('public');
+      parse.line.should.equal(11);
+      parse.codeStart.should.equal(23);
       done();
     });
   },
@@ -75,6 +83,8 @@ module.exports = {
       //file.description.full.should.equal('<p>Dox<br />Copyright (c) 2010 TJ Holowaychuk <a href=\'mailto:tj@vision-media.ca\'>tj@vision-media.ca</a><br />MIT Licensed</p>');
       file.description.full.should.be.type('string');
       file.ignore.should.be.true;
+      file.line.should.equal(2);
+      file.codeStart.should.equal(7);
 
       var mods = comments.shift();
       mods.tags.should.be.empty;
@@ -86,10 +96,14 @@ module.exports = {
       mods.ctx.type.should.equal('declaration');
       mods.ctx.name.should.equal('markdown');
       mods.ctx.value.should.equal('require(\'github-flavored-markdown\').parse');
+      mods.line.should.equal(8);
+      mods.codeStart.should.equal(12);
 
       var version = comments.shift();
       version.tags.should.be.empty;
       version.description.full.should.equal('<p>Library version.</p>');
+      version.line.should.equal(14);
+      version.codeStart.should.equal(18);
 
       var parseComments = comments.shift();
       parseComments.tags.should.have.length(4);
@@ -99,27 +113,39 @@ module.exports = {
       parseComments.description.full.should.equal('<p>Parse comments in the given string of <code>js</code>.</p>');
       parseComments.description.summary.should.equal('<p>Parse comments in the given string of <code>js</code>.</p>');
       parseComments.description.body.should.equal('');
+      parseComments.line.should.equal(20);
+      parseComments.codeStart.should.equal(29);
 
       var parseComment = comments.shift();
       parseComment.tags.should.have.length(4);
       parseComment.description.summary.should.equal('<p>Parse the given comment <code>str</code>.</p>');
       parseComment.description.full.should.equal('<p>Parse the given comment <code>str</code>.</p><h2>The comment object returned contains the following</h2>\n<ul>\n<li><code>tags</code>  array of tag objects</li>\n<li><code>description</code> the first line of the comment</li>\n<li><code>body</code> lines following the description</li>\n<li><code>content</code> both the description and the body</li>\n<li><code>isPrivate</code> true when &quot;@api private&quot; is used</li>\n</ul>\n');
       parseComment.description.body.should.equal('<h2>The comment object returned contains the following</h2>\n<ul>\n<li><code>tags</code>  array of tag objects</li>\n<li><code>description</code> the first line of the comment</li>\n<li><code>body</code> lines following the description</li>\n<li><code>content</code> both the description and the body</li>\n<li><code>isPrivate</code> true when &quot;@api private&quot; is used</li>\n</ul>\n');
+      parseComment.line.should.equal(75);
+      parseComment.codeStart.should.equal(92);
 
       var parseTag = comments.shift();
+      parseTag.line.should.equal(120);
+      parseTag.codeStart.should.equal(128);
 
       // Should be the comment be parsed ?
       var shouldNotFail = comments.shift();
+      shouldNotFail.line.should.equal(133);
+      shouldNotFail.codeStart.should.equal(134);
 
       var parseTagTypes = comments.shift();
       parseTagTypes.tags.should.have.length(3);
       parseTagTypes.description.full.should.equal('<p>Parse tag type string &quot;{Array|Object}&quot; etc.</p>');
+      parseTagTypes.line.should.equal(164);
+      parseTagTypes.codeStart.should.equal(172);
 
       var escape = comments.pop();
       escape.tags.should.have.length(3);
       escape.description.full.should.equal('<p>Escape the given <code>html</code>.</p>');
       escape.ctx.type.should.equal('function');
       escape.ctx.name.should.equal('escape');
+      escape.line.should.equal(253);
+      escape.codeStart.should.equal(261);
       done();
     });
   },
@@ -137,6 +163,8 @@ module.exports = {
       first.ctx.receiver.should.equal('exports');
       first.ctx.name.should.equal('parseTagTypes');
       first.code.should.equal('exports.parseTagTypes = function(str) {\n\treturn str\n\t\t.replace(/[{}]/g, \'\')\n\t\t.split(/ *[|,\\/] */);\n};');
+      first.line.should.equal(2);
+      first.codeStart.should.equal(11);
       done();
     });
   },
@@ -154,6 +182,8 @@ module.exports = {
       first.ctx.receiver.should.equal('exports');
       first.ctx.name.should.equal('parseTagTypes');
       first.code.should.equal('exports.parseTagTypes = function(str) {\n  return str\n    .replace(/[{}]/g, \'\')\n    .split(/ *[|,\\/] */);\n};');
+      first.line.should.equal(2);
+      first.codeStart.should.equal(11);
       done();
     });
   },
@@ -171,6 +201,8 @@ module.exports = {
       first.ctx.receiver.should.equal('exports');
       first.ctx.name.should.equal('parseTagTypes');
       first.code.should.equal('exports.parseTagTypes = function(str) {\n\treturn str\n\t\t.replace(/[{}]/g, \'\')\n\t\t.split(/ *[|,\\/] */);\n};');
+      first.line.should.equal(2);
+      first.codeStart.should.equal(11);
       done();
     });
   },
@@ -187,16 +219,22 @@ module.exports = {
       comments[0].ctx.type.should.be.equal('constructor');
       comments[0].ctx.name.should.be.equal('Foo');
       comments[0].ctx.string.should.be.equal('Foo()');
+      comments[0].line.should.equal(2);
+      comments[0].codeStart.should.equal(8);
 
       comments[1].description.full.should.equal('<p>A property of an instance of Foo</p>');
       comments[1].ctx.type.should.be.equal('property');
       comments[1].ctx.name.should.be.equal('property');
       comments[1].ctx.string.should.be.equal('Foo.prototype.property');
+      comments[1].line.should.equal(12);
+      comments[1].codeStart.should.equal(16);
 
       comments[2].description.full.should.equal('<p>A method of an instance of Foo</p>');
       comments[2].ctx.type.should.be.equal('method');
       comments[2].ctx.name.should.be.equal('method');
       comments[2].ctx.string.should.be.equal('Foo.prototype.method()');
+      comments[2].line.should.equal(18);
+      comments[2].codeStart.should.equal(22);
 
       done();
     });
@@ -272,6 +310,8 @@ module.exports = {
       first.ctx.receiver.should.equal('exports');
       first.ctx.name.should.equal('parseTagTypes');
       first.code.should.equal('exports.parseTagTypes = function(str) {\n  return str\n    .replace(/[{}]/g, \'\')\n    .split(/ *[|,\\/] */);\n};');
+      first.line.should.equal(2);
+      first.codeStart.should.equal(11);
       done();
     });
   },
@@ -294,6 +334,8 @@ module.exports = {
       comments[0].description.body.should.containEql('<h2>Some examples</h2>');
       comments[0].description.body.should.not.containEql('<h2>for example</h2>');
       comments[0].description.body.should.containEql('<h2>Some longer thing for example</h2>');
+      comments[0].line.should.equal(2);
+      comments[0].codeStart.should.equal(14);
       done();
     });
   },
@@ -492,6 +534,8 @@ module.exports = {
       all.description.summary.should.equal('');
       all.description.summary.should.equal('');
       all.code.should.equal("function foo() {\n  return 1;\n}");
+      all.line.should.equal(1);
+      all.codeStart.should.equal(4);
       done();
     });
   },
