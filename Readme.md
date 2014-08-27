@@ -115,6 +115,19 @@ Examples:
 
 ```
 
+### Programmatic Usage
+
+``` javascript
+
+var dox = require('dox'),
+    code = "...";
+
+var obj = dox.parseComments(code);
+
+// [{ tags:[ ... ], description, ... }, { ... }, ...]
+
+```
+
 ## Properties
 
   A "comment" is comprised of the following detailed properties:
