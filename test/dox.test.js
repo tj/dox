@@ -381,6 +381,24 @@ module.exports = {
     ctx.value.should.equal('true');
   },
 
+  'test .parseCodeContext() prototype property with value==null': function(){
+    var ctx = dox.parseCodeContext('Database.prototype.$enabled = null;\nasdf');
+    ctx.type.should.equal('property');
+    ctx.constructor.should.equal('Database');
+    ctx.name.should.equal('$enabled');
+    ctx.string.should.equal('Database.prototype.$enabled');
+    ctx.value.should.equal('null');
+  },
+  
+  'test .parseCodeContext() prototype property without value': function(){
+    var ctx = dox.parseCodeContext('Database.prototype.$enabled;\nasdf');
+    ctx.type.should.equal('property');
+    ctx.constructor.should.equal('Database');
+    ctx.name.should.equal('$enabled');
+    ctx.string.should.equal('Database.prototype.$enabled');
+    ctx.should.not.have.property('value');
+  },
+
   'test .parseCodeContext() method': function(){
     var ctx = dox.parseCodeContext('$user.$save = function(){}');
     ctx.type.should.equal('method');
