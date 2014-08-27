@@ -580,5 +580,23 @@ module.exports = {
       apiDocs.should.containEql("## fnName(a:String, b:Number)");
       done();
     });
+  },
+
+  'test .parseComments() does not interpret jshint directives as jsdoc': function (done) {
+    fixture('jshint.js', function (err, str){
+      var comments = dox.parseComments(str);
+      comments.length.should.equal(1);
+      comments[0].description.full.should.equal("<p>something else</p>");
+      done();
+    });
+  },
+
+  'test skipPrefix': function (done) {
+    fixture('skip_prefix.js', function (err, str){
+      var comments = dox.parseComments(str, {skipPrefixes: ["myspecialawesomelinter"]});
+      comments.length.should.equal(1);
+      comments[0].description.full.should.equal("<p>something else</p>");
+      done();
+    });
   }
 };
