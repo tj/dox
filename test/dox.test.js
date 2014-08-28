@@ -298,6 +298,48 @@ module.exports = {
     });
   },
 
+  'test .parseComments() literal inline': function (done){
+    fixture('literal-inline.js', function(err, str){
+      var comments = dox.parseComments(str)
+
+      comments.should.be.an.instanceOf(Array);
+      comments.should.have.lengthOf(5);
+
+      // parent target
+      comments[0].description.full.should.equal('<p>Targeted literal</p>');
+      comments[0].ctx.type.should.be.equal('declaration');
+      comments[0].ctx.name.should.be.equal('Target');
+      comments[0].ctx.string.should.be.equal('Target');
+
+      // literal property
+      comments[1].description.full.should.equal('<p>Sub object</p>');
+      comments[1].ctx.type.should.be.equal('property');
+      comments[1].ctx.name.should.be.equal('options');
+      comments[1].ctx.string.should.be.equal('options');
+
+      // property as an anonymous method function
+      comments[2].description.full.should.equal('<p>This function surely does something</p>');
+      comments[2].ctx.type.should.be.equal('method');
+      comments[2].ctx.name.should.be.equal('doSomething');
+      comments[2].ctx.string.should.be.equal('doSomething()');
+
+      // property as a named method function
+      comments[3].description.full.should.equal('<p>And them something else</p>');
+      comments[3].ctx.type.should.be.equal('method');
+      comments[3].ctx.name.should.be.equal('doSomethingElse');
+      comments[3].ctx.string.should.be.equal('doSomethingElse()');
+
+     // getter function
+      comments[4].description.full.should.equal('<p>This is the result of doing anything</p>');
+      comments[4].ctx.type.should.be.equal('property');
+      comments[4].ctx.name.should.be.equal('result');
+      comments[4].ctx.string.should.be.equal('result');
+      comments[4].ctx.value.should.be.equal('doAnything()');
+
+      done();
+    });
+  },
+
   'test .parseComments() tags': function (done){
     fixture('d.js', function(err, str){
       var comments = dox.parseComments(str);
