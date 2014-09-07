@@ -658,5 +658,15 @@ module.exports = {
       comments[0].description.full.should.equal("<p>something else</p>");
       done();
     });
+  },
+
+  'test that */* combinations in code do not cause failures': function (done) {
+    fixture('asterik.js', function (err, str){
+      var comments = dox.parseComments(str);
+      comments.length.should.equal(2);
+      comments[0].description.full.should.equal("<p>One</p>");
+      comments[1].description.full.should.equal("<p>Two</p>");
+      done();
+    });
   }
 };
