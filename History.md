@@ -1,3 +1,9 @@
+0.5.2 / 2014-10-05
+==================
+
+* Support event tags, add `isEvent` parameter to comment object
+* Removed obsolete make rules
+
 0.5.1 / 2014-09-07
 ==================
 
