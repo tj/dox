@@ -668,5 +668,18 @@ module.exports = {
       comments[1].description.full.should.equal("<p>Two</p>");
       done();
     });
+  },
+
+  'test event tags': function (done) {
+    fixture('event.js', function (err, str){
+      var comments = dox.parseComments(str);
+      //console.log(comments);
+      comments.length.should.equal(2);
+      comments[0].description.full.should.equal("<p>Throw a snowball.</p>");
+      comments[1].description.full.should.equal("<p>Snowball event.</p>");
+      comments[0].isEvent.should.be.false;
+      comments[1].isEvent.should.be.true;
+      done();
+    });
   }
 };
