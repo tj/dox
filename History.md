@@ -1,3 +1,56 @@
+0.5.2 / 2014-10-05
+==================
+
+* Support event tags, add `isEvent` parameter to comment object
+* Removed obsolete make rules
+
+0.5.1 / 2014-09-07
+==================
+
+* Fixed: `*/*` breaks parsing
+
+0.5.0 / 2014-09-04
+==================
+
+* Marked options can be set via `dox.setMarkedOptions`
+* Comment blocks include `line` and `codeStart` to mark the first line of the comment block and the first line of the code context.
+* Ignores jshint, jslint and eslint directives. This can be overridden or added to via the `skipPrefixes` option and the `--skipPrefixes` command line flag, which takes a comma separated list of prefixes.
+* The code field trims extra indentation based on the indentation of the first line of code.
+* Set the `isConstructor` property when a `@constructor` tag is present and change `ctx.type` to constructor.
+* Recognizes the following code contexts:
+  - `Foo.prototype.bar;` (property)
+  - `Foo.prototype = {` (prototype)
+  - `foo: function () {` (method)
+  - `foo: bar` (property)
+  - `get foo () {` (property)
+  - `set foo () {` (property)
+* When a comment is present to identify the definition of an object literal, comments for the object's members will include a `ctx.constructor` property identifying the parent object.
+* Fixed: Multi-line comments with no space following the star are parsed correctly.
+  - Example: `/*comment*/`
+* Fixed: A code context of `Foo.prototype.bar = null;` is parsed correctly.
+* `@param` tags include an `optional` attribute
+* `@returns` is recognized as an alias for `@return`
+* Support comments without descriptions (ex: `/** @name Foo **/`)
+* Fixed: Crash with the `--api` flag when no headers are generated.
+* Fixed: `--api` output includes aliases.
+
+0.4.6 / 2014-07-09
+==================
+
+ * do not wrap @example contents with markdown
+
+0.4.5 / 2014-07-09
+==================
+
+ * use marked for markdown rendering
+ * multiline tags support (@example)
+ * support for @template, @property, @define, @public, @private, @protected,
+   @lends, @extends, @implements, @enum, @typedef
+
+0.4.4 / 2013-07-28 
+==================
+
+ * add support for variable names containing "$". fix #102
 
 0.4.3 / 2013-03-18 
 ==================

@@ -2,6 +2,7 @@
 /**
  * Does a lot of foo
  *
+ * @constructor
  * @param {String} bar
  */
 function Foo(bar) {

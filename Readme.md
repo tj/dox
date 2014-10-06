@@ -1,4 +1,5 @@
 # Dox
+[![Build Status](https://travis-ci.org/visionmedia/dox.svg?branch=master)](https://travis-ci.org/visionmedia/dox)
 
  Dox is a JavaScript documentation generator written with [node](http://nodejs.org). Dox no longer generates an opinionated structure or style for your docs, it simply gives you a JSON representation, allowing you to use _markdown_ and _JSDoc_-style tags.
 
@@ -13,11 +14,11 @@ Install from npm:
 `dox(1)` operates over stdio:
 
     $ dox < utils.js
-    ...JSON... 
+    ...JSON...
 
  to inspect the generated data you can use the `--debug` flag, which is easier to read than the JSON output:
- 
-     $ dox --debug < utils.js 
+
+     $ dox --debug < utils.js
 
 utils.js:
 
@@ -25,8 +26,7 @@ utils.js:
 /**
  * Escape the given `html`.
  *
- * Examples:
- *
+ * @example
  *     utils.escape('<script></script>')
  *     // => '&lt;script&gt;&lt;/script&gt;'
  *
@@ -50,6 +50,10 @@ output:
   {
     "tags": [
       {
+        "type": "example",
+        "string": "<pre><code>utils.escape(&#39;&lt;script&gt;&lt;/script&gt;&#39;)\n// =&gt; &#39;&amp;lt;script&amp;gt;&amp;lt;/script&amp;gt;&#39;\n</code></pre>"
+      },
+      {
         "type": "param",
         "types": [
           "String"
@@ -70,9 +74,9 @@ output:
       }
     ],
     "description": {
-      "full": "<p>Escape the given <code>html</code>.</p>\n\n<h2>Examples</h2>\n\n<pre><code>utils.escape('&amp;lt;script&amp;gt;&amp;lt;/script&amp;gt;')\n// =&amp;gt; '&amp;lt;script&amp;gt;&amp;lt;/script&amp;gt;'\n</code></pre>",
+      "full": "<p>Escape the given <code>html</code>.</p>",
       "summary": "<p>Escape the given <code>html</code>.</p>",
-      "body": "<h2>Examples</h2>\n\n<pre><code>utils.escape('&amp;lt;script&amp;gt;&amp;lt;/script&amp;gt;')\n// =&amp;gt; '&amp;lt;script&amp;gt;&amp;lt;/script&amp;gt;'\n</code></pre>"
+      "body": ""
     },
     "isPrivate": false,
     "ignore": false,
@@ -111,10 +115,23 @@ Examples:
 
 ```
 
+### Programmatic Usage
+
+``` javascript
+
+var dox = require('dox'),
+    code = "...";
+
+var obj = dox.parseComments(code);
+
+// [{ tags:[ ... ], description, ... }, { ... }, ...]
+
+```
+
 ## Properties
 
   A "comment" is comprised of the following detailed properties:
-  
+
     - tags
     - description
     - isPrivate
@@ -141,7 +158,7 @@ exports.write = function(str) {
 yields:
 
 ```js
-description: 
+description:
      { full: '<p>Output the given <code>str</code> to <em>stdout</em>.</p>',
        summary: '<p>Output the given <code>str</code> to <em>stdout</em>.</p>',
        body: '' },
@@ -153,16 +170,16 @@ description:
 /**
  * Output the given `str` to _stdout_
  * or the stream specified by `options`.
- * 
+ *
  * Options:
- * 
+ *
  *   - `stream` defaulting to _stdout_
- * 
+ *
  * Examples:
- * 
+ *
  *     mymodule.write('foo')
  *     mymodule.write('foo', { stream: process.stderr })
- * 
+ *
  */
 
 exports.write = function(str, options) {
@@ -174,7 +191,7 @@ exports.write = function(str, options) {
 yields:
 
 ```js
-description: 
+description:
      { full: '<p>Output the given <code>str</code> to <em>stdout</em><br />or the stream specified by <code>options</code>.</p>\n\n<h2>Options</h2>\n\n<ul>\n<li><code>stream</code> defaulting to <em>stdout</em></li>\n</ul>\n\n<h2>Examples</h2>\n\n<pre><code>mymodule.write(\'foo\')\nmymodule.write(\'foo\', { stream: process.stderr })\n</code></pre>',
        summary: '<p>Output the given <code>str</code> to <em>stdout</em><br />or the stream specified by <code>options</code>.</p>',
        body: '<h2>Options</h2>\n\n<ul>\n<li><code>stream</code> defaulting to <em>stdout</em></li>\n</ul>\n\n<h2>Examples</h2>\n\n<pre><code>mymodule.write(\'foo\')\nmymodule.write(\'foo\', { stream: process.stderr })\n</code></pre>' }
@@ -189,7 +206,7 @@ description:
 /**
  * Output the given `str` to _stdout_
  * or the stream specified by `options`.
- * 
+ *
  * @param {String} str
  * @param {Object} options
  * @return {Object} exports for chaining
@@ -205,7 +222,7 @@ exports.write = function(str, options) {
 yields:
 
 ```js
-tags: 
+tags:
    [ { type: 'param',
        types: [ 'String' ],
        name: 'str',
@@ -245,7 +262,7 @@ exports.write = function(str, options) {
 yields:
 
 ```js
-ctx: 
+ctx:
  { type: 'method',
    receiver: 'exports',
    name: 'write',
@@ -259,7 +276,7 @@ var foo = 'bar';
 yields:
 
 ```js
-ctx: 
+ctx:
  { type: 'declaration',
    name: 'foo',
    value: '\'bar\'',
@@ -268,14 +285,14 @@ ctx:
 
 ```js
 function User() {
-  
+
 }
 ```
 
 yields:
 
 ```js
-ctx: 
+ctx:
  { type: 'function',
    name: 'User',
    string: 'User()' } }
@@ -302,11 +319,11 @@ vs
 ### Running tests
 
  Install dev dependencies and execute `make test`:
- 
+
      $ npm install -d
      $ make test
 
-## License 
+## License
 
 (The MIT License)
 
