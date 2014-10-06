@@ -99,19 +99,23 @@ This output can then be passed to a template for rendering. Look below at the "P
 
 Usage: dox [options]
 
-Options:
+  Options:
 
-  -h, --help     output usage information
-  -v, --version  output the version number
-  -d, --debug    output parsed comments for debugging
+    -h, --help                     output usage information
+    -V, --version                  output the version number
+    -r, --raw                      output "raw" comments, leaving the markdown intact
+    -a, --api                      output markdown readme documentation
+    -s, --skipPrefixes [prefixes]  skip comments prefixed with these prefixes, separated by commas
+    -d, --debug                    output parsed comments for debugging
+    -S, --skipSingleStar           set to false to ignore `/* ... */` comments
 
-Examples:
+  Examples:
 
-  # stdin
-  $ dox > myfile.json
+    # stdin
+    $ dox > myfile.json
 
-  # operates over stdio
-  $ dox < myfile.js > myfile.json
+    # operates over stdio
+    $ dox < myfile.js > myfile.json
 
 ```
 
@@ -135,6 +139,9 @@ var obj = dox.parseComments(code);
     - tags
     - description
     - isPrivate
+    - isEvent
+    - isConstructor
+    - line
     - ignore
     - code
     - ctx
@@ -315,6 +322,8 @@ vs
  * Ignored.
  */
 ```
+
+You may use `-S`, `--skipSingleStar` or `{skipSingleStar: true}` to ignore `/* ... */` comments.
 
 ### Running tests
 
