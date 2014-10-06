@@ -1,3 +1,9 @@
+0.5.3 / 2014-10-06
+==================
+
+* Add `--skipSingleStar` option to ignore `/* ... */` comments
+* Merge #106: make the other context regex like the general method one
+
 0.5.2 / 2014-10-05
 ==================
 
