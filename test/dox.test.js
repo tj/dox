@@ -623,9 +623,9 @@ module.exports = {
     });
   },
 
-  'test .parseComments() on single star comments with singleStar=false': function (done) {
+  'test .parseComments() on single star comments with skipSingleStar=true': function (done) {
     fixture('single.js', function(err, str){
-      var comments = dox.parseComments(str, { singleStar: false });
+      var comments = dox.parseComments(str, { skipSingleStar: true });
 
       comments.should.have.lengthOf(1);
       comments[0].tags.should.be.empty;

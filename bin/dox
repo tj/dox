@@ -16,7 +16,8 @@ program
   .option('-r, --raw', 'output "raw" comments, leaving the markdown intact')
   .option('-a, --api', 'output markdown readme documentation')
   .option('-s, --skipPrefixes [prefixes]', 'skip comments prefixed with these prefixes, separated by commas')
-  .option('-d, --debug', 'output parsed comments for debugging');
+  .option('-d, --debug', 'output parsed comments for debugging')
+  .option('-S, --skipSingleStar', 'set to false to ignore `/* ... */` comments');
 
 // examples
 
@@ -41,7 +42,7 @@ var buf = '';
 process.stdin.setEncoding('utf8');
 process.stdin.on('data', function(chunk){ buf += chunk; });
 process.stdin.on('end', function(){
-  var obj = dox.parseComments(buf, { raw: program.raw || program.api, skipPrefixes: program.skipPrefix && program.skipPrefix.split(',') });
+  var obj = dox.parseComments(buf, { raw: program.raw || program.api, skipPrefixes: program.skipPrefix && program.skipPrefix.split(','), skipSingleStar: !!program.skipSingleStar });
   if (program.debug) {
     process.stdout.write(util.inspect(obj, false, Infinity, true) + '\n');
   } else if (program.api) {
