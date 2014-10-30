@@ -643,7 +643,12 @@ module.exports = {
       comments[0].tags[0].should.be.eql({
           type: 'return'
         , types: [ 'Object' ]
+        , typesDescription: '<code>Object</code>'
         , description: 'description'
+        , nullable: false
+        , nonNullable: false
+        , variable: false
+        , optional: false
       });
       comments[0].description.full.should.be.equal('<p>foo description</p>');
       done();
