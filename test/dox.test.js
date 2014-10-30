@@ -525,7 +525,7 @@ module.exports = {
     tag.types.should.eql(['string']);
     tag.name.should.equal('foo');
     tag.description.should.equal('');
-    tag.optional.should.be.true;
+    tag.nullable.should.be.true;
 
     var tag = dox.parseTag('@param {string|Buffer=} foo')
     tag.type.should.equal('param');
