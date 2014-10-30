@@ -215,7 +215,7 @@ description:
  * or the stream specified by `options`.
  *
  * @param {String} str
- * @param {Object} options
+ * @param {{stream: Writable}} options
  * @return {Object} exports for chaining
  */
 
@@ -235,7 +235,7 @@ tags:
        name: 'str',
        description: '' },
      { type: 'param',
-       types: [ 'Object' ],
+       types: [ { stream: ['Writable'] } ],
        name: 'options',
        description: '' },
      { type: 'return',
@@ -243,6 +243,96 @@ tags:
        description: 'exports for chaining' },
      { type: 'api',
        visibility: 'public' } ]
+```
+
+#### Complex jsdoc tags
+
+dox supports all jsdoc type strings specified in the [jsdoc documentation](http://usejsdoc.org/tags-type.html). You can
+specify complex object types including optional flag `=`, nullable `?`, non-nullable `!` and variable arguments `...`.
+
+Additionally you can use `typesDescription` which contains formatted HTML for displaying complex types.
+
+```js
+
+/**
+ * Generates a person information string based on input.
+ *
+ * @param {string | {name: string, age: number | date}} name Name or person object
+ * @param {{separator: string} =} options An options object
+ * @return {string} The constructed information string
+ */
+
+exports.generatePersonInfo = function(name, options) {
+  var str = '';
+  var separator = options && options.separator ? options.separator : ' ';
+
+  if(typeof name === 'object') {
+    str = [name.name, '(', name.age, ')'].join(separator);
+  } else {
+    str = name;
+  }
+};
+```
+
+yields:
+
+```js
+tags:
+[
+  {
+    "tags": [
+      {
+        "type": "param",
+        "name": "name",
+        "description": "Name or person object",
+        "types": [
+          "string",
+          {
+            "name": [
+              "string"
+            ],
+            "age": [
+              "number",
+              "date"
+            ]
+          }
+        ],
+        "typesDescription": "<code>string</code>|{ name: <code>string</code>, age: <code>number</code>|<code>date</code> }",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      },
+      {
+        "type": "param",
+        "name": "options",
+        "description": "An options object",
+        "types": [
+          {
+            "separator": [
+              "string"
+            ]
+          }
+        ],
+        "typesDescription": "{ separator: <code>string</code> }|<code>undefined</code>",
+        "optional": true,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      },
+      {
+        "type": "return",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "description": "The constructed information string"
+      }
+    ]
 ```
 
 ### Code
