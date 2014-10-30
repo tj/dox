@@ -26,8 +26,9 @@
     "dox": "./bin/dox"
   },
   "dependencies": {
-    "marked": ">=0.3.1",
-    "commander": "0.6.1"
+    "commander": "0.6.1",
+    "jsdoctypeparser": "^1.1.1",
+    "marked": ">=0.3.1"
   },
   "devDependencies": {
     "mocha": "^1.20.1",
