@@ -1,3 +1,12 @@
+0.6.0 / 2014-11-27
+==================
+
+* Add complex jsdoc annotations
+* Add support for more tags
+* Add typesDescription field
+* Fix "skipPrefixes incorrectly assumes option.raw=false"
+* Fix "White spaces in the tag type string break the parsing of tags"
+
 0.5.3 / 2014-10-06
 ==================
 
