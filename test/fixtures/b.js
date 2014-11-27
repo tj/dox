@@ -8,19 +8,10 @@
 
 exports.version = '0.0.1';
 
-/**
- * Parse the given `str`.
- *
- * ## Examples
- *
- *     parse(str)
- *     // => "wahoo"
- *
- * @param {String|Buffer} str to parse
- * @return {String}
- * @api public
- */
 
+/**
+ * @param {Object} config An object that must provide a `requestExecutor` field.
+ */
 exports.parse = function(str) {
   return "wahoo";
 }

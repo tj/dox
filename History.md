@@ -1,3 +1,8 @@
+0.6.1 / 2014-11-27
+==================
+
+* Tag descriptions now contain markdown and obey raw option
+
 0.6.0 / 2014-11-27
 ==================
 

@@ -603,7 +603,7 @@ module.exports = {
         , all = comments.shift();
       all.tags.should.have.length(1);
       all.tags[0].type.should.equal('return');
-      all.tags[0].description.should.equal('Digit');
+      all.tags[0].description.should.equal('<p>Digit</p>');
       all.description.full.should.equal('');
       all.description.summary.should.equal('');
       all.description.summary.should.equal('');
@@ -644,7 +644,7 @@ module.exports = {
           type: 'return'
         , types: [ 'Object' ]
         , typesDescription: '<code>Object</code>'
-        , description: 'description'
+        , description: '<p>description</p>'
         , nullable: false
         , nonNullable: false
         , variable: false
