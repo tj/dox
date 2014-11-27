@@ -515,21 +515,21 @@ module.exports = {
 
     var tag = dox.parseTag('@param {string=} foo')
     tag.type.should.equal('param');
-    tag.types.should.eql(['string=']);
+    tag.types.should.eql(['string']);
     tag.name.should.equal('foo');
     tag.description.should.equal('');
     tag.optional.should.be.true;
 
     var tag = dox.parseTag('@param {string?} foo')
     tag.type.should.equal('param');
-    tag.types.should.eql(['string?']);
+    tag.types.should.eql(['string']);
     tag.name.should.equal('foo');
     tag.description.should.equal('');
-    tag.optional.should.be.true;
+    tag.nullable.should.be.true;
 
     var tag = dox.parseTag('@param {string|Buffer=} foo')
     tag.type.should.equal('param');
-    tag.types.should.eql(['string', 'Buffer=']);
+    tag.types.should.eql(['string', 'Buffer']);
     tag.name.should.equal('foo');
     tag.description.should.equal('');
     tag.optional.should.be.true;
@@ -643,7 +643,12 @@ module.exports = {
       comments[0].tags[0].should.be.eql({
           type: 'return'
         , types: [ 'Object' ]
+        , typesDescription: '<code>Object</code>'
         , description: 'description'
+        , nullable: false
+        , nonNullable: false
+        , variable: false
+        , optional: false
       });
       comments[0].description.full.should.be.equal('<p>foo description</p>');
       done();
