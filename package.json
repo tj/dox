@@ -13,6 +13,7 @@
     "Gion Kunz <gion.kunz@gmail.com>",
     "ForbesLindesay"
   ],
+  "homepage": "https://github.com/tj/dox",
   "repository": {
     "type": "git",
     "url": "git://github.com/visionmedia/dox.git"
