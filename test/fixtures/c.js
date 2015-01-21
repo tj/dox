@@ -256,6 +256,7 @@ exports.parseCodeContext = function(str){
  * @param {String} html
  * @return {String}
  * @api private
+ * @custom With `Markdown` syntax
  */
 
 function escape(html){
