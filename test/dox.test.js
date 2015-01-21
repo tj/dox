@@ -240,6 +240,92 @@ module.exports = {
     });
   },
 
+  'test .parseComments() classes': function (done){
+    fixture('classes.js', function(err, str){
+      var comments = dox.parseComments(str)
+
+      comments.should.be.an.instanceOf(Array);
+      comments.should.have.lengthOf(8);
+
+      // class, extends and is exported as default
+      comments[0].description.full.should.equal('<p>A Foo.</p>');
+      comments[0].ctx.type.should.be.equal('class');
+      comments[0].ctx.name.should.be.equal('FooBar');
+      comments[0].ctx.constructor.should.be.equal('FooBar');
+      comments[0].ctx.extends.should.be.equal('Foo');
+      comments[0].ctx.string.should.be.equal('new FooBar()');
+      comments[0].line.should.equal(2);
+      comments[0].codeStart.should.equal(7);
+
+      // class constructor
+      comments[1].description.full.should.equal('<p>construct a Foo</p>');
+      comments[1].ctx.type.should.be.equal('constructor');
+      comments[1].ctx.name.should.be.equal('constructor');
+      comments[1].ctx.constructor.should.be.equal('FooBar');
+      comments[1].ctx.string.should.be.equal('FooBar.prototype.constructor()');
+      comments[1].line.should.equal(9);
+      comments[1].codeStart.should.equal(14);
+
+      // class method
+      comments[2].description.full.should.equal('<p>Method of the Foo class.</p>');
+      comments[2].ctx.type.should.be.equal('method');
+      comments[2].ctx.name.should.be.equal('bar');
+      comments[2].ctx.constructor.should.be.equal('FooBar');
+      comments[2].ctx.string.should.be.equal('FooBar.prototype.bar()');
+      comments[2].line.should.equal(18);
+      comments[2].codeStart.should.equal(22);
+
+      // class setter
+      comments[3].description.full.should.equal('<p>Setter for the blah property.</p>');
+      comments[3].ctx.type.should.be.equal('property');
+      comments[3].ctx.name.should.be.equal('blah');
+      comments[3].ctx.constructor.should.be.equal('FooBar');
+      comments[3].ctx.string.should.be.equal('FooBar.prototype.blah');
+      comments[3].line.should.equal(26);
+      comments[3].codeStart.should.equal(29);
+
+      // class getter
+      comments[4].description.full.should.equal('<p>Getter for the blah property.</p>');
+      comments[4].ctx.type.should.be.equal('property');
+      comments[4].ctx.name.should.be.equal('blah');
+      comments[4].ctx.constructor.should.be.equal('FooBar');
+      comments[4].ctx.string.should.be.equal('FooBar.prototype.blah');
+      comments[4].line.should.equal(33);
+      comments[4].codeStart.should.equal(37);
+
+      // class, extends and is exported by name
+      comments[5].description.full.should.equal('');
+      comments[5].ctx.type.should.be.equal('class');
+      comments[5].ctx.name.should.be.equal('Baz');
+      comments[5].ctx.constructor.should.be.equal('Baz');
+      comments[5].ctx.extends.should.be.equal('FooBar');
+      comments[5].ctx.string.should.be.equal('new Baz()');
+      comments[5].line.should.equal(42);
+      comments[5].codeStart.should.equal(45);
+
+      // class constructor
+      comments[6].description.full.should.equal('');
+      comments[6].ctx.type.should.be.equal('constructor');
+      comments[6].ctx.name.should.be.equal('constructor');
+      comments[6].ctx.constructor.should.be.equal('Baz');
+      comments[6].ctx.string.should.be.equal('Baz.prototype.constructor()');
+      comments[6].line.should.equal(47);
+      comments[6].codeStart.should.equal(50);
+
+      // class
+      comments[7].description.full.should.equal('');
+      comments[7].ctx.type.should.be.equal('class');
+      comments[7].ctx.name.should.be.equal('Lorem');
+      comments[7].ctx.constructor.should.be.equal('Lorem');
+      comments[7].ctx.extends.should.be.equal('');
+      comments[7].ctx.string.should.be.equal('new Lorem()');
+      comments[7].line.should.equal(55);
+      comments[7].codeStart.should.equal(58);
+
+      done();
+    });
+  },
+
   'test .parseComments() inline prototypes': function (done){
     fixture('prototypes-inline.js', function(err, str){
       var comments = dox.parseComments(str)
