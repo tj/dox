@@ -51,7 +51,8 @@ output:
     "tags": [
       {
         "type": "example",
-        "string": "<pre><code>utils.escape(&#39;&lt;script&gt;&lt;/script&gt;&#39;)\n// =&gt; &#39;&amp;lt;script&amp;gt;&amp;lt;/script&amp;gt;&#39;\n</code></pre>"
+        "string": "<pre><code>utils.escape(&#39;&lt;script&gt;&lt;/script&gt;&#39;)\n// =&gt; &#39;&amp;lt;script&amp;gt;&amp;lt;/script&amp;gt;&#39;\n</code></pre>",
+        "rawString": "    utils.escape('<script></script>')\n    // => '&lt;script&gt;&lt;/script&gt;'"
       },
       {
         "type": "param",
