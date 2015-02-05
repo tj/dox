@@ -30,16 +30,24 @@ module.exports = {
 
       only.tags.should.with.lengthOf(1);
       only.tags[0].string.should.equal('<p>one<br />two<br />three</p>');
+      only.tags[0].rawString.should.equal('one\ntwo\nthree');
       first.tags.should.with.lengthOf(2);
       first.tags[0].string.should.equal('<p>one<br />two<br />three</p>');
+      first.tags[0].rawString.should.equal('one\ntwo\nthree');
       first.tags[1].string.should.equal('<p>last</p>');
+      first.tags[1].rawString.should.equal('last');
       last.tags.should.with.lengthOf(2);
       last.tags[0].string.should.equal('<p>first</p>');
+      last.tags[0].rawString.should.equal('first');
       last.tags[1].string.should.equal('<p>one<br />two<br />three</p>');
+      last.tags[1].rawString.should.equal('one\ntwo\nthree');
       mid.tags.should.with.lengthOf(3);
       mid.tags[0].string.should.equal('<p>first</p>');
+      mid.tags[0].rawString.should.equal('first');
       mid.tags[1].string.should.equal('<p>one<br />two<br />three</p>');
+      mid.tags[1].rawString.should.equal('one\ntwo\nthree');
       mid.tags[2].string.should.equal('<p>last</p>');
+      mid.tags[2].rawString.should.equal('last');
 
       onlyParam.tags.should.with.lengthOf(1);
       onlyParam.tags[0].type.should.equal('param');
@@ -52,19 +60,23 @@ module.exports = {
       firstParam.tags[0].types.should.eql(['String']);
       firstParam.tags[0].description.should.equal('<p>one<br />two<br />three</p>');
       firstParam.tags[1].string.should.equal('<p>last</p>');
+      firstParam.tags[1].rawString.should.equal('last');
       lastParam.tags.should.with.lengthOf(2);
       lastParam.tags[0].string.should.equal('<p>first</p>');
+      lastParam.tags[0].rawString.should.equal('first');
       lastParam.tags[1].type.should.equal('param');
       lastParam.tags[1].name.should.equal('foo');
       lastParam.tags[1].types.should.eql(['String']);
       lastParam.tags[1].description.should.equal('<p>one<br />two<br />three</p>');
       midParam.tags.should.with.lengthOf(3);
       midParam.tags[0].string.should.equal('<p>first</p>');
+      midParam.tags[0].rawString.should.equal('first');
       midParam.tags[1].type.should.equal('param');
       midParam.tags[1].name.should.equal('foo');
       midParam.tags[1].types.should.eql(['String']);
       midParam.tags[1].description.should.equal('<p>one<br />two<br />three</p>');
       midParam.tags[2].string.should.equal('<p>last</p>');
+      midParam.tags[2].rawString.should.equal('last');
 
       onlyReturn.tags.should.with.lengthOf(1);
       onlyReturn.tags[0].type.should.equal('return');
@@ -75,20 +87,25 @@ module.exports = {
       firstReturn.tags[0].types.should.eql(['String']);
       firstReturn.tags[0].description.should.equal('<p>one<br />two<br />three</p>');
       firstReturn.tags[1].string.should.equal('<p>last</p>');
+      firstReturn.tags[1].rawString.should.equal('last');
       lastReturn.tags.should.with.lengthOf(2);
       lastReturn.tags[0].string.should.equal('<p>first</p>');
+      lastReturn.tags[0].rawString.should.equal('first');
       lastReturn.tags[1].type.should.equal('return');
       lastReturn.tags[1].types.should.eql(['String']);
       lastReturn.tags[1].description.should.equal('<p>one<br />two<br />three</p>');
       midReturn.tags.should.with.lengthOf(3);
       midReturn.tags[0].string.should.equal('<p>first</p>');
+      midReturn.tags[0].rawString.should.equal('first');
       midReturn.tags[1].type.should.equal('return');
       midReturn.tags[1].types.should.eql(['String']);
       midReturn.tags[1].description.should.equal('<p>one<br />two<br />three</p>');
       midReturn.tags[2].string.should.equal('<p>last</p>');
+      midReturn.tags[2].rawString.should.equal('last');
 
       example.tags.should.with.lengthOf(1);
       example.tags[0].string.should.equal('<pre><code>test(one);\ntest(two);\n</code></pre>');
+      example.tags[0].rawString.should.equal('    test(one);\n    test(two);');
       done();
     });
   }
