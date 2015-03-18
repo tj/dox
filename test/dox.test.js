@@ -801,6 +801,16 @@ module.exports = {
     });
   },
 
+  'test that // in string literals does not cause failures': function (done) {
+    fixture('slash.js', function (err, str){
+      var comments = dox.parseComments(str);
+      comments.length.should.equal(2);
+      comments[0].description.full.should.equal("<p>One</p>");
+      comments[1].description.full.should.equal("<p>Two</p>");
+      done();
+    });
+  },
+
   'test event tags': function (done) {
     fixture('event.js', function (err, str){
       var comments = dox.parseComments(str);
