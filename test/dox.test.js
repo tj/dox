@@ -465,6 +465,15 @@ module.exports = {
       comments[0].description.body.should.containEql('<h2>Some longer thing for example</h2>');
       comments[0].line.should.equal(2);
       comments[0].codeStart.should.equal(14);
+
+      comments[1].description.full.should.equal('<p>Description 1</p>');
+      comments[1].tags.should.have.length(2);
+      comments[1].tags[0].type.should.equal('description');
+      comments[1].tags[0].full.should.equal('Description 2');
+      comments[1].tags[1].type.should.equal('description');
+      comments[1].tags[1].full.should.equal('Description 3');
+
+      comments[2].description.full.should.equal('<p>Something Else</p>');
       done();
     });
   },
