@@ -1,3 +1,18 @@
+0.7.0 / 2015-??-??
+==================
+
+* Add context parsing for some ES6 syntax:
+  - classes
+  - class constructors
+  - class methods
+  - assignments via `let` or `const`
+* Add support for @description tag
+* Add context match for returned closure
+* Fix: more agnostic to code style when parsing contexts (eg, no longer ignores functions without spaces between function name and parenthesis)
+* Fix: No longer incorrectly tries to parse strings inside comments, causing large chunks of a file to be ignored.
+* Fix: No longer parses double slash in a string literal as being a comment start.
+* Deps: commander@2.7.1
+
 0.6.1 / 2014-11-27
 ==================
 
