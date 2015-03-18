@@ -489,6 +489,18 @@ module.exports = {
     ctx.name.should.equal('$foo');
   },
 
+  'test .parseCodeContext() returned unnamed function statement': function(){
+    var ctx = dox.parseCodeContext('return function (){\n\n}');
+    ctx.type.should.equal('function');
+    ctx.name.should.equal('');
+  },
+
+  'test .parseCodeContext() returned named function statement': function(){
+    var ctx = dox.parseCodeContext('return function $foo (){\n\n}');
+    ctx.type.should.equal('function');
+    ctx.name.should.equal('$foo');
+  },
+
   'test .parseCodeContext() function expression': function(){
     var ctx = dox.parseCodeContext('var $foo = function(){\n\n}');
     ctx.type.should.equal('function');
