@@ -794,9 +794,20 @@ module.exports = {
   'test that */* combinations in code do not cause failures': function (done) {
     fixture('asterik.js', function (err, str){
       var comments = dox.parseComments(str);
-      comments.length.should.equal(2);
+      comments.length.should.equal(4);
       comments[0].description.full.should.equal("<p>One</p>");
+      comments[0].ctx.type.should.equal('function');
+      comments[0].ctx.name.should.equal('one');
       comments[1].description.full.should.equal("<p>Two</p>");
+      comments[1].ctx.type.should.equal('function');
+      comments[1].ctx.name.should.equal('two');
+
+      comments[2].description.full.should.equal("<p>Three</p>");
+      comments[2].ctx.type.should.equal('function');
+      comments[2].ctx.name.should.equal('three');
+      comments[3].description.full.should.equal("<p>Four</p>");
+      comments[3].ctx.type.should.equal('function');
+      comments[3].ctx.name.should.equal('four');
       done();
     });
   },
