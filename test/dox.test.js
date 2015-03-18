@@ -53,21 +53,16 @@ module.exports = {
       version.ctx.name.should.equal('version');
       version.ctx.value.should.equal("'0.0.1'");
       version.line.should.equal(2);
-      version.codeStart.should.equal(8);
+      version.codeStart.should.equal(9);
 
       var parse = comments.shift();
-      parse.description.summary.should.equal('<p>Parse the given <code>str</code>.</p>');
-      parse.description.body.should.equal('<h2>Examples</h2>\n\n<pre><code>parse(str)\n// =&amp;gt; "wahoo"\n</code></pre>');
-      parse.description.full.should.equal('<p>Parse the given <code>str</code>.</p>\n\n<h2>Examples</h2>\n\n<pre><code>parse(str)\n// =&amp;gt; "wahoo"\n</code></pre>');
+      parse.description.summary.should.equal('');
       parse.tags[0].type.should.equal('param');
-      parse.tags[0].name.should.equal('str');
-      parse.tags[0].description.should.equal('to parse');
-      parse.tags[0].types.should.eql(['String', 'Buffer']);
-      parse.tags[1].type.should.equal('return');
-      parse.tags[1].types.should.eql(['String']);
-      parse.tags[2].visibility.should.equal('public');
-      parse.line.should.equal(11);
-      parse.codeStart.should.equal(23);
+      parse.tags[0].name.should.equal('config');
+      parse.tags[0].description.should.equal('<p>An object that must provide a <code>requestExecutor</code> field.</p>');
+      parse.tags[0].types.should.eql(['Object']);
+      parse.line.should.equal(12);
+      parse.codeStart.should.equal(15);
       done();
     });
   },
@@ -427,7 +422,7 @@ module.exports = {
     });
   },
 
-  'test .parseComments() tags': function (done){
+  'test .parseComments() tag types': function (done){
     fixture('d.js', function(err, str){
       var comments = dox.parseComments(str);
       var first = comments.shift();
