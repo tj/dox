@@ -136,8 +136,8 @@ module.exports = {
 
       var escape = comments.pop();
       escape.tags.should.have.length(4);
-      escape.tags[3].string.should.equal('<p>With <code>Markdown</code> syntax</p>');
-      escape.tags[3].rawString.should.equal('With `Markdown` syntax');
+      escape.tags[3].string.should.equal('With `Markdown` syntax');
+      escape.tags[3].html.should.equal('<p>With <code>Markdown</code> syntax</p>');
       escape.description.full.should.equal('<p>Escape the given <code>html</code>.</p>');
       escape.ctx.type.should.equal('function');
       escape.ctx.name.should.equal('escape');
