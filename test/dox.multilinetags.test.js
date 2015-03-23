@@ -54,11 +54,13 @@ module.exports = {
       onlyParam.tags[0].name.should.equal('foo');
       onlyParam.tags[0].types.should.eql(['String']);
       onlyParam.tags[0].description.should.equal('<p>one<br />two<br />three</p>');
+      onlyParam.tags[0].string.should.equal('{String} foo\none\ntwo\nthree');
       firstParam.tags.should.with.lengthOf(2);
       firstParam.tags[0].type.should.equal('param');
       firstParam.tags[0].name.should.equal('foo');
       firstParam.tags[0].types.should.eql(['String']);
       firstParam.tags[0].description.should.equal('<p>one<br />two<br />three</p>');
+      firstParam.tags[0].string.should.equal('{String} foo\none\ntwo\nthree');
       firstParam.tags[1].string.should.equal('last');
       firstParam.tags[1].html.should.equal('<p>last</p>');
       lastParam.tags.should.with.lengthOf(2);
@@ -68,6 +70,7 @@ module.exports = {
       lastParam.tags[1].name.should.equal('foo');
       lastParam.tags[1].types.should.eql(['String']);
       lastParam.tags[1].description.should.equal('<p>one<br />two<br />three</p>');
+      lastParam.tags[1].string.should.equal('{String} foo\none\ntwo\nthree');
       midParam.tags.should.with.lengthOf(3);
       midParam.tags[0].string.should.equal('first');
       midParam.tags[0].html.should.equal('<p>first</p>');
@@ -75,6 +78,7 @@ module.exports = {
       midParam.tags[1].name.should.equal('foo');
       midParam.tags[1].types.should.eql(['String']);
       midParam.tags[1].description.should.equal('<p>one<br />two<br />three</p>');
+      midParam.tags[1].string.should.equal('{String} foo\none\ntwo\nthree');
       midParam.tags[2].string.should.equal('last');
       midParam.tags[2].html.should.equal('<p>last</p>');
 
@@ -82,10 +86,12 @@ module.exports = {
       onlyReturn.tags[0].type.should.equal('return');
       onlyReturn.tags[0].types.should.eql(['String']);
       onlyReturn.tags[0].description.should.equal('<p>one<br />two<br />three</p>');
+      onlyReturn.tags[0].string.should.equal('{String}\none\ntwo\nthree');
       firstReturn.tags.should.with.lengthOf(2);
       firstReturn.tags[0].type.should.equal('return');
       firstReturn.tags[0].types.should.eql(['String']);
       firstReturn.tags[0].description.should.equal('<p>one<br />two<br />three</p>');
+      firstReturn.tags[0].string.should.equal('{String}\none\ntwo\nthree');
       firstReturn.tags[1].string.should.equal('last');
       firstReturn.tags[1].html.should.equal('<p>last</p>');
       lastReturn.tags.should.with.lengthOf(2);
@@ -94,12 +100,14 @@ module.exports = {
       lastReturn.tags[1].type.should.equal('return');
       lastReturn.tags[1].types.should.eql(['String']);
       lastReturn.tags[1].description.should.equal('<p>one<br />two<br />three</p>');
+      lastReturn.tags[1].string.should.equal('{String}\none\ntwo\nthree');
       midReturn.tags.should.with.lengthOf(3);
       midReturn.tags[0].string.should.equal('first');
       midReturn.tags[0].html.should.equal('<p>first</p>');
       midReturn.tags[1].type.should.equal('return');
       midReturn.tags[1].types.should.eql(['String']);
       midReturn.tags[1].description.should.equal('<p>one<br />two<br />three</p>');
+      midReturn.tags[1].string.should.equal('{String}\none\ntwo\nthree');
       midReturn.tags[2].string.should.equal('last');
       midReturn.tags[2].html.should.equal('<p>last</p>');
 

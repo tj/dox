@@ -46,8 +46,10 @@ module.exports = {
       version.tags.should.have.length(2);
       version.tags[0].type.should.equal('type');
       version.tags[0].types.should.eql(['String']);
+      version.tags[0].string.should.equal('{String}');
       version.tags[1].type.should.equal('api');
       version.tags[1].visibility.should.equal('public');
+      version.tags[1].string.should.equal('public');
       version.ctx.type.should.equal('property');
       version.ctx.receiver.should.equal('exports');
       version.ctx.name.should.equal('version');
@@ -606,6 +608,7 @@ module.exports = {
     tag.types.should.eql(['String', 'Buffer']);
     tag.name.should.equal('');
     tag.description.should.equal('');
+    tag.string.should.equal('{String|Buffer}');
     tag.optional.should.be.false;
   },
 
@@ -615,6 +618,7 @@ module.exports = {
     tag.types.should.eql(['string']);
     tag.name.should.equal('[foo]');
     tag.description.should.equal('');
+    tag.string.should.equal('{string} [foo]');
     tag.optional.should.be.true;
 
     var tag = dox.parseTag('@param {string=} foo')
@@ -622,6 +626,7 @@ module.exports = {
     tag.types.should.eql(['string']);
     tag.name.should.equal('foo');
     tag.description.should.equal('');
+    tag.string.should.equal('{string=} foo');
     tag.optional.should.be.true;
 
     var tag = dox.parseTag('@param {string?} foo')
@@ -629,6 +634,7 @@ module.exports = {
     tag.types.should.eql(['string']);
     tag.name.should.equal('foo');
     tag.description.should.equal('');
+    tag.string.should.equal('{string?} foo');
     tag.nullable.should.be.true;
 
     var tag = dox.parseTag('@param {string|Buffer=} foo')
@@ -636,6 +642,7 @@ module.exports = {
     tag.types.should.eql(['string', 'Buffer']);
     tag.name.should.equal('foo');
     tag.description.should.equal('');
+    tag.string.should.equal('{string|Buffer=} foo');
     tag.optional.should.be.true;
   },
 
@@ -644,12 +651,14 @@ module.exports = {
     tag.type.should.equal('return');
     tag.types.should.eql(['String']);
     tag.description.should.equal('a normal string');
+    tag.string.should.equal('{String} a normal string');
   },
 
   'test .parseTag() @augments': function(){
     var tag = dox.parseTag('@augments otherClass');
     tag.type.should.equal('augments');
     tag.otherClass.should.equal('otherClass')
+    tag.string.should.equal('otherClass');
   },
 
   'test .parseTag() @author': function(){
@@ -663,12 +672,14 @@ module.exports = {
     tag.type.should.equal('borrows');
     tag.otherMemberName.should.equal('foo');
     tag.thisMemberName.should.equal('bar');
+    tag.string.should.equal('foo as bar');
   },
 
   'test .parseTag() @memberOf': function(){
     var tag = dox.parseTag('@memberOf Foo.bar')
     tag.type.should.equal('memberOf')
     tag.parent.should.equal('Foo.bar')
+    tag.string.should.equal('Foo.bar')
   },
 
   'test .parseTag() @example': function(){
@@ -708,6 +719,7 @@ module.exports = {
       all.tags.should.have.length(1);
       all.tags[0].type.should.equal('return');
       all.tags[0].description.should.equal('<p>Digit</p>');
+      all.tags[0].string.should.equal('{number} Digit');
       all.description.full.should.equal('');
       all.description.summary.should.equal('');
       all.description.summary.should.equal('');
@@ -749,6 +761,7 @@ module.exports = {
         , types: [ 'Object' ]
         , typesDescription: '<code>Object</code>'
         , description: '<p>description</p>'
+        , string: '{Object} description'
         , nullable: false
         , nonNullable: false
         , variable: false
