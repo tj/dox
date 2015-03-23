@@ -162,7 +162,7 @@ var obj = dox.parseComments(code);
 exports.write = function(str) {
   process.stdout.write(str);
 };
-````
+```
 yields:
 
 ```js
