@@ -51,11 +51,12 @@ output:
     "tags": [
       {
         "type": "example",
-        "string": "<pre><code>utils.escape(&#39;&lt;script&gt;&lt;/script&gt;&#39;)\n// =&gt; &#39;&amp;lt;script&amp;gt;&amp;lt;/script&amp;gt;&#39;\n</code></pre>",
-        "rawString": "    utils.escape('<script></script>')\n    // => '&lt;script&gt;&lt;/script&gt;'"
+        "string": "    utils.escape('<script></script>')\n    // => '&lt;script&gt;&lt;/script&gt;'",
+        "html": "<pre><code>utils.escape(&#39;&lt;script&gt;&lt;/script&gt;&#39;)\n// =&gt; &#39;&amp;lt;script&amp;gt;&amp;lt;/script&amp;gt;&#39;\n</code></pre>"
       },
       {
         "type": "param",
+        "string": "{String} html string to be escaped",
         "types": [
           "String"
         ],
@@ -64,6 +65,7 @@ output:
       },
       {
         "type": "return",
+        "string": "{String} escaped html",
         "types": [
           "String"
         ],
@@ -71,6 +73,7 @@ output:
       },
       {
         "type": "api",
+        "string": "public",
         "visibility": "public"
       }
     ],
@@ -232,14 +235,17 @@ yields:
 ```js
 tags:
    [ { type: 'param',
+       string: '{String} str',
        types: [ 'String' ],
        name: 'str',
        description: '' },
      { type: 'param',
+       string: '{{stream: Writable}} options',
        types: [ { stream: ['Writable'] } ],
        name: 'options',
        description: '' },
      { type: 'return',
+       string: '{Object} exports for chaining',
        types: [ 'Object' ],
        description: 'exports for chaining' },
      { type: 'api',
@@ -284,6 +290,7 @@ tags:
     "tags": [
       {
         "type": "param",
+        "string": "{string | {name: string, age: number | date}} name Name or person object",
         "name": "name",
         "description": "Name or person object",
         "types": [
@@ -306,6 +313,7 @@ tags:
       },
       {
         "type": "param",
+        "string": "{{separator: string} =} options An options object",
         "name": "options",
         "description": "An options object",
         "types": [
@@ -323,6 +331,7 @@ tags:
       },
       {
         "type": "return",
+        "string": "{string} The constructed information string",
         "types": [
           "string"
         ],
