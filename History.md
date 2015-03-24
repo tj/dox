@@ -1,4 +1,4 @@
-0.7.0 / 2015-??-??
+0.7.0 / 2015-03-24
 ==================
 
 * Add context parsing for some ES6 syntax:
@@ -8,6 +8,7 @@
   - assignments via `let` or `const`
 * Add support for @description tag
 * Add context match for returned closure
+* Add: Tags without descriptions now have an `html` property containing a markdown parse of the tag's contents
 * Fix: more agnostic to code style when parsing contexts (eg, no longer ignores functions without spaces between function name and parenthesis)
 * Fix: No longer incorrectly tries to parse strings inside comments, causing large chunks of a file to be ignored.
 * Fix: No longer parses double slash in a string literal as being a comment start.
