@@ -1,7 +1,7 @@
 {
   "name": "dox",
   "description": "Markdown / JSdoc documentation generator",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "author": "TJ Holowaychuk <tj@vision-media.ca>",
   "contributors": [
     "Arseny Zarechnev <me@evindor.com>",
