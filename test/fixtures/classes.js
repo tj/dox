@@ -2,9 +2,9 @@
 /*
  * A Foo.
  * @class FooBar
- * @extends Foo
+ * @extends Foo.Baz
  */
-export default class FooBar extends Foo {
+export default class FooBar extends Foo.Baz {
 
     /*
      * construct a Foo
