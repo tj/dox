@@ -251,7 +251,7 @@ module.exports = {
       comments[0].ctx.type.should.be.equal('class');
       comments[0].ctx.name.should.be.equal('FooBar');
       comments[0].ctx.constructor.should.be.equal('FooBar');
-      comments[0].ctx.extends.should.be.equal('Foo');
+      comments[0].ctx.extends.should.be.equal('Foo.Baz');
       comments[0].ctx.string.should.be.equal('new FooBar()');
       comments[0].line.should.equal(2);
       comments[0].codeStart.should.equal(7);
