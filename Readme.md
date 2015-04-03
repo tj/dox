@@ -405,6 +405,24 @@ ctx:
    string: 'User()' } }
 ```
 
+### Extending Context Matching
+
+Context matching in dox is done by performing pattern matching against the code following a
+comment block. `dox.contextPatternMatchers` is an array of all pattern matching functions,
+which dox will iterate over until one of them returns a result. If none return a result,
+then the comment block does not receive a `ctx` value.
+
+This array is exposed to allow for extension of unsupported context patterns by adding more
+functions.  Each function is passed the code following the comment block and (if detected)
+the parent context if the block.
+
+```js
+dox.contextPatternMatchers.push(function (str, parentContext) {
+  // return a context object if found
+  // return false otherwise
+});
+```
+
 ### Ignore
 
 Comments and their associated bodies of code may be flagged with "!" to be considered worth ignoring, these are typically things like file comments containing copyright etc, however you of course can output them in your templates if you want.

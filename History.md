@@ -1,3 +1,10 @@
+0.7.1 / 2015-04-03
+==================
+
+Context parsing has been re-factored into an array of functions that are iterated over until a match is found. This array is exposed as `dox.contextPatternMatchers`, allowing for extension with new contexts without needing to edit the dox source.
+
+* Fix: ES6 classes extended from sub-properties (such as Backbone.View) are now properly matched
+
 0.7.0 / 2015-03-24
 ==================
 
