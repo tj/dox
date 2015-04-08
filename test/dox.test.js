@@ -244,7 +244,7 @@ module.exports = {
       var comments = dox.parseComments(str)
 
       comments.should.be.an.instanceOf(Array);
-      comments.should.have.lengthOf(11);
+      comments.should.have.lengthOf(12);
 
       // class, extends and is exported as default
       comments[0].description.full.should.equal('<p>A Foo.</p>');
@@ -347,6 +347,16 @@ module.exports = {
       comments[10].ctx.string.should.be.equal('new Lorem()');
       comments[10].line.should.equal(80);
       comments[10].codeStart.should.equal(83);
+
+      // class extended by assigment expression
+      comments[11].description.full.should.equal('');
+      comments[11].ctx.type.should.be.equal('class');
+      comments[11].ctx.name.should.be.equal('Ipsum');
+      comments[11].ctx.constructor.should.be.equal('Ipsum');
+      comments[11].ctx.extends.should.be.equal('mixin(Foo.Bar, Baz)');
+      comments[11].ctx.string.should.be.equal('new Ipsum()');
+      comments[11].line.should.equal(89);
+      comments[11].codeStart.should.equal(92);
 
       done();
     });

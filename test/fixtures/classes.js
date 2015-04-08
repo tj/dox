@@ -85,3 +85,12 @@ class Lorem {
         this.options = options
     }
 }
+
+/*
+ * @class Lorem
+ */
+class Ipsum extends mixin(Foo.Bar, Baz) {
+    constructor(options) {
+        this.options = options
+    }
+}
