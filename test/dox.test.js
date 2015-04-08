@@ -244,7 +244,7 @@ module.exports = {
       var comments = dox.parseComments(str)
 
       comments.should.be.an.instanceOf(Array);
-      comments.should.have.lengthOf(8);
+      comments.should.have.lengthOf(11);
 
       // class, extends and is exported as default
       comments[0].description.full.should.equal('<p>A Foo.</p>');
@@ -274,52 +274,79 @@ module.exports = {
       comments[2].line.should.equal(18);
       comments[2].codeStart.should.equal(22);
 
-      // class setter
-      comments[3].description.full.should.equal('<p>Setter for the blah property.</p>');
-      comments[3].ctx.type.should.be.equal('property');
-      comments[3].ctx.name.should.be.equal('blah');
+      // class static method
+      comments[3].description.full.should.equal('<p>Static method of the Foo class.</p>');
+      comments[3].ctx.type.should.be.equal('method');
+      comments[3].ctx.name.should.be.equal('staticMethod');
       comments[3].ctx.constructor.should.be.equal('FooBar');
-      comments[3].ctx.string.should.be.equal('FooBar.prototype.blah');
+      comments[3].ctx.string.should.be.equal('FooBar.staticMethod()');
       comments[3].line.should.equal(26);
-      comments[3].codeStart.should.equal(29);
+      comments[3].codeStart.should.equal(30);
+
+      // class static generator method
+      comments[4].description.full.should.equal('<p>Static generator method of the Foo class.</p>');
+      comments[4].ctx.type.should.be.equal('method');
+      comments[4].ctx.name.should.be.equal('*staticGeneratorMethod');
+      comments[4].ctx.constructor.should.be.equal('FooBar');
+      comments[4].ctx.string.should.be.equal('FooBar.*staticGeneratorMethod()');
+      comments[4].line.should.equal(34);
+      comments[4].codeStart.should.equal(38);
+
+      // class generator method with computed name
+      comments[5].description.full.should.equal('<p>Generator method with computed name.</p>');
+      comments[5].ctx.type.should.be.equal('method');
+      comments[5].ctx.name.should.be.equal('*[Symbol.iterator]');
+      comments[5].ctx.constructor.should.be.equal('FooBar');
+      comments[5].ctx.string.should.be.equal('FooBar.prototype.*[Symbol.iterator]()');
+      comments[5].line.should.equal(42);
+      comments[5].codeStart.should.equal(46);
+
+      // class setter
+      comments[6].description.full.should.equal('<p>Setter for the blah property.</p>');
+      comments[6].ctx.type.should.be.equal('property');
+      comments[6].ctx.name.should.be.equal('blah');
+      comments[6].ctx.constructor.should.be.equal('FooBar');
+      comments[6].ctx.string.should.be.equal('FooBar.prototype.blah');
+      comments[6].line.should.equal(50);
+      comments[6].codeStart.should.equal(53);
 
       // class getter
-      comments[4].description.full.should.equal('<p>Getter for the blah property.</p>');
-      comments[4].ctx.type.should.be.equal('property');
-      comments[4].ctx.name.should.be.equal('blah');
-      comments[4].ctx.constructor.should.be.equal('FooBar');
-      comments[4].ctx.string.should.be.equal('FooBar.prototype.blah');
-      comments[4].line.should.equal(33);
-      comments[4].codeStart.should.equal(37);
+      comments[7].description.full.should.equal('<p>Getter for the blah property.</p>');
+      comments[7].ctx.type.should.be.equal('property');
+      comments[7].ctx.name.should.be.equal('blah');
+      comments[7].ctx.constructor.should.be.equal('FooBar');
+      comments[7].ctx.string.should.be.equal('FooBar.prototype.blah');
+      comments[7].line.should.equal(57);
+      comments[7].codeStart.should.equal(61);
 
       // class, extends and is exported by name
-      comments[5].description.full.should.equal('');
-      comments[5].ctx.type.should.be.equal('class');
-      comments[5].ctx.name.should.be.equal('Baz');
-      comments[5].ctx.constructor.should.be.equal('Baz');
-      comments[5].ctx.extends.should.be.equal('FooBar');
-      comments[5].ctx.string.should.be.equal('new Baz()');
-      comments[5].line.should.equal(42);
-      comments[5].codeStart.should.equal(45);
+      comments[8].description.full.should.equal('');
+      comments[8].ctx.type.should.be.equal('class');
+      comments[8].ctx.name.should.be.equal('Baz');
+      comments[8].ctx.constructor.should.be.equal('Baz');
+      comments[8].ctx.extends.should.be.equal('FooBar');
+      comments[8].ctx.string.should.be.equal('new Baz()');
+      comments[8].line.should.equal(67);
+      comments[8].codeStart.should.equal(70);
 
       // class constructor
-      comments[6].description.full.should.equal('');
-      comments[6].ctx.type.should.be.equal('constructor');
-      comments[6].ctx.name.should.be.equal('constructor');
-      comments[6].ctx.constructor.should.be.equal('Baz');
-      comments[6].ctx.string.should.be.equal('Baz.prototype.constructor()');
-      comments[6].line.should.equal(47);
-      comments[6].codeStart.should.equal(50);
+      comments[9].description.full.should.equal('');
+      comments[9].ctx.type.should.be.equal('constructor');
+      comments[9].ctx.name.should.be.equal('constructor');
+      comments[9].ctx.constructor.should.be.equal('Baz');
+      comments[9].ctx.string.should.be.equal('Baz.prototype.constructor()');
+      comments[9].line.should.equal(72);
+      comments[9].codeStart.should.equal(75);
 
       // class
-      comments[7].description.full.should.equal('');
-      comments[7].ctx.type.should.be.equal('class');
-      comments[7].ctx.name.should.be.equal('Lorem');
-      comments[7].ctx.constructor.should.be.equal('Lorem');
-      comments[7].ctx.extends.should.be.equal('');
-      comments[7].ctx.string.should.be.equal('new Lorem()');
-      comments[7].line.should.equal(55);
-      comments[7].codeStart.should.equal(58);
+      comments[10].description.full.should.equal('');
+      comments[10].ctx.type.should.be.equal('class');
+      comments[10].ctx.name.should.be.equal('Lorem');
+      comments[10].ctx.constructor.should.be.equal('Lorem');
+      comments[10].ctx.extends.should.be.equal('');
+      comments[10].ctx.string.should.be.equal('new Lorem()');
+      comments[10].line.should.equal(80);
+      comments[10].codeStart.should.equal(83);
 
       done();
     });

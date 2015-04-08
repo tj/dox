@@ -23,6 +23,30 @@ export default class FooBar extends Foo.Baz {
         return 99999999999999999999999999999999999999999999999999999999999999999
     }
 
+    /**
+     * Static method of the Foo class.
+     * @return {String}
+     */
+    static staticMethod() {
+      return 'static method'
+    }
+
+    /**
+     * Static generator method of the Foo class.
+     * @return {String}
+     */
+    static *staticGeneratorMethod() {
+      return 'static method'
+    }
+
+    /**
+     * Generator method with computed name.
+     * @return {String}
+     */
+    * [Symbol.iterator]() {
+      for (let arg of this.args) yield arg
+    }
+
     /*
      * Setter for the blah property.
      */
@@ -37,6 +61,7 @@ export default class FooBar extends Foo.Baz {
     get blah() {
         return this.blah
     }
+
 }
 
 /*
