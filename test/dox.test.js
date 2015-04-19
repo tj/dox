@@ -896,10 +896,12 @@ module.exports = {
       comments.length.should.equal(2);
       comments[0].description.full.should.equal("<p>FSM states.</p>");
       comments[0].tags[0].type.should.equal("enum");
+      comments[0].tags[0].types.length.should.equal(0);
       comments[0].tags[0].string.should.equal("");
 
       comments[1].description.full.should.equal("<p>Colors.</p>");
       comments[1].tags[0].type.should.equal("enum");
+      comments[0].tags[0].types.length.should.equal(0);
       comments[1].tags[0].string.should.equal("");
       done();
     });
