@@ -888,5 +888,41 @@ module.exports = {
       comments[1].isEvent.should.be.true;
       done();
     });
+  },
+
+  'test optional types for @enum': function (done) {
+    fixture('enums.js', function (err, str){
+      var comments = dox.parseComments(str);
+      comments.length.should.equal(2);
+      comments[0].description.full.should.equal("<p>FSM states.</p>");
+      comments[0].tags[0].type.should.equal("enum");
+      comments[0].tags[0].types.length.should.equal(0);
+      comments[0].tags[0].string.should.equal("");
+
+      comments[1].description.full.should.equal("<p>Colors.</p>");
+      comments[1].tags[0].type.should.equal("enum");
+      comments[0].tags[0].types.length.should.equal(0);
+      comments[1].tags[0].string.should.equal("");
+      done();
+    });
+  },
+
+  'test optional types for @throws': function (done) {
+    fixture('throws.js', function (err, str){
+      var comments = dox.parseComments(str);
+      comments.length.should.equal(2);
+      comments[0].description.full.should.equal("<p>Raise an exception for fun.</p>");
+      comments[0].tags[0].type.should.equal("throws");
+      comments[0].tags[0].types.length.should.equal(0);
+      comments[0].tags[0].string.should.equal("An error message.");
+      comments[0].tags[0].description.should.equal("<p>An error message.</p>");
+
+      comments[1].description.full.should.equal("<p>Validate user input.</p>");
+      comments[1].tags[0].type.should.equal("throws");
+      comments[1].tags[0].types[0].should.equal("TypeError");
+      comments[1].tags[0].string.should.equal("{TypeError} Invalid argument.");
+      comments[1].tags[0].description.should.equal("<p>Invalid argument.</p>");
+      done();
+    });
   }
 };
