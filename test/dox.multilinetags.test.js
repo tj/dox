@@ -13,8 +13,11 @@ function fixture(name, fn) {
 module.exports = {
   'test .parseComments() multiline tags': function(done){
     fixture('multilinetags.js', function(err, str){
-      var comments = dox.parseComments(str)
-        , only = comments.shift()
+      var comments = dox.parseComments(str);
+
+      comments.length.should.equal(15);
+
+      var only = comments.shift()
         , first = comments.shift()
         , last = comments.shift()
         , mid = comments.shift()
@@ -72,6 +75,7 @@ module.exports = {
       lastParam.tags[1].description.should.equal('<p>one<br />two<br />three</p>');
       lastParam.tags[1].string.should.equal('{String} foo\none\ntwo\nthree');
       midParam.tags.should.with.lengthOf(3);
+      midParam.tags[0].type.should.equal('foo');
       midParam.tags[0].string.should.equal('first');
       midParam.tags[0].html.should.equal('<p>first</p>');
       midParam.tags[1].type.should.equal('param');
@@ -114,6 +118,31 @@ module.exports = {
       example.tags.should.with.lengthOf(1);
       example.tags[0].string.should.equal('    test(one);\n    test(two);');
       example.tags[0].html.should.equal('<pre><code>test(one);\ntest(two);\n</code></pre>');
+
+      var i167 = comments.shift();
+      i167.tags.should.with.lengthOf(3);
+      i167.tags[0].type.should.equal('tag-1');
+      i167.tags[0].string.should.equal('foo');
+      i167.tags[0].html.should.equal('<p>foo</p>');
+      i167.tags[1].type.should.equal('tag-2');
+      i167.tags[1].string.should.equal('bar');
+      i167.tags[1].html.should.equal('<p>bar</p>');
+      i167.tags[2].type.should.equal('tag-3');
+      i167.tags[2].string.should.equal('baz');
+      i167.tags[2].html.should.equal('<p>baz</p>');
+
+      var i167 = comments.shift();
+      i167.tags.should.with.lengthOf(3);
+      i167.tags[0].type.should.equal('tag-1');
+      i167.tags[0].string.should.equal('foo');
+      i167.tags[0].html.should.equal('<p>foo</p>');
+      i167.tags[1].type.should.equal('tag-2');
+      i167.tags[1].string.should.equal('bar');
+      i167.tags[1].html.should.equal('<p>bar</p>');
+      i167.tags[2].type.should.equal('tag-3');
+      i167.tags[2].string.should.equal('baz');
+      i167.tags[2].html.should.equal('<p>baz</p>');
+
       done();
     });
   }

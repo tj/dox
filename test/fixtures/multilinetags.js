@@ -72,7 +72,7 @@ function firstParam() {
 /**
  * last
  *
- * @foo first
+ * @foo first 
  * @param {String} foo
  * one
  * two
@@ -151,3 +151,20 @@ function midReturn() {
  */
 function example() {
 }
+
+/**
+ * @tag-1 foo
+ * @tag-2 bar
+ *
+ * @tag-3 baz
+ */
+
+ /**
+  * @tag-1
+  * foo
+  * @tag-2
+  * bar
+  *
+  * @tag-3
+  * baz
+  */
