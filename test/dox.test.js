@@ -924,5 +924,13 @@ module.exports = {
       comments[1].tags[0].description.should.equal("<p>Invalid argument.</p>");
       done();
     });
+  },
+
+  'can properly handle escaped single quotes': function (done) {
+    fixture('error.js', function (err, str) {
+      var comments = dox.parseComments(str);
+      comments.length.should.equal(2);
+      done();
+    })
   }
 };
