@@ -28,8 +28,8 @@
     "dox": "./bin/dox"
   },
   "dependencies": {
-    "commander": "~2.7.1",
-    "jsdoctypeparser": "^1.1.4",
+    "commander": "~2.8.1",
+    "jsdoctypeparser": "^1.2.0",
     "marked": ">=0.3.1"
   },
   "devDependencies": {
