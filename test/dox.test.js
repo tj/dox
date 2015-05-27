@@ -924,5 +924,28 @@ module.exports = {
       comments[1].tags[0].description.should.equal("<p>Invalid argument.</p>");
       done();
     });
+  },
+
+  'Issue 169': function (done) {
+    fixture('issue169.js', function (err, str){
+      var comments = dox.parseComments(str);
+
+      comments.length.should.equal(1);
+      comments[0].description.full.should.equal("");
+      comments[0].tags.length.should.equal(3);
+
+      comments[0].tags[0].type.should.equal("fileoverview");
+      comments[0].tags[0].string.should.equal("Takes two options objects and merges them");
+      comments[0].tags[0].html.should.equal("<p>Takes two options objects and merges them</p>");
+
+      comments[0].tags[1].type.should.equal("author");
+      comments[0].tags[1].string.should.equal("Scott Nath");
+      comments[0].tags[1].html.should.equal("<p>Scott Nath</p>");
+
+      comments[0].tags[2].type.should.equal("requires");
+      comments[0].tags[2].string.should.equal("NPM:lodash.merge");
+      comments[0].tags[2].html.should.equal("<p>NPM:lodash.merge</p>");
+      done();
+    });
   }
 };
