@@ -1,3 +1,11 @@
+0.8.0 / 2015-05-27
+==================
+
+* Fix: Tags with whitespace between the tag start and the previous line ending are now parsed correctly.
+* Deps: commander@2.8.1
+* Deps: jsdoctypeparser@1.2.0
+  - Better compatibility for type declarations, but may result in changes to output with invalid types.
+
 0.7.1 / 2015-04-03
 ==================
 
