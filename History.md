@@ -1,3 +1,10 @@
+0.8.1 / 2016-03-29
+==================
+
+* Fix: Dox will no longer falsely enter or exit string blocks when encountering an escaped quote or double-quote
+* Deps: commander@2.9.0
+* Deps: marked@0.3.5
+
 0.8.0 / 2015-05-27
 ==================
 
