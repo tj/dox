@@ -947,5 +947,20 @@ module.exports = {
       comments[0].tags[2].html.should.equal("<p>NPM:lodash.merge</p>");
       done();
     });
-  }
+  },
+
+  'test that quotes within strings are correctly handled': function (done) {
+    fixture('string-quotes.js', function (err, str){
+      var comments = dox.parseComments(str);
+      comments.length.should.equal(7);
+      comments[0].description.full.should.equal("<p>One</p>");
+      comments[1].description.full.should.equal("<p>Two</p>");
+      comments[2].description.full.should.equal("<p>Three</p>");
+      comments[3].description.full.should.equal("<p>Four</p>");
+      comments[4].description.full.should.equal("<p>Five</p>");
+      comments[5].description.full.should.equal("<p>Six</p>");
+      comments[6].description.full.should.equal("<p>Seven</p>");
+      done();
+    });
+  },
 };
