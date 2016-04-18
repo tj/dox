@@ -963,4 +963,14 @@ module.exports = {
       done();
     });
   },
+
+  'test that quotes within regexpes are correctly handled': function (done) {
+    fixture('regexp.js', function (err, str){
+      var comments = dox.parseComments(str);
+      comments.length.should.equal(2);
+      comments[0].description.full.should.equal("<p>A</p>");
+      comments[1].description.full.should.equal("<p>B</p>");
+      done();
+    });
+  },
 };
