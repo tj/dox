@@ -18,8 +18,8 @@ module.exports = {
         , file = comments.shift()
         , version = comments.shift();
       file.should.have.property('ignore', true);
-      file.description.full.should.equal('<p>A<br />Copyright (c) 2010 Author Name <Author Email><br />MIT Licensed</p>');
-      file.description.summary.should.equal('<p>A<br />Copyright (c) 2010 Author Name <Author Email><br />MIT Licensed</p>');
+      file.description.full.should.equal('<p>A<br />\nCopyright (c) 2010 Author Name <Author Email><br />\nMIT Licensed</p>');
+      file.description.summary.should.equal('<p>A<br />\nCopyright (c) 2010 Author Name <Author Email><br />\nMIT Licensed</p>');
       file.description.body.should.equal('');
       file.tags.should.be.empty;
       file.line.should.equal(2);
@@ -77,7 +77,7 @@ module.exports = {
 
       file.tags.should.be.empty;
       // the following doesn't work as gh-md now obfuscates emails different on every pass
-      //file.description.full.should.equal('<p>Dox<br />Copyright (c) 2010 TJ Holowaychuk <a href=\'mailto:tj@vision-media.ca\'>tj@vision-media.ca</a><br />MIT Licensed</p>');
+      //file.description.full.should.equal('<p>Dox<br />\nCopyright (c) 2010 TJ Holowaychuk <a href=\'mailto:tj@vision-media.ca\'>tj@vision-media.ca</a><br />\nMIT Licensed</p>');
       file.description.full.should.be.type('string');
       file.ignore.should.be.true;
       file.line.should.equal(2);
@@ -116,8 +116,8 @@ module.exports = {
       var parseComment = comments.shift();
       parseComment.tags.should.have.length(4);
       parseComment.description.summary.should.equal('<p>Parse the given comment <code>str</code>.</p>');
-      parseComment.description.full.should.equal('<p>Parse the given comment <code>str</code>.</p><h2>The comment object returned contains the following</h2>\n<ul>\n<li><code>tags</code>  array of tag objects</li>\n<li><code>description</code> the first line of the comment</li>\n<li><code>body</code> lines following the description</li>\n<li><code>content</code> both the description and the body</li>\n<li><code>isPrivate</code> true when &quot;@api private&quot; is used</li>\n</ul>\n');
-      parseComment.description.body.should.equal('<h2>The comment object returned contains the following</h2>\n<ul>\n<li><code>tags</code>  array of tag objects</li>\n<li><code>description</code> the first line of the comment</li>\n<li><code>body</code> lines following the description</li>\n<li><code>content</code> both the description and the body</li>\n<li><code>isPrivate</code> true when &quot;@api private&quot; is used</li>\n</ul>\n');
+      parseComment.description.full.should.equal('<p>Parse the given comment <code>str</code>.</p>\n<h2>The comment object returned contains the following</h2>\n<ul>\n<li><code>tags</code>  array of tag objects</li>\n<li><code>description</code> the first line of the comment</li>\n<li><code>body</code> lines following the description</li>\n<li><code>content</code> both the description and the body</li>\n<li><code>isPrivate</code> true when &quot;@api private&quot; is used</li>\n</ul>');
+      parseComment.description.body.should.equal('<h2>The comment object returned contains the following</h2>\n<ul>\n<li><code>tags</code>  array of tag objects</li>\n<li><code>description</code> the first line of the comment</li>\n<li><code>body</code> lines following the description</li>\n<li><code>content</code> both the description and the body</li>\n<li><code>isPrivate</code> true when &quot;@api private&quot; is used</li>\n</ul>');
       parseComment.line.should.equal(75);
       parseComment.codeStart.should.equal(92);
 
@@ -388,7 +388,7 @@ module.exports = {
       comments[2].ctx.string.should.be.equal('Foo.prototype.getFirst()');
 
       // getter function
-      comments[3].description.full.should.equal('<p>Returns the first item.<br />Acts as an ES5 alias of <code>Foo.prototype.getFirst</code> for feature sake.</p>');
+      comments[3].description.full.should.equal('<p>Returns the first item.<br />\nActs as an ES5 alias of <code>Foo.prototype.getFirst</code> for feature sake.</p>');
       comments[3].ctx.type.should.be.equal('property');
       comments[3].ctx.name.should.be.equal('first');
       comments[3].ctx.string.should.be.equal('Foo.prototype.first');
@@ -411,7 +411,7 @@ module.exports = {
       comments[6].ctx.name.should.be.equal('breakingBad');
 
       // classical prototype function property
-      comments[7].description.full.should.equal('<p>Returns the last item.</p><pre><code class="lang-javascript">var f = new Foo([1, 5, 10]);\n\nf.getLast() === 10;\n</code></pre>\n');
+      comments[7].description.full.should.equal('<p>Returns the last item.</p>\n<pre><code class="lang-javascript">var f = new Foo([1, 5, 10]);\n\nf.getLast() === 10;\n</code></pre>');
       comments[7].ctx.type.should.be.equal('method');
       comments[7].ctx.name.should.be.equal('getLast');
       comments[7].ctx.string.should.be.equal('Foo.prototype.getLast()');
