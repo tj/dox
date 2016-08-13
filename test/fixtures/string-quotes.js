@@ -44,5 +44,14 @@ function six() {
  * Seven
  */
 function seven() {
+	var contents = 'contents';
+	var a = `Template 'string' with "quoted" ${contents}.`;
+}
+
+/**
+ * Eight
+ */
+function eight() {
 	var a = "Last function that should also get included";
 }
+
