@@ -30,7 +30,7 @@
   "dependencies": {
     "commander": "~2.9.0",
     "jsdoctypeparser": "^1.2.0",
-    "markdown-it": "^6.0.5"
+    "markdown-it": "~7.0.0"
   },
   "devDependencies": {
     "mocha": "~2.4.5",
