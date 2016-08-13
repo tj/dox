@@ -1,3 +1,15 @@
+0.9.0 / 2016-08-13
+==================
+
+* Markdown is now generated using the `markdown-it` package, which conforms to Commonmark standards.
+* Fix: Dox now recognizes ES6 template strings as strings and does not attempt to parse their contents.
+
+* Deps: added markdown-it@7.0.0
+* Deps: removed marked
+* DevDeps: mocha@3.0.2
+* DevDeps: should@11.0.0
+
+
 0.8.1 / 2016-03-29
 ==================
 
