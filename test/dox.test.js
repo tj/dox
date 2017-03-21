@@ -105,6 +105,7 @@ module.exports = {
       var parseComments = comments.shift();
       parseComments.tags.should.have.length(4);
       parseComments.ctx.type.should.equal('method');
+      parseComments.ctx.params.should.eql(['js'])
       parseComments.ctx.receiver.should.equal('exports');
       parseComments.ctx.name.should.equal('parseComments');
       parseComments.description.full.should.equal('<p>Parse comments in the given string of <code>js</code>.</p>');
@@ -161,6 +162,7 @@ module.exports = {
       first.ctx.type.should.equal('method');
       first.ctx.receiver.should.equal('exports');
       first.ctx.name.should.equal('parseTagTypes');
+      first.ctx.params.should.eql(['str'])
       first.code.should.equal('exports.parseTagTypes = function(str) {\n\treturn str\n\t\t.replace(/[{}]/g, \'\')\n\t\t.split(/ *[|,\\/] */);\n};');
       first.line.should.equal(2);
       first.codeStart.should.equal(11);
@@ -180,6 +182,7 @@ module.exports = {
       first.ctx.type.should.equal('method');
       first.ctx.receiver.should.equal('exports');
       first.ctx.name.should.equal('parseTagTypes');
+      first.ctx.params.should.eql(['str'])
       first.code.should.equal('exports.parseTagTypes = function(str) {\n  return str\n    .replace(/[{}]/g, \'\')\n    .split(/ *[|,\\/] */);\n};');
       first.line.should.equal(2);
       first.codeStart.should.equal(11);
@@ -199,6 +202,7 @@ module.exports = {
       first.ctx.type.should.equal('method');
       first.ctx.receiver.should.equal('exports');
       first.ctx.name.should.equal('parseTagTypes');
+      first.ctx.params.should.eql(['str']);
       first.code.should.equal('exports.parseTagTypes = function(str) {\n\treturn str\n\t\t.replace(/[{}]/g, \'\')\n\t\t.split(/ *[|,\\/] */);\n};');
       first.line.should.equal(2);
       first.codeStart.should.equal(11);
@@ -231,6 +235,7 @@ module.exports = {
       comments[2].description.full.should.equal('<p>A method of an instance of Foo</p>');
       comments[2].ctx.type.should.be.equal('method');
       comments[2].ctx.name.should.be.equal('method');
+      comments[2].ctx.params.should.eql([]);
       comments[2].ctx.string.should.be.equal('Foo.prototype.method()');
       comments[2].line.should.equal(18);
       comments[2].codeStart.should.equal(22);
@@ -260,6 +265,7 @@ module.exports = {
       comments[1].description.full.should.equal('<p>construct a Foo</p>');
       comments[1].ctx.type.should.be.equal('constructor');
       comments[1].ctx.name.should.be.equal('constructor');
+      comments[1].ctx.params.should.eql(['options']);
       comments[1].ctx.constructor.should.be.equal('FooBar');
       comments[1].ctx.string.should.be.equal('FooBar.prototype.constructor()');
       comments[1].line.should.equal(9);
@@ -268,6 +274,7 @@ module.exports = {
       // class method
       comments[2].description.full.should.equal('<p>Method of the Foo class.</p>');
       comments[2].ctx.type.should.be.equal('method');
+      comments[2].ctx.params.should.eql([]);
       comments[2].ctx.name.should.be.equal('bar');
       comments[2].ctx.constructor.should.be.equal('FooBar');
       comments[2].ctx.string.should.be.equal('FooBar.prototype.bar()');
@@ -277,6 +284,7 @@ module.exports = {
       // class static method
       comments[3].description.full.should.equal('<p>Static method of the Foo class.</p>');
       comments[3].ctx.type.should.be.equal('method');
+      comments[3].ctx.params.should.eql([]);
       comments[3].ctx.name.should.be.equal('staticMethod');
       comments[3].ctx.constructor.should.be.equal('FooBar');
       comments[3].ctx.string.should.be.equal('FooBar.staticMethod()');
@@ -287,6 +295,7 @@ module.exports = {
       comments[4].description.full.should.equal('<p>Static generator method of the Foo class.</p>');
       comments[4].ctx.type.should.be.equal('method');
       comments[4].ctx.name.should.be.equal('*staticGeneratorMethod');
+      comments[4].ctx.params.should.eql([]);
       comments[4].ctx.constructor.should.be.equal('FooBar');
       comments[4].ctx.string.should.be.equal('FooBar.*staticGeneratorMethod()');
       comments[4].line.should.equal(34);
@@ -295,6 +304,7 @@ module.exports = {
       // class generator method with computed name
       comments[5].description.full.should.equal('<p>Generator method with computed name.</p>');
       comments[5].ctx.type.should.be.equal('method');
+      comments[5].ctx.params.should.eql([]);
       comments[5].ctx.name.should.be.equal('*[Symbol.iterator]');
       comments[5].ctx.constructor.should.be.equal('FooBar');
       comments[5].ctx.string.should.be.equal('FooBar.prototype.*[Symbol.iterator]()');
@@ -333,6 +343,7 @@ module.exports = {
       comments[9].description.full.should.equal('');
       comments[9].ctx.type.should.be.equal('constructor');
       comments[9].ctx.name.should.be.equal('constructor');
+      comments[9].ctx.params.should.eql(['options']);
       comments[9].ctx.constructor.should.be.equal('Baz');
       comments[9].ctx.string.should.be.equal('Baz.prototype.constructor()');
       comments[9].line.should.equal(72);
@@ -373,6 +384,7 @@ module.exports = {
       comments[0].description.full.should.equal('<p>Luke, I am your constructor.</p>');
       comments[0].ctx.type.should.be.equal('constructor');
       comments[0].ctx.name.should.be.equal('Foo');
+      comments[0].ctx.params.should.eql(['bar']);
       comments[0].ctx.string.should.be.equal('Foo()');
 
       // prototoype object
@@ -385,6 +397,7 @@ module.exports = {
       comments[2].description.full.should.equal('<p>Returns the first item.</p>');
       comments[2].ctx.type.should.be.equal('method');
       comments[2].ctx.name.should.be.equal('getFirst');
+      comments[2].ctx.params.should.eql([]);
       comments[2].ctx.string.should.be.equal('Foo.prototype.getFirst()');
 
       // getter function
@@ -403,6 +416,7 @@ module.exports = {
       comments[5].description.full.should.equal('<p>Anonymous function on property.</p>');
       comments[5].ctx.type.should.be.equal('method');
       comments[5].ctx.name.should.be.equal('random');
+      comments[5].ctx.params.should.eql([]);
       comments[5].ctx.string.should.be.equal('Foo.prototype.random()');
 
       // this should be a separated function
@@ -413,6 +427,7 @@ module.exports = {
       // classical prototype function property
       comments[7].description.full.should.equal('<p>Returns the last item.</p>\n<pre><code class="lang-javascript">var f = new Foo([1, 5, 10]);\n\nf.getLast() === 10;\n</code></pre>');
       comments[7].ctx.type.should.be.equal('method');
+      comments[7].ctx.params.should.eql([]);
       comments[7].ctx.name.should.be.equal('getLast');
       comments[7].ctx.string.should.be.equal('Foo.prototype.getLast()');
 
@@ -443,12 +458,14 @@ module.exports = {
       comments[2].description.full.should.equal('<p>This function surely does something</p>');
       comments[2].ctx.type.should.be.equal('method');
       comments[2].ctx.name.should.be.equal('doSomething');
+      comments[2].ctx.params.should.eql([]);
       comments[2].ctx.string.should.be.equal('doSomething()');
 
       // property as a named method function
       comments[3].description.full.should.equal('<p>And them something else</p>');
       comments[3].ctx.type.should.be.equal('method');
       comments[3].ctx.name.should.be.equal('doSomethingElse');
+      comments[3].ctx.params.should.eql([]);
       comments[3].ctx.string.should.be.equal('doSomethingElse()');
 
      // getter function
@@ -473,6 +490,7 @@ module.exports = {
       first.ctx.type.should.equal('method');
       first.ctx.receiver.should.equal('exports');
       first.ctx.name.should.equal('parseTagTypes');
+      first.ctx.params.should.eql(['str']);
       first.code.should.equal('exports.parseTagTypes = function(str) {\n  return str\n    .replace(/[{}]/g, \'\')\n    .split(/ *[|,\\/] */);\n};');
       first.line.should.equal(2);
       first.codeStart.should.equal(11);
@@ -528,33 +546,38 @@ module.exports = {
   },
 
   'test .parseCodeContext() function statement': function(){
-    var ctx = dox.parseCodeContext('function $foo(){\n\n}');
+    var ctx = dox.parseCodeContext('function $foo(a,b){\n\n}');
     ctx.type.should.equal('function');
+    ctx.params.should.eql(['a','b']);
     ctx.name.should.equal('$foo');
   },
 
   'test .parseCodeContext() returned unnamed function statement': function(){
-    var ctx = dox.parseCodeContext('return function (){\n\n}');
+    var ctx = dox.parseCodeContext('return function ( a , b ){\n\n}');
     ctx.type.should.equal('function');
+    ctx.params.should.eql(['a','b']);
     ctx.name.should.equal('');
   },
 
   'test .parseCodeContext() returned named function statement': function(){
-    var ctx = dox.parseCodeContext('return function $foo (){\n\n}');
+    var ctx = dox.parseCodeContext('return function $foo (a$,b$){\n\n}');
     ctx.type.should.equal('function');
+    ctx.params.should.eql(['a$','b$']);
     ctx.name.should.equal('$foo');
   },
 
   'test .parseCodeContext() function expression': function(){
-    var ctx = dox.parseCodeContext('var $foo = function(){\n\n}');
+    var ctx = dox.parseCodeContext('var $foo = function(_a\t, \t_b){\n\n}');
     ctx.type.should.equal('function');
+    ctx.params.should.eql(['_a','_b']);
     ctx.name.should.equal('$foo');
   },
 
   'test .parseCodeContext() prototype method': function(){
-    var ctx = dox.parseCodeContext('$User.prototype.$save = function(){}');
+    var ctx = dox.parseCodeContext('$User.prototype.$save = function(a,b){}');
     ctx.type.should.equal('method');
     ctx.constructor.should.equal('$User');
+    ctx.params.should.eql(['a','b']);
     ctx.name.should.equal('$save');
   },
 
@@ -585,10 +608,11 @@ module.exports = {
   },
 
   'test .parseCodeContext() method': function(){
-    var ctx = dox.parseCodeContext('$user.$save = function(){}');
+    var ctx = dox.parseCodeContext('$user.$save = function(a,b){}');
     ctx.type.should.equal('method');
     ctx.receiver.should.equal('$user');
     ctx.name.should.equal('$save');
+    ctx.params.should.eql(['a','b']);
   },
 
   'test .parseCodeContext() property': function(){
