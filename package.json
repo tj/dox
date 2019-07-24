@@ -33,7 +33,7 @@
     "markdown-it": "~7.0.0"
   },
   "devDependencies": {
-    "mocha": "^6.2.0",
+    "mocha": "~6.2.0",
     "should": "~11.0.0"
   },
   "license": "MIT",
