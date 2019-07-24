@@ -29,11 +29,11 @@
   },
   "dependencies": {
     "commander": "~2.9.0",
-    "jsdoctypeparser": "^1.2.0",
+    "jsdoctypeparser": "~5.0.0",
     "markdown-it": "~7.0.0"
   },
   "devDependencies": {
-    "mocha": "~3.0.2",
+    "mocha": "^6.2.0",
     "should": "~11.0.0"
   },
   "license": "MIT",
