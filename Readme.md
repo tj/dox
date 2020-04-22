@@ -89,6 +89,7 @@ output:
       "type": "method",
       "receiver": "exports",
       "name": "escape",
+      "params": [ "html" ],
       "string": "exports.escape()"
     }
   }
