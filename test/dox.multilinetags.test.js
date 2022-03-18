@@ -117,7 +117,7 @@ module.exports = {
 
       example.tags.should.with.lengthOf(1);
       example.tags[0].string.should.equal('    test(one);\n    test(two);');
-      example.tags[0].html.should.equal('<pre><code>test(one);\ntest(two);</code></pre>');
+      example.tags[0].html.should.equal('<pre><code>test(one);\ntest(two);\n</code></pre>');
 
       var i167 = comments.shift();
       i167.tags.should.with.lengthOf(3);
