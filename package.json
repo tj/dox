@@ -28,7 +28,7 @@
     "dox": "./bin/dox"
   },
   "dependencies": {
-    "commander": "~2.20.0",
+    "commander": "9.1.0",
     "jsdoctypeparser": "^1.2.0",
     "markdown-it": "12.3.2"
   },
