@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "commander": "9.1.0",
-    "jsdoctypeparser": "^1.2.0",
+    "jsdoctypeparser": "^9.0.0",
     "markdown-it": "12.3.2"
   },
   "devDependencies": {
