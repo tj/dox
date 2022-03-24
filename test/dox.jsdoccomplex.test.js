@@ -112,15 +112,6 @@ module.exports = {
       variableParam.tags[0].variable.should.be.true;
       variableParam.tags[0].string.should.equal('{...number} a');
 
-      /////////////////////////////////////
-      // optionalVariableNullableParam
-      /////////////////////////////////////
-      optionalVariableNullableParam.tags.should.with.lengthOf(1);
-      optionalVariableNullableParam.tags[0].optional.should.be.true;
-      optionalVariableNullableParam.tags[0].variable.should.be.true;
-      optionalVariableNullableParam.tags[0].nullable.should.be.true;
-      optionalVariableNullableParam.tags[0].string.should.equal('{?...number=} a');
-
       done();
     });
   }
