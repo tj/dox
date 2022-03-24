@@ -35,7 +35,7 @@ module.exports = {
         }
       ]);
       complexTypeParamAndReturn.tags[0].typesDescription.should
-        .equal('<code>number</code>|<code>string</code>|{ name: <code>string</code>, age: <code>number</code> }');
+        .equal('<code>number</code> | <code>string</code> | {name: <code>string</code>, age: <code>number</code>}');
       complexTypeParamAndReturn.tags[0].string.should
         .equal('{number|string|{name:string,age:number}} a');
 
@@ -48,7 +48,7 @@ module.exports = {
         'Array'
       ]);
       complexTypeParamAndReturn.tags[1].typesDescription.should
-        .equal('<code>number</code>|{ name: <code>string</code>, age: <code>number</code> }|<code>Array</code>');
+        .equal('<code>number</code> | {name: <code>string</code>, age: <code>number</code>} | <code>Array</code>');
       complexTypeParamAndReturn.tags[1].string.should
         .equal('{number|{name:string,age:number}|Array} a');
 
@@ -59,7 +59,7 @@ module.exports = {
         }
       ]);
       complexTypeParamAndReturn.tags[2].typesDescription.should
-        .equal('{ name: <code>string</code>, age: <code>number</code> }');
+        .equal('{name: <code>string</code>, age: <code>number</code>}');
       complexTypeParamAndReturn.tags[2].string.should
         .equal('{{name:string,age:number}}');
 
