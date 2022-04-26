@@ -1,3 +1,8 @@
+0.9.1 / 2022-04-26
+==================
+
+* Dependency bumps for commander and markdown-it to address security vulnerabilities
+
 0.9.0 / 2016-08-13
 ==================
 
