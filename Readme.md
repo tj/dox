@@ -1,5 +1,5 @@
 # Dox
-[![Build Status](https://travis-ci.org/tj/dox.svg?branch=master)](https://travis-ci.org/tj/dox)
+[![Tests](https://github.com/tj/dox/actions/workflows/test.workflow.yml/badge.svg)](https://github.com/tj/dox/actions/workflows/test.workflow.yml)
 
  Dox is a JavaScript documentation generator written with [node](http://nodejs.org). Dox no longer generates an opinionated structure or style for your docs, it simply gives you a JSON representation, allowing you to use _markdown_ and _JSDoc_-style tags.
 
