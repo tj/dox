@@ -28,12 +28,12 @@
     "dox": "./bin/dox"
   },
   "dependencies": {
-    "commander": "9.1.0",
+    "commander": "9.4.0",
     "jsdoctypeparser": "^9.0.0",
-    "markdown-it": "12.3.2"
+    "markdown-it": "13.0.1"
   },
   "devDependencies": {
-    "mocha": "9.2.2",
+    "mocha": "10.0.0",
     "should": "13.2.3"
   },
   "license": "MIT",
