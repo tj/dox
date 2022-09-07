@@ -1,26 +1,33 @@
 # Dox
+
 [![Tests](https://github.com/tj/dox/actions/workflows/test.workflow.yml/badge.svg)](https://github.com/tj/dox/actions/workflows/test.workflow.yml)
 
- Dox is a JavaScript documentation generator written with [node](http://nodejs.org). Dox no longer generates an opinionated structure or style for your docs, it simply gives you a JSON representation, allowing you to use _markdown_ and _JSDoc_-style tags.
+Dox is a JavaScript documentation generator written with [node](http://nodejs.org). Dox no longer generates an opinionated structure or style for your docs, it simply gives you a JSON representation, allowing you to use _markdown_ and _JSDoc_-style tags.
 
 ## Installation
 
 Install from npm:
 
-    $ npm install -g dox
+```sh
+npm install -g dox
+```
 
 ## Usage Examples
 
 `dox(1)` operates over stdio:
 
-    $ dox < utils.js
-    ...JSON...
+```sh
+$ dox < utils.js
+...JSON...
+```
 
- to inspect the generated data you can use the `--debug` flag, which is easier to read than the JSON output:
+to inspect the generated data you can use the `--debug` flag, which is easier to read than the JSON output:
 
-     $ dox --debug < utils.js
+```sh
+dox --debug < utils.js
+```
 
-utils.js:
+[utils.js](./doc_examples/utils.js):
 
 ```js
 /**
@@ -50,31 +57,39 @@ output:
   {
     "tags": [
       {
-        "type": "example",
-        "string": "    utils.escape('<script></script>')\n    // => '&lt;script&gt;&lt;/script&gt;'",
-        "html": "<pre><code>utils.escape(&#39;&lt;script&gt;&lt;/script&gt;&#39;)\n// =&gt; &#39;&amp;lt;script&amp;gt;&amp;lt;/script&amp;gt;&#39;\n</code></pre>"
-      },
-      {
         "type": "param",
-        "string": "{String} html string to be escaped",
+        "string": "{String} html",
+        "name": "html",
+        "description": "",
         "types": [
           "String"
         ],
-        "name": "html",
-        "description": "string to be escaped"
+        "typesDescription": "<code>String</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{String} html</p>"
       },
       {
         "type": "return",
-        "string": "{String} escaped html",
+        "string": "{String}",
         "types": [
           "String"
         ],
-        "description": "escaped html"
+        "typesDescription": "<code>String</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "description": "",
+        "html": "<p>{String}</p>"
       },
       {
         "type": "api",
-        "string": "public",
-        "visibility": "public"
+        "string": "private",
+        "visibility": "private",
+        "html": "<p>private</p>"
       }
     ],
     "description": {
@@ -82,8 +97,13 @@ output:
       "summary": "<p>Escape the given <code>html</code>.</p>",
       "body": ""
     },
-    "isPrivate": false,
+    "isPrivate": true,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
     "ignore": false,
+    "line": 2,
+    "codeStart": 10,
     "code": "exports.escape = function(html){\n  return String(html)\n    .replace(/&(?!\\w+;)/g, '&amp;')\n    .replace(/</g, '&lt;')\n    .replace(/>/g, '&gt;');\n};",
     "ctx": {
       "type": "method",
@@ -99,7 +119,7 @@ This output can then be passed to a template for rendering. Look below at the "P
 
 ## Usage
 
-```
+```txt
 
 Usage: dox [options]
 
@@ -125,37 +145,37 @@ Usage: dox [options]
 
 ### Programmatic Usage
 
-``` javascript
-
+```js
 var dox = require('dox'),
     code = "...";
 
 var obj = dox.parseComments(code);
 
 // [{ tags:[ ... ], description, ... }, { ... }, ...]
-
 ```
 
 ## Properties
 
-  A "comment" is comprised of the following detailed properties:
+A "comment" is comprised of the following detailed properties:
 
-    - tags
-    - description
-    - isPrivate
-    - isEvent
-    - isConstructor
-    - line
-    - ignore
-    - code
-    - ctx
+  - tags
+  - description
+  - isPrivate
+  - isEvent
+  - isConstructor
+  - line
+  - ignore
+  - code
+  - ctx
 
 ### Description
 
-  A dox description is comprised of three parts, the "full" description,
-  the "summary", and the "body". The following example has only a "summary",
-  as it consists of a single paragraph only, therefore the "full" property has
-  only this value as well.
+A dox description is comprised of three parts, the "full" description,
+the "summary", and the "body". The following example has only a "summary",
+as it consists of a single paragraph only, therefore the "full" property has
+only this value as well.
+
+[write1.js](./doc_examples/write1.js):
 
 ```js
 /**
@@ -166,16 +186,25 @@ exports.write = function(str) {
   process.stdout.write(str);
 };
 ```
+
 yields:
 
-```js
-description:
-     { full: '<p>Output the given <code>str</code> to <em>stdout</em>.</p>',
-       summary: '<p>Output the given <code>str</code> to <em>stdout</em>.</p>',
-       body: '' },
+```json
+[
+  {
+    "description": {
+      "full": "<p>Output the given <code>str</code> to <em>stdout</em>.</p>",
+      "summary": "<p>Output the given <code>str</code> to <em>stdout</em>.</p>",
+      "body": ""
+    },
+    // ... other tags
+  }
+]
 ```
 
-  Large descriptions might look something like the following, where the "summary" is still the first paragraph, the remaining description becomes the "body". Keep in mind this _is_ markdown, so you can indent code, use lists, links, etc. Dox also augments markdown, allowing "Some Title:\n" to form a header.
+Large descriptions might look something like the following, where the "summary" is still the first paragraph, the remaining description becomes the "body". Keep in mind this _is_ markdown, so you can indent code, use lists, links, etc. Dox also augments markdown, allowing "Some Title:\n" to form a header.
+
+[write2.js](./doc_examples/write2.js):
 
 ```js
 /**
@@ -201,19 +230,26 @@ exports.write = function(str, options) {
 
 yields:
 
-```js
-description:
-     { full: '<p>Output the given <code>str</code> to <em>stdout</em><br />or the stream specified by <code>options</code>.</p>\n\n<h2>Options</h2>\n\n<ul>\n<li><code>stream</code> defaulting to <em>stdout</em></li>\n</ul>\n\n<h2>Examples</h2>\n\n<pre><code>mymodule.write(\'foo\')\nmymodule.write(\'foo\', { stream: process.stderr })\n</code></pre>',
-       summary: '<p>Output the given <code>str</code> to <em>stdout</em><br />or the stream specified by <code>options</code>.</p>',
-       body: '<h2>Options</h2>\n\n<ul>\n<li><code>stream</code> defaulting to <em>stdout</em></li>\n</ul>\n\n<h2>Examples</h2>\n\n<pre><code>mymodule.write(\'foo\')\nmymodule.write(\'foo\', { stream: process.stderr })\n</code></pre>' }
+```json
+[
+  {
+    "description": {
+      "full": "<p>Output the given <code>str</code> to <em>stdout</em><br />\nor the stream specified by <code>options</code>.</p>\n<p>Options:</p>\n<ul>\n<li><code>stream</code> defaulting to <em>stdout</em></li>\n</ul>\n<p>Examples:</p>\n<pre><code>mymodule.write('foo')\nmymodule.write('foo', { stream: process.stderr })\n</code></pre>",
+      "summary": "<p>Output the given <code>str</code> to <em>stdout</em><br />\nor the stream specified by <code>options</code>.</p>",
+      "body": "<p>Options:</p>\n<ul>\n<li><code>stream</code> defaulting to <em>stdout</em></li>\n</ul>\n<p>Examples:</p>\n<pre><code>mymodule.write('foo')\nmymodule.write('foo', { stream: process.stderr })\n</code></pre>"
+    },
+    // ... other tags
+  }
+]
 ```
 
 ### Tags
 
-  Dox also supports JSdoc-style tags. Currently only __@api__ is special-cased, providing the `comment.isPrivate` boolean so you may omit "private" utilities etc.
+Dox also supports JSdoc-style tags. Currently only __@api__ is special-cased, providing the `comment.isPrivate` boolean so you may omit "private" utilities etc.
+
+[write_tags.js](./doc_examples/write_tags.js):
 
 ```js
-
 /**
  * Output the given `str` to _stdout_
  * or the stream specified by `options`.
@@ -232,24 +268,61 @@ exports.write = function(str, options) {
 
 yields:
 
-```js
-tags:
-   [ { type: 'param',
-       string: '{String} str',
-       types: [ 'String' ],
-       name: 'str',
-       description: '' },
-     { type: 'param',
-       string: '{{stream: Writable}} options',
-       types: [ { stream: ['Writable'] } ],
-       name: 'options',
-       description: '' },
-     { type: 'return',
-       string: '{Object} exports for chaining',
-       types: [ 'Object' ],
-       description: 'exports for chaining' },
-     { type: 'api',
-       visibility: 'public' } ]
+```json
+[
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{String} str",
+        "name": "str",
+        "description": "",
+        "types": [
+          "String"
+        ],
+        "typesDescription": "<code>String</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{String} str</p>"
+      },
+      {
+        "type": "param",
+        "string": "{{stream: Writable}} options",
+        "name": "options",
+        "description": "",
+        "types": [
+          {
+            "stream": [
+              "Writable"
+            ]
+          }
+        ],
+        "typesDescription": "{stream: <code>Writable</code>}",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{{stream: Writable}} options</p>"
+      },
+      {
+        "type": "return",
+        "string": "{Object} exports for chaining",
+        "types": [
+          "Object"
+        ],
+        "typesDescription": "<code>Object</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "description": "<p>exports for chaining</p>"
+      }
+    ],
+    // ... other tags
+  }
+]
 ```
 
 #### Complex jsdoc tags
@@ -259,8 +332,9 @@ specify complex object types including optional flag `=`, nullable `?`, non-null
 
 Additionally you can use `typesDescription` which contains formatted HTML for displaying complex types.
 
-```js
+[generatePersonInfo.js](./doc_examples/generatePersonInfo.js):
 
+```js
 /**
  * Generates a person information string based on input.
  *
@@ -283,8 +357,7 @@ exports.generatePersonInfo = function(name, options) {
 
 yields:
 
-```js
-tags:
+```json
 [
   {
     "tags": [
@@ -292,7 +365,7 @@ tags:
         "type": "param",
         "string": "{string | {name: string, age: number | date}} name Name or person object",
         "name": "name",
-        "description": "Name or person object",
+        "description": "<p>Name or person object</p>",
         "types": [
           "string",
           {
@@ -305,7 +378,7 @@ tags:
             ]
           }
         ],
-        "typesDescription": "<code>string</code>|{ name: <code>string</code>, age: <code>number</code>|<code>date</code> }",
+        "typesDescription": "<code>string</code> | {name: <code>string</code>, age: <code>number</code> | <code>date</code>}",
         "optional": false,
         "nullable": false,
         "nonNullable": false,
@@ -315,7 +388,7 @@ tags:
         "type": "param",
         "string": "{{separator: string} =} options An options object",
         "name": "options",
-        "description": "An options object",
+        "description": "<p>An options object</p>",
         "types": [
           {
             "separator": [
@@ -323,7 +396,7 @@ tags:
             ]
           }
         ],
-        "typesDescription": "{ separator: <code>string</code> }|<code>undefined</code>",
+        "typesDescription": "{separator: <code>string</code>|<code>undefined</code>}",
         "optional": true,
         "nullable": false,
         "nonNullable": false,
@@ -340,14 +413,17 @@ tags:
         "nullable": false,
         "nonNullable": false,
         "variable": false,
-        "description": "The constructed information string"
+        "description": "<p>The constructed information string</p>"
       }
-    ]
+    ],
+    // ... other tags
+  }
+]
 ```
 
 ### Code
 
- The `.code` property is the code following the comment block, in our previous examples:
+The `.code` property is the code following the comment block, in our previous examples:
 
 ```js
 exports.write = function(str, options) {
@@ -359,50 +435,70 @@ exports.write = function(str, options) {
 
 ### Ctx
 
-  The `.ctx` object indicates the context of the code block, is it a method, a function, a variable etc. Below are some examples:
+The `.ctx` object indicates the context of the code block, is it a method, a function, a variable etc. Below are some examples:
+
+[ctx.js](./doc_examples/ctx.js):
 
 ```js
-exports.write = function(str, options) {
-};
+/** */
+exports.generate = function(str, options) {};
 ```
 
 yields:
 
-```js
-ctx:
- { type: 'method',
-   receiver: 'exports',
-   name: 'write',
-   string: 'exports.write()' } }
+```json
+[
+  {
+    // ... other tags
+    "ctx": {
+      "type": "method",
+      "receiver": "exports",
+      "name": "generate",
+      "string": "exports.generate()"
+    }
+  }
+]
 ```
 
 ```js
+/** */
 var foo = 'bar';
 ```
 
 yields:
 
-```js
-ctx:
- { type: 'declaration',
-   name: 'foo',
-   value: '\'bar\'',
-   string: 'foo' }
+```json
+[
+  {
+    // ... other tags
+    "ctx": {
+      "type": "declaration",
+      "name": "foo",
+      "value": "'bar'",
+      "string": "foo"
+    }
+  }
+]
 ```
 
 ```js
-function User() {
-
-}
+/** */
+function User() {}
 ```
 
 yields:
 
-```js
-ctx:
- { type: 'function',
-   name: 'User',
-   string: 'User()' } }
+```json
+[
+  {
+    // ... other tags
+    "ctx": {
+      "type": "function",
+      "name": "User",
+      "string": "User()"
+    }
+  }
+]
 ```
 
 ### Extending Context Matching
@@ -427,7 +523,7 @@ dox.contextPatternMatchers.push(function (str, parentContext) {
 
 Comments and their associated bodies of code may be flagged with "!" to be considered worth ignoring, these are typically things like file comments containing copyright etc, however you of course can output them in your templates if you want.
 
-```
+```js
 /**
  * Not ignored.
  */
@@ -435,7 +531,7 @@ Comments and their associated bodies of code may be flagged with "!" to be consi
 
 vs
 
-```
+```js
 /*!
  * Ignored.
  */
@@ -445,10 +541,12 @@ You may use `-S`, `--skipSingleStar` or `{skipSingleStar: true}` to ignore `/* .
 
 ### Running tests
 
- Install dev dependencies and execute `make test`:
+Install dev dependencies and execute `make test`:
 
-     $ npm install -d
-     $ make test
+```sh
+npm install -d
+make test
+```
 
 ## License
 
