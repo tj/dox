@@ -27,7 +27,7 @@ to inspect the generated data you can use the `--debug` flag, which is easier to
 dox --debug < utils.js
 ```
 
-utils.js:
+[utils.js](./doc_examples/utils.js):
 
 ```js
 /**
@@ -175,6 +175,8 @@ the "summary", and the "body". The following example has only a "summary",
 as it consists of a single paragraph only, therefore the "full" property has
 only this value as well.
 
+[write1.js](./doc_examples/write1.js):
+
 ```js
 /**
  * Output the given `str` to _stdout_.
@@ -187,14 +189,22 @@ exports.write = function(str) {
 
 yields:
 
-```js
-description:
-     { full: '<p>Output the given <code>str</code> to <em>stdout</em>.</p>',
-       summary: '<p>Output the given <code>str</code> to <em>stdout</em>.</p>',
-       body: '' },
+```json
+[
+  {
+    "description": {
+      "full": "<p>Output the given <code>str</code> to <em>stdout</em>.</p>",
+      "summary": "<p>Output the given <code>str</code> to <em>stdout</em>.</p>",
+      "body": ""
+    },
+    // ... other tags
+  }
+]
 ```
 
 Large descriptions might look something like the following, where the "summary" is still the first paragraph, the remaining description becomes the "body". Keep in mind this _is_ markdown, so you can indent code, use lists, links, etc. Dox also augments markdown, allowing "Some Title:\n" to form a header.
+
+[write2.js](./doc_examples/write2.js):
 
 ```js
 /**
@@ -220,19 +230,26 @@ exports.write = function(str, options) {
 
 yields:
 
-```js
-description:
-     { full: '<p>Output the given <code>str</code> to <em>stdout</em><br />or the stream specified by <code>options</code>.</p>\n\n<h2>Options</h2>\n\n<ul>\n<li><code>stream</code> defaulting to <em>stdout</em></li>\n</ul>\n\n<h2>Examples</h2>\n\n<pre><code>mymodule.write(\'foo\')\nmymodule.write(\'foo\', { stream: process.stderr })\n</code></pre>',
-       summary: '<p>Output the given <code>str</code> to <em>stdout</em><br />or the stream specified by <code>options</code>.</p>',
-       body: '<h2>Options</h2>\n\n<ul>\n<li><code>stream</code> defaulting to <em>stdout</em></li>\n</ul>\n\n<h2>Examples</h2>\n\n<pre><code>mymodule.write(\'foo\')\nmymodule.write(\'foo\', { stream: process.stderr })\n</code></pre>' }
+```json
+[
+  {
+    "description": {
+      "full": "<p>Output the given <code>str</code> to <em>stdout</em><br />\nor the stream specified by <code>options</code>.</p>\n<p>Options:</p>\n<ul>\n<li><code>stream</code> defaulting to <em>stdout</em></li>\n</ul>\n<p>Examples:</p>\n<pre><code>mymodule.write('foo')\nmymodule.write('foo', { stream: process.stderr })\n</code></pre>",
+      "summary": "<p>Output the given <code>str</code> to <em>stdout</em><br />\nor the stream specified by <code>options</code>.</p>",
+      "body": "<p>Options:</p>\n<ul>\n<li><code>stream</code> defaulting to <em>stdout</em></li>\n</ul>\n<p>Examples:</p>\n<pre><code>mymodule.write('foo')\nmymodule.write('foo', { stream: process.stderr })\n</code></pre>"
+    },
+    // ... other tags
+  }
+]
 ```
 
 ### Tags
 
 Dox also supports JSdoc-style tags. Currently only __@api__ is special-cased, providing the `comment.isPrivate` boolean so you may omit "private" utilities etc.
 
-```js
+[write_tags.js](./doc_examples/write_tags.js):
 
+```js
 /**
  * Output the given `str` to _stdout_
  * or the stream specified by `options`.
@@ -251,24 +268,61 @@ exports.write = function(str, options) {
 
 yields:
 
-```js
-tags:
-   [ { type: 'param',
-       string: '{String} str',
-       types: [ 'String' ],
-       name: 'str',
-       description: '' },
-     { type: 'param',
-       string: '{{stream: Writable}} options',
-       types: [ { stream: ['Writable'] } ],
-       name: 'options',
-       description: '' },
-     { type: 'return',
-       string: '{Object} exports for chaining',
-       types: [ 'Object' ],
-       description: 'exports for chaining' },
-     { type: 'api',
-       visibility: 'public' } ]
+```json
+[
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{String} str",
+        "name": "str",
+        "description": "",
+        "types": [
+          "String"
+        ],
+        "typesDescription": "<code>String</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{String} str</p>"
+      },
+      {
+        "type": "param",
+        "string": "{{stream: Writable}} options",
+        "name": "options",
+        "description": "",
+        "types": [
+          {
+            "stream": [
+              "Writable"
+            ]
+          }
+        ],
+        "typesDescription": "{stream: <code>Writable</code>}",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{{stream: Writable}} options</p>"
+      },
+      {
+        "type": "return",
+        "string": "{Object} exports for chaining",
+        "types": [
+          "Object"
+        ],
+        "typesDescription": "<code>Object</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "description": "<p>exports for chaining</p>"
+      }
+    ],
+    // ... other tags
+  }
+]
 ```
 
 #### Complex jsdoc tags
@@ -278,8 +332,9 @@ specify complex object types including optional flag `=`, nullable `?`, non-null
 
 Additionally you can use `typesDescription` which contains formatted HTML for displaying complex types.
 
-```js
+[generatePersonInfo.js](./doc_examples/generatePersonInfo.js):
 
+```js
 /**
  * Generates a person information string based on input.
  *
@@ -302,8 +357,7 @@ exports.generatePersonInfo = function(name, options) {
 
 yields:
 
-```js
-tags:
+```json
 [
   {
     "tags": [
@@ -311,7 +365,7 @@ tags:
         "type": "param",
         "string": "{string | {name: string, age: number | date}} name Name or person object",
         "name": "name",
-        "description": "Name or person object",
+        "description": "<p>Name or person object</p>",
         "types": [
           "string",
           {
@@ -324,7 +378,7 @@ tags:
             ]
           }
         ],
-        "typesDescription": "<code>string</code>|{ name: <code>string</code>, age: <code>number</code>|<code>date</code> }",
+        "typesDescription": "<code>string</code> | {name: <code>string</code>, age: <code>number</code> | <code>date</code>}",
         "optional": false,
         "nullable": false,
         "nonNullable": false,
@@ -334,7 +388,7 @@ tags:
         "type": "param",
         "string": "{{separator: string} =} options An options object",
         "name": "options",
-        "description": "An options object",
+        "description": "<p>An options object</p>",
         "types": [
           {
             "separator": [
@@ -342,7 +396,7 @@ tags:
             ]
           }
         ],
-        "typesDescription": "{ separator: <code>string</code> }|<code>undefined</code>",
+        "typesDescription": "{separator: <code>string</code>|<code>undefined</code>}",
         "optional": true,
         "nullable": false,
         "nonNullable": false,
@@ -359,9 +413,12 @@ tags:
         "nullable": false,
         "nonNullable": false,
         "variable": false,
-        "description": "The constructed information string"
+        "description": "<p>The constructed information string</p>"
       }
-    ]
+    ],
+    // ... other tags
+  }
+]
 ```
 
 ### Code
@@ -380,48 +437,68 @@ exports.write = function(str, options) {
 
 The `.ctx` object indicates the context of the code block, is it a method, a function, a variable etc. Below are some examples:
 
+[ctx.js](./doc_examples/ctx.js):
+
 ```js
-exports.write = function(str, options) {
-};
+/** */
+exports.generate = function(str, options) {};
 ```
 
 yields:
 
-```js
-ctx:
- { type: 'method',
-   receiver: 'exports',
-   name: 'write',
-   string: 'exports.write()' } }
+```json
+[
+  {
+    // ... other tags
+    "ctx": {
+      "type": "method",
+      "receiver": "exports",
+      "name": "generate",
+      "string": "exports.generate()"
+    }
+  }
+]
 ```
 
 ```js
+/** */
 var foo = 'bar';
 ```
 
 yields:
 
-```js
-ctx:
- { type: 'declaration',
-   name: 'foo',
-   value: '\'bar\'',
-   string: 'foo' }
+```json
+[
+  {
+    // ... other tags
+    "ctx": {
+      "type": "declaration",
+      "name": "foo",
+      "value": "'bar'",
+      "string": "foo"
+    }
+  }
+]
 ```
 
 ```js
-function User() {
-
-}
+/** */
+function User() {}
 ```
 
 yields:
 
-```js
-ctx:
- { type: 'function',
-   name: 'User',
-   string: 'User()' } }
+```json
+[
+  {
+    // ... other tags
+    "ctx": {
+      "type": "function",
+      "name": "User",
+      "string": "User()"
+    }
+  }
+]
 ```
 
 ### Extending Context Matching
