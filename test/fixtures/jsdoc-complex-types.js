@@ -50,11 +50,3 @@ function nonNullableParam(a) {
 function variableParam(a) {
 
 }
-
-/**
- *
- * @param {?...number=} a
- */
-function optionalVariableNullableParam(a) {
-
-}

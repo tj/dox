@@ -964,4 +964,13 @@ module.exports = {
       done();
     });
   },
+
+  'test generic types': function(done){
+    fixture('types.js', function(err, str){
+      var comments = dox.parseComments(str);
+      comments[0].tags[0].types[0].should.equal("Promise<string|null>");
+      comments[1].tags[0].types[0].should.equal("Promise.<string|null>");
+      done();
+    });
+  },
 };
