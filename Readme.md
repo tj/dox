@@ -1,7 +1,8 @@
 # Dox
+
 [![Tests](https://github.com/tj/dox/actions/workflows/test.workflow.yml/badge.svg)](https://github.com/tj/dox/actions/workflows/test.workflow.yml)
 
- Dox is a JavaScript documentation generator written with [node](http://nodejs.org). Dox no longer generates an opinionated structure or style for your docs, it simply gives you a JSON representation, allowing you to use _markdown_ and _JSDoc_-style tags.
+Dox is a JavaScript documentation generator written with [node](http://nodejs.org). Dox no longer generates an opinionated structure or style for your docs, it simply gives you a JSON representation, allowing you to use _markdown_ and _JSDoc_-style tags.
 
 ## Installation
 
@@ -149,24 +150,24 @@ var obj = dox.parseComments(code);
 
 ## Properties
 
-  A "comment" is comprised of the following detailed properties:
+A "comment" is comprised of the following detailed properties:
 
-    - tags
-    - description
-    - isPrivate
-    - isEvent
-    - isConstructor
-    - line
-    - ignore
-    - code
-    - ctx
+  - tags
+  - description
+  - isPrivate
+  - isEvent
+  - isConstructor
+  - line
+  - ignore
+  - code
+  - ctx
 
 ### Description
 
-  A dox description is comprised of three parts, the "full" description,
-  the "summary", and the "body". The following example has only a "summary",
-  as it consists of a single paragraph only, therefore the "full" property has
-  only this value as well.
+A dox description is comprised of three parts, the "full" description,
+the "summary", and the "body". The following example has only a "summary",
+as it consists of a single paragraph only, therefore the "full" property has
+only this value as well.
 
 ```js
 /**
@@ -177,6 +178,7 @@ exports.write = function(str) {
   process.stdout.write(str);
 };
 ```
+
 yields:
 
 ```js
@@ -186,7 +188,7 @@ description:
        body: '' },
 ```
 
-  Large descriptions might look something like the following, where the "summary" is still the first paragraph, the remaining description becomes the "body". Keep in mind this _is_ markdown, so you can indent code, use lists, links, etc. Dox also augments markdown, allowing "Some Title:\n" to form a header.
+Large descriptions might look something like the following, where the "summary" is still the first paragraph, the remaining description becomes the "body". Keep in mind this _is_ markdown, so you can indent code, use lists, links, etc. Dox also augments markdown, allowing "Some Title:\n" to form a header.
 
 ```js
 /**
@@ -221,7 +223,7 @@ description:
 
 ### Tags
 
-  Dox also supports JSdoc-style tags. Currently only __@api__ is special-cased, providing the `comment.isPrivate` boolean so you may omit "private" utilities etc.
+Dox also supports JSdoc-style tags. Currently only __@api__ is special-cased, providing the `comment.isPrivate` boolean so you may omit "private" utilities etc.
 
 ```js
 
@@ -358,7 +360,7 @@ tags:
 
 ### Code
 
- The `.code` property is the code following the comment block, in our previous examples:
+The `.code` property is the code following the comment block, in our previous examples:
 
 ```js
 exports.write = function(str, options) {
@@ -370,7 +372,7 @@ exports.write = function(str, options) {
 
 ### Ctx
 
-  The `.ctx` object indicates the context of the code block, is it a method, a function, a variable etc. Below are some examples:
+The `.ctx` object indicates the context of the code block, is it a method, a function, a variable etc. Below are some examples:
 
 ```js
 exports.write = function(str, options) {
@@ -456,10 +458,10 @@ You may use `-S`, `--skipSingleStar` or `{skipSingleStar: true}` to ignore `/* .
 
 ### Running tests
 
- Install dev dependencies and execute `make test`:
+Install dev dependencies and execute `make test`:
 
-     $ npm install -d
-     $ make test
+    $ npm install -d
+    $ make test
 
 ## License
 
