@@ -1,3 +1,8 @@
+1.0.0 / 2022-09-06
+==================
+
+* jsdoctypeparser finally updated to latest version
+
 0.9.1 / 2022-04-26
 ==================
 
