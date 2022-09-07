@@ -38,6 +38,6 @@
   },
   "license": "MIT",
   "scripts": {
-    "test": "make test"
+    "test": "NODE_ENV=test ./node_modules/.bin/mocha test/*.test.js"
   }
 }
