@@ -8,18 +8,24 @@ Dox is a JavaScript documentation generator written with [node](http://nodejs.or
 
 Install from npm:
 
-    $ npm install -g dox
+```sh
+npm install -g dox
+```
 
 ## Usage Examples
 
 `dox(1)` operates over stdio:
 
-    $ dox < utils.js
-    ...JSON...
+```sh
+$ dox < utils.js
+...JSON...
+```
 
- to inspect the generated data you can use the `--debug` flag, which is easier to read than the JSON output:
+to inspect the generated data you can use the `--debug` flag, which is easier to read than the JSON output:
 
-     $ dox --debug < utils.js
+```sh
+dox --debug < utils.js
+```
 
 utils.js:
 
@@ -139,7 +145,7 @@ Usage: dox [options]
 
 ### Programmatic Usage
 
-``` js
+```js
 var dox = require('dox'),
     code = "...";
 
@@ -440,7 +446,7 @@ dox.contextPatternMatchers.push(function (str, parentContext) {
 
 Comments and their associated bodies of code may be flagged with "!" to be considered worth ignoring, these are typically things like file comments containing copyright etc, however you of course can output them in your templates if you want.
 
-```
+```js
 /**
  * Not ignored.
  */
@@ -448,7 +454,7 @@ Comments and their associated bodies of code may be flagged with "!" to be consi
 
 vs
 
-```
+```js
 /*!
  * Ignored.
  */
@@ -460,8 +466,10 @@ You may use `-S`, `--skipSingleStar` or `{skipSingleStar: true}` to ignore `/* .
 
 Install dev dependencies and execute `make test`:
 
-    $ npm install -d
-    $ make test
+```sh
+npm install -d
+make test
+```
 
 ## License
 
