@@ -50,31 +50,39 @@ output:
   {
     "tags": [
       {
-        "type": "example",
-        "string": "    utils.escape('<script></script>')\n    // => '&lt;script&gt;&lt;/script&gt;'",
-        "html": "<pre><code>utils.escape(&#39;&lt;script&gt;&lt;/script&gt;&#39;)\n// =&gt; &#39;&amp;lt;script&amp;gt;&amp;lt;/script&amp;gt;&#39;\n</code></pre>"
-      },
-      {
         "type": "param",
-        "string": "{String} html string to be escaped",
+        "string": "{String} html",
+        "name": "html",
+        "description": "",
         "types": [
           "String"
         ],
-        "name": "html",
-        "description": "string to be escaped"
+        "typesDescription": "<code>String</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{String} html</p>"
       },
       {
         "type": "return",
-        "string": "{String} escaped html",
+        "string": "{String}",
         "types": [
           "String"
         ],
-        "description": "escaped html"
+        "typesDescription": "<code>String</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "description": "",
+        "html": "<p>{String}</p>"
       },
       {
         "type": "api",
-        "string": "public",
-        "visibility": "public"
+        "string": "private",
+        "visibility": "private",
+        "html": "<p>private</p>"
       }
     ],
     "description": {
@@ -82,8 +90,13 @@ output:
       "summary": "<p>Escape the given <code>html</code>.</p>",
       "body": ""
     },
-    "isPrivate": false,
+    "isPrivate": true,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
     "ignore": false,
+    "line": 2,
+    "codeStart": 10,
     "code": "exports.escape = function(html){\n  return String(html)\n    .replace(/&(?!\\w+;)/g, '&amp;')\n    .replace(/</g, '&lt;')\n    .replace(/>/g, '&gt;');\n};",
     "ctx": {
       "type": "method",
@@ -99,7 +112,7 @@ This output can then be passed to a template for rendering. Look below at the "P
 
 ## Usage
 
-```
+```txt
 
 Usage: dox [options]
 
@@ -125,15 +138,13 @@ Usage: dox [options]
 
 ### Programmatic Usage
 
-``` javascript
-
+``` js
 var dox = require('dox'),
     code = "...";
 
 var obj = dox.parseComments(code);
 
 // [{ tags:[ ... ], description, ... }, { ... }, ...]
-
 ```
 
 ## Properties
