@@ -3,7 +3,7 @@ declare module "dox" {
         skipSingleStar?: boolean;
         skipPrefixes?: string[];
         raw?: boolean;
-    };
+    }
 
     export interface CommentDescription {
         full: string;
@@ -28,7 +28,6 @@ declare module "dox" {
         code: string;
         ctx: ContextPatternMatchersCtx;
         ignore: boolean;
-        line: number;
     }
 
     export interface Tag {
